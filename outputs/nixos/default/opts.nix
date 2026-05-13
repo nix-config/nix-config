@@ -165,8 +165,9 @@ let
       };
       # ========== 容器管理 ==========
       container = {
-        # 容器引擎, Docker 替代品
-        podman.enable = false;
+        enable = false;
+        # arch 开发容器
+        dev-arch.enable = true;
         # Portainer 代理
         portainer-agent.enable = false;
       };
