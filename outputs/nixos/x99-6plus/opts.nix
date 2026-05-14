@@ -79,7 +79,7 @@ let
         hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
-          "command=\"podman exec -it dev-arch bash\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOOwMGFFdCo3DM1mKZTipGe4/M1opXvNAJttgrY7TIPs"
+          ''command="${host.customOptSets.nixConfigPath}/scripts/ssh-container-intelligent-entry.sh dev-arch",no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmCmFzsdE+O2Xmi58kcN4gYuW+Y1Zlz8bnHWJ4MYpyD''
         ];
       };
     };
