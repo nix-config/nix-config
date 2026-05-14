@@ -185,7 +185,7 @@ in
         # 水平平铺布局
         dwindle = {
           # 伪平铺主开关, 开启后可按 mainMod + P 切换
-          pseudotile = true;
+          # pseudotile = true;
           # 保持分割状态, 建议开启
           preserve_split = true;
         };
