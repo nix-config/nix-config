@@ -94,6 +94,8 @@
   "workbench.list.smoothScrolling": true,
   // 终端平滑滚动
   "terminal.integrated.smoothScrolling": true,
+  // 默认 Shell
+  "terminal.integrated.defaultProfile.linux": "fish",
   // 遇到任务错误时仍继续调试
   "debug.onTaskErrors": "debugAnyway",
   // 在概览标尺中显示断点标记
