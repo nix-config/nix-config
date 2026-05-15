@@ -60,6 +60,7 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
+      configType = "hyprlang";
       settings = {
         # ========== 显示器 ==========
         monitor = [
