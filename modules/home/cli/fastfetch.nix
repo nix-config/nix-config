@@ -1,11 +1,13 @@
 {
   lib,
+  pkgs,
   opts,
   ...
 }:
 let
   cfg = opts.cli.fastfetch or { };
   finallyEnable = cfg.enable or false;
+  desktopNotEnable  = (opts.desktop.type or "") == "";
   # 配置中使用的变量和函数
   width = 64; # 第二列的宽度, 可自由调整
   esc = builtins.fromJSON ''"\u001b"'';
@@ -31,6 +33,7 @@ in
     programs = {
       fastfetch = {
         enable = true;
+        package = lib.mkIf desktopNotEnable pkgs.fastfetchMinimal;
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
           logo = {
