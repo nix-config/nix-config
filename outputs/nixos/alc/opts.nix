@@ -45,6 +45,7 @@ let
           device = "/dev/vda";
           espSize = "100M";
         };
+        kernel = [ vars.kernelTypes.latest ];
         networking = {
           domain = "";
           inherit hostName;
