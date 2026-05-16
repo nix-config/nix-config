@@ -37,13 +37,6 @@ let
               localPort = 22;
               remotePort = 2226;
             }
-            {
-              name = "test-wsl-work";
-              type = "tcp";
-              localIP = "localhost";
-              localPort = 8000;
-              remotePort = 8000;
-            }
           ];
         };
       };

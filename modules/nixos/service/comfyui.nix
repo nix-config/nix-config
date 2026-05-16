@@ -15,6 +15,8 @@ in
   config = lib.mkIf finallyEnable {
     services.comfyui = {
       enable = true;
+      host = "0.0.0.0";
+      acceleration = "cuda";
     };
   };
 }
