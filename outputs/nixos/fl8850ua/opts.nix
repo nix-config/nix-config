@@ -64,6 +64,7 @@ let
           vars.kernelTypes.latest
           vars.kernelTypes.zen-latest
           vars.kernelTypes.lqx-latest
+          vars.kernelTypes.xanmod-latest
         ];
         networking = {
           inherit hostName;
