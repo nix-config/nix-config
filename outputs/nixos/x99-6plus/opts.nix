@@ -57,9 +57,7 @@ let
             mountpoint = "/mnt/data";
           };
         };
-        kernel = [
-          vars.kernelTypes.latest
-        ];
+        kernel = [ vars.kernelTypes.latest ];
         networking = {
           inherit hostName;
           networkmanager.enable = false;
