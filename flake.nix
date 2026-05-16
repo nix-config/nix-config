@@ -41,6 +41,10 @@
       url = "github:utensils/mcp-nixos/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixified-ai = {
+      url = "github:nixified-ai/flake/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     daeuniverse = {
       url = "github:daeuniverse/flake.nix/main";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -26,6 +26,7 @@ let
       };
       service = {
         openssh.enable = true;
+        comfyui.enable = true;
         sops-nix.enable = true;
         openlist.enable = true;
         frp = {
