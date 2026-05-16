@@ -21,3 +21,13 @@ clean *args:
 # 格式化 nix 文件
 fmt:
     treefmt .
+
+# 依赖分析
+depend hostname pkgname:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    SYS_DRV=$(nix eval --raw .#nixosConfigurations.{{hostname}}.config.system.build.toplevel.drvPath)
+    while read -r PKG_DRV; do
+        nix why-depends "$SYS_DRV" "$PKG_DRV"
+        echo
+    done < <(nix-store -qR "$SYS_DRV" | grep {{pkgname}})
