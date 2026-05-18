@@ -219,6 +219,7 @@
   "dankLauncherV2UnloadOnClose": false,
   "dankLauncherV2IncludeFilesInAll": false,
   "dankLauncherV2IncludeFoldersInAll": false,
+  "launcherStyle": "full",
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "wifi",
@@ -614,6 +615,7 @@
   "frameCloseGaps": true,
   "frameLauncherEmergeSide": "bottom",
   "frameLauncherArcExtender": false,
+  "frameUseSpotlightLauncher": false,
   "frameMode": "separate",
   "configVersion": 11
 }
