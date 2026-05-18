@@ -84,7 +84,7 @@ let
       tool = {
         # 模块化输入法框架, 支持多种输入法
         fcitx5.enable = false;
-        # 游戏逆向工程工具(Linux 版 Cheat Engine)
+        # 游戏逆向工程工具 (Linux 版 Cheat Engine)
         pince.enable = false;
         # Linux 游戏平台管理工具
         lutris.enable = false;
@@ -153,7 +153,7 @@ let
         # 图形驱动配置
         graphics = {
           # GPU 类型, 可选项:
-          # none(默认)
+          # none (默认)
           # amd
           # nvidia
           type = vars.gpuTypes.none;

@@ -15,6 +15,7 @@ let
         nix-ld.enable = true;
         nix = {
           substituters = [
+            "https://mirror.sjtu.edu.cn/nix-channels/store"
             "https://cache.garnix.io"
           ];
           trusted-public-keys = [
@@ -49,6 +50,10 @@ let
           resolvconf.enable = false;
         };
         boot-loader.type = vars.bootLoaderTypes.wsl;
+      };
+      container = {
+        enable = true;
+        type = vars.containerTypes.podman;
       };
     };
   };
@@ -87,10 +92,6 @@ let
           git.user = {
             name = "Knight";
             email = "2067834160@qq.com";
-          };
-          python = {
-            poetry.enable = true;
-            micromamba.enable = true;
           };
         };
         shell.bash.enable = true;
