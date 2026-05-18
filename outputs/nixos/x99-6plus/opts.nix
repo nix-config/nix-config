@@ -70,6 +70,7 @@ let
       };
       container = {
         enable = true;
+        type = vars.containerTypes.podman;
         dev-arch.enable = true;
       };
     };

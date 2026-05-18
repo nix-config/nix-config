@@ -56,13 +56,13 @@ let
       # ========== 桌面环境 ==========
       desktop = {
         # 桌面类型, 可选项:
-        # disable(不启用桌面, 这将连带禁用所有图形应用)
+        # disable (不启用桌面, 这将连带禁用所有图形应用)
         # hyprland
         type = vars.desktopTypes.disable;
         # DankMaterialShell
         dms = {
           enable = false;
-          # 软件渲染模式(用于无 GPU 或虚拟化环境)
+          # 软件渲染模式 (用于无 GPU 或虚拟化环境)
           softwareRenderingEnable = false;
         };
       };
@@ -130,7 +130,7 @@ let
         # 图形驱动配置
         graphics = {
           # GPU 类型, 可选项:
-          # none(默认)
+          # none (默认)
           # amd
           # nvidia
           type = vars.gpuTypes.none;
@@ -158,15 +158,19 @@ let
           # EFI 系统分区挂载点
           efiSysMountPoint = "/boot";
           # 启动加载器, 可选项:
-          # systemd-boot(默认)
-          # grub(目前未实现)
+          # systemd-boot (默认)
+          # grub (目前未实现)
           type = vars.bootLoaderTypes.systemd-boot;
         };
       };
       # ========== 容器管理 ==========
       container = {
         enable = false;
-        # arch 开发容器
+        # 容器运行时类型, 可选项:
+        # podman (默认)
+        # docker
+        type = vars.containerTypes.podman;
+        # Arch 开发容器
         dev-arch.enable = true;
         # Portainer 代理
         portainer-agent.enable = false;
@@ -272,7 +276,7 @@ let
         tool = {
           # 模块化输入法框架, 支持多种输入法
           fcitx5.enable = false;
-          # 游戏逆向工程工具(Linux 版 Cheat Engine)
+          # 游戏逆向工程工具 (Linux 版 Cheat Engine)
           pince.enable = false;
           # Linux 游戏平台管理工具
           lutris.enable = false;

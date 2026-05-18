@@ -1,0 +1,7 @@
+{
+  ...
+}:
+{
+  podman = "podman";
+  docker = "docker";
+}
