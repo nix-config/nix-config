@@ -15,6 +15,9 @@ in
   config = lib.mkIf finallyEnable {
     programs.nixvim = {
       enable = true;
+      highlight = {
+        Normal.bg = "NONE";
+      };
       plugins = {
         # 为文件类型提供图标支持
         web-devicons.enable = true;
