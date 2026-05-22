@@ -121,6 +121,8 @@
     "*.sdb": "${capture}.${extname}-*",
     "*.s3db": "${capture}.${extname}-*",
   },
+  // 选择单个 git 仓库
+  "scm.repositories.selectionMode": "single",
 
   // ==================== Markdown 相关 ====================
   // Markdown 预览主题
@@ -197,8 +199,5 @@
     "*tpl": "jinja",
   },
   // indent-rainbow 应该跳过缩进错误检测的语言
-  "indentRainbow.ignoreErrorLanguages": ["*"],
-  // 性能监控配置
-  "monitor-pro.diskSpace": ["/", "C:", "D:", "E:", "F:", "G:", "H:", "I:", "J:", "K:", "L:", "M:", "N:", "O:", "P:", "Q:", "R:", "S:", "T:", "U:", "V:", "W:", "X:", "Y:", "Z:"],
-  "scm.repositories.selectionMode": "single",
+  "indentRainbow.ignoreErrorLanguages": ["*"]
 }
