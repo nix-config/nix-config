@@ -106,6 +106,7 @@ let
         count = 1;
         cli = {
           ssh.enable = true;
+          direnv.enable = true;
           zellij.enable = true;
           opencode.enable = true;
           git.user = {
