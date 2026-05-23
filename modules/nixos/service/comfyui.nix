@@ -11,8 +11,8 @@ let
   # 定义模型
   realesrgan-x4plus-anime-6b = pkgs.fetchResource {
     name = "RealESRGAN_x4plus_anime_6B.pth";
-    url = "https://huggingface.co/spaces/Marne/Real-ESRGAN/blob/main/RealESRGAN_x4plus_anime_6B.pth";
-    hash = "sha256-+knS/IugSoGGnRKT7x2FesZnF+ii4WX8+uRQzsdirCo=";
+    url = "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth";
+    hash = "sha256-+HLYN9PJDtLgUie+1xGvVnGm/RyffX6RyRGmHxVemdo=";
     passthru.comfyui.installPaths = [ "upscale_models" ];
   };
   diffusion-pytorch-model-promax = pkgs.fetchResource {
@@ -34,6 +34,7 @@ in
       customNodes = with pkgs.comfyuiPackages; [
         comfyui-rgthree
         comfyui-crystools
+        comfyui-ultimatesdupscale
         comfyui-pythongosssss-custom-scripts
       ];
       models = [
