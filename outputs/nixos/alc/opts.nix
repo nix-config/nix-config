@@ -29,10 +29,6 @@ let
           enable = true;
           role = vars.frpRoleTypes.server;
         };
-        zerotierone = {
-          enable = true;
-          joinNetworks = [ "98c7dece649d0152" ];
-        };
         rustdesk-server = {
           enable = true;
           relayHosts = [ "knightfemale.com:21117" ];

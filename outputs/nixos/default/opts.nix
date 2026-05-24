@@ -78,6 +78,8 @@ let
         logind.enable = false;
         # SSH 服务器
         openssh.enable = true;
+        # ComfyUI Web 服务
+        comfyui.enable = false;
         # Btrfs 快照管理工具
         snapper.enable = false;
         # U 盘自动挂载服务
