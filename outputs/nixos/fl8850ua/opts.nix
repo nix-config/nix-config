@@ -50,10 +50,6 @@ let
             }
           ];
         };
-        zerotierone = {
-          enable = true;
-          joinNetworks = [ "98c7dece649d0152" ];
-        };
       };
       hardware = {
         zram.enable = true;

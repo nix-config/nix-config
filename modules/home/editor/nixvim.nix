@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   opts,
   inputs,
   ...
@@ -15,6 +16,7 @@ in
   config = lib.mkIf finallyEnable {
     programs.nixvim = {
       enable = true;
+      nixpkgs.source = pkgs.path;
       highlight = {
         Normal.bg = "NONE";
       };
