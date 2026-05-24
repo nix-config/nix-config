@@ -83,6 +83,8 @@ in
           wholroyd.jinja
           # Rust 语言支持
           rust-lang.rust-analyzer
+          # Go 语言支持
+          golang.go
           # ========== 容器与远程开发 ==========
           # 开发容器支持
           ms-azuretools.vscode-containers
@@ -117,8 +119,8 @@ in
             # 系统监控
             name = "monitor-pro";
             publisher = "nexmoe";
-            version = "0.7.2";
-            sha256 = "sha256-CTpAfTPIMDXwMhelQPQByIVfM5IseYT/Cbge7+FZOPA=";
+            version = "0.7.3";
+            sha256 = "sha256-k7t9Qk1Q8ck6deheipCY7iSmZnTqJeJtO9E/4zs8Q98=";
           }
           {
             # 行号区域预览图片, 颜色等
