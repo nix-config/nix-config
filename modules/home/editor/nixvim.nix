@@ -43,6 +43,35 @@ in
             };
           };
         };
+        # 语法高亮, 提供基于语法树的代码着色和增量解析等功能
+        treesitter = {
+          enable = true;
+          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            nix
+          ];
+        };
+        # LSP 支持, 提供代码补全和错误检查等功能
+        lsp = {
+          enable = true;
+          servers = {
+            nixd.enable = true;
+          };
+        };
+        # 配置按文件类型自动格式化
+        conform-nvim = {
+          enable = true;
+          settings = {
+            # 指定每种文件类型对应的格式化工具
+            formatters_by_ft = {
+              nix = [ "nixfmt" ];
+            };
+            # 配置保存时自动格式化
+            format_on_save = {
+              # 无对应 formatter 时回退到 LSP
+              lsp_fallback = true;
+            };
+          };
+        };
       };
       autoCmd = [
         # 启动时自动打开文件资源管理器
