@@ -9,6 +9,7 @@ let
   finallyEnable = cfg.enable or false;
   batEnable = opts.cli.bat.enable or false;
   btopEnable = opts.cli.btop.enable or false;
+  nixvimEnable = opts.editor.nixvim.enable or false;
   micromambaEnable = opts.cli.micromamba.enable or false;
 in
 {
@@ -40,6 +41,10 @@ in
         }
         // lib.optionalAttrs btopEnable {
           top = "btop";
+        }
+        // lib.optionalAttrs nixvimEnable {
+          vi = "nvim";
+          vim = "nvim";
         };
       };
       # 启用 fzf 集成
