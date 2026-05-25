@@ -20,6 +20,10 @@ in
           background_opacity = 0.75;
           # 光标形状: 可以将默认的方块(block)改成更细的竖线(beam)或下划线(underline)
           cursor_shape = "beam";
+          # 光标跳转动画: 光标移动时产生渐变拖尾效果 (数值为拖尾长度)
+          cursor_trail = 3;
+          # 触发拖尾的最小移动距离 (单位: 单元格)
+          cursor_trail_start_threshold = 2;
           # 输入时立即隐藏鼠标
           mouse_hide_wait = -1.0;
         }
