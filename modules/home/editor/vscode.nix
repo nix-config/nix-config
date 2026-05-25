@@ -119,8 +119,8 @@ in
             # 系统监控
             name = "monitor-pro";
             publisher = "nexmoe";
-            version = "0.7.3";
-            sha256 = "sha256-k7t9Qk1Q8ck6deheipCY7iSmZnTqJeJtO9E/4zs8Q98=";
+            version = "0.7.4";
+            sha256 = "sha256-zb+47neU+LzOWcVjdfnsEYlMypm0FqJ9eIYSCXnAFTw=";
           }
           {
             # 行号区域预览图片, 颜色等
