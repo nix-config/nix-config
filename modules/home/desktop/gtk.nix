@@ -6,7 +6,9 @@
 }:
 let
   cfg = opts.desktop or { };
-  finallyEnable = (cfg.type or "") != "";
+  desktopNotEnable = (cfg.type or "") == "";
+  desktopWslEnable = (cfg.type or "") == "wsl";
+  finallyEnable = !desktopNotEnable && !desktopWslEnable;
 in
 {
   config = lib.mkIf finallyEnable {
