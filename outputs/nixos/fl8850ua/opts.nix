@@ -66,7 +66,6 @@ let
         networking = {
           inherit hostName;
           networkmanager.enable = true;
-          firewall.enable = false;
         };
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
