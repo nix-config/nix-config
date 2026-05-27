@@ -25,6 +25,7 @@ let
         };
       };
       i18n.locale = vars.localeTypes.zh-cn;
+      desktop.type = vars.desktopTypes.wsl;
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
@@ -45,12 +46,8 @@ let
       hardware = {
         zram.enable = true;
         graphics.type = vars.gpuTypes.none;
-        networking = {
-          inherit hostName;
-          firewall.enable = false;
-          resolvconf.enable = false;
-        };
         boot-loader.type = vars.bootLoaderTypes.wsl;
+        networking.hostName = hostName;
       };
       container = {
         enable = true;

@@ -143,17 +143,16 @@ let
           inherit hostName;
           # 网络连接管理
           networkmanager.enable = false;
-          # 防火墙
-          firewall = {
-            enable = false;
-            # 在防火墙中打开的端口
-            # allowedTCPPorts = [ ... ];
-            # allowedUDPPorts = [ ... ];
-          };
           # 网络代理
           proxy = {
             # default = "http://user:password@proxy:port/";
             # noProxy = "127.0.0.1,localhost,internal.domain";
+          };
+          # 防火墙
+          firewall = {
+            # 在防火墙中打开的端口
+            # allowedTCPPorts = [ ... ];
+            # allowedUDPPorts = [ ... ];
           };
         };
         boot-loader = {

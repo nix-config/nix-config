@@ -42,10 +42,7 @@ let
           espSize = "100M";
         };
         kernel = [ vars.kernelTypes.latest ];
-        networking = {
-          inherit hostName;
-          firewall.enable = false;
-        };
+        networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
     };
