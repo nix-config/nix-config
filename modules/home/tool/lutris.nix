@@ -10,11 +10,11 @@ let
   finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
   nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   inherit (nur.repos.forkprince) proton-dw-bin;
-  # 禁用 openldap 不稳定的测试
+  # 禁用 openldap 在 i686 上的测试
   pkgs-patched = pkgs.extend (
     final: prev: {
       openldap = prev.openldap.overrideAttrs (_: {
-        doCheck = false;
+        doCheck = !prev.stdenv.hostPlatform.isi686;
       });
     }
   );
