@@ -8,6 +8,8 @@ let
   cfg = opts.cli.fastfetch or { };
   finallyEnable = cfg.enable or false;
   desktopNotEnable = (opts.desktop.type or "") == "";
+  desktopWslEnable = (opts.desktop.type or "") == "wsl";
+  useFastfetchMinimal = desktopNotEnable || desktopWslEnable;
   # 配置中使用的变量和函数
   width = 64; # 第二列的宽度, 可自由调整
   esc = builtins.fromJSON ''"\u001b"'';
@@ -33,7 +35,7 @@ in
     programs = {
       fastfetch = {
         enable = true;
-        package = lib.mkIf desktopNotEnable pkgs.fastfetch.minimal;
+        package = lib.mkIf useFastfetchMinimal pkgs.fastfetch.minimal;
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
           logo = {
