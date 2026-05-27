@@ -13,6 +13,7 @@ let
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
         nix-ld.enable = true;
+        sudo-rs.enable = true;
         nix = {
           substituters = [
             "https://mirror.sjtu.edu.cn/nix-channels/store"
