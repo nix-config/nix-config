@@ -2,14 +2,11 @@
   lib,
   pkgs,
   opts,
-  inputs,
   ...
 }:
 let
   cfg = opts.tool.lutris or { };
   finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
-  nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  inherit (nur.repos.forkprince) proton-dw-bin;
   # 禁用 openldap 在 i686 上的测试
   pkgs-patched = pkgs.extend (
     final: prev: {
@@ -25,8 +22,8 @@ in
       enable = true;
       package = pkgs-patched.lutris;
       # 为 lutris 配合 umu-launcher 使用而添加的 proton 软件包列表
-      protonPackages = [
-        proton-dw-bin
+      protonPackages = with pkgs; [
+        dwproton-bin
       ];
     };
     home.packages = with pkgs; [
