@@ -487,6 +487,22 @@
         "type": "github"
       }
     },
+    "nixos-unstable": {
+      "locked": {
+        "lastModified": 1779560665,
+        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -521,22 +537,6 @@
       "original": {
         "owner": "NixOS",
         "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-2511": {
-      "locked": {
-        "lastModified": 1779467186,
-        "narHash": "sha256-nOesoDCiXcUftqbRBMz9tt4blI5PvljMWbm3kuCA+0s=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b77b3de8775677f84492abe84635f87b0e153f0f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -583,22 +583,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1779560665,
-        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -835,10 +819,9 @@
         "home-manager": "home-manager",
         "mcp-nixos": "mcp-nixos",
         "nixified-ai": "nixified-ai",
+        "nixos-unstable": "nixos-unstable",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-2511": "nixpkgs-2511",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "nur": "nur",
         "nur-moraxyc": "nur-moraxyc",
