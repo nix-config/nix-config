@@ -60,8 +60,8 @@ in
             # Python 环境管理
             name = "vscode-python-envs";
             publisher = "ms-python";
-            version = "1.33.2026052201";
-            sha256 = "sha256-unKbtIPBf7zP+O4sL4AHwj50aYN3+HB51JUjuKaUVIg=";
+            version = "1.33.2026052801";
+            sha256 = "sha256-/hndcyNeMuHoSOiEp0q3xwRQbAdkoiyHNrovEvUT8O8=";
           }
           {
             # Manim 动画侧边实时预览
@@ -119,8 +119,8 @@ in
             # 系统监控
             name = "monitor-pro";
             publisher = "nexmoe";
-            version = "0.7.4";
-            sha256 = "sha256-zb+47neU+LzOWcVjdfnsEYlMypm0FqJ9eIYSCXnAFTw=";
+            version = "0.7.5";
+            sha256 = "sha256-Q38GkZyouXg58YFvrlaoT9Km0wGd8VFPPSPfvaFE1cs=";
           }
           {
             # 行号区域预览图片, 颜色等
