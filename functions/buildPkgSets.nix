@@ -19,13 +19,8 @@ let
         # 允许使用非自由软件
         config.allowUnfree = true;
       };
-      # 不稳定版 nixpkgs 包集合
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      # 25.11 版本 nixpkgs 包集合
-      pkgs-2511 = import nixpkgs-2511 {
+      # 不稳定版 nixos 包集合
+      pkgs-nixos-unstable = import nixos-unstable {
         inherit system;
         config.allowUnfree = true;
       };
