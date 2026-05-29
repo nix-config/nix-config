@@ -10,7 +10,6 @@ let
   batEnable = opts.cli.bat.enable or false;
   btopEnable = opts.cli.btop.enable or false;
   nixvimEnable = opts.editor.nixvim.enable or false;
-  micromambaEnable = opts.cli.micromamba.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
@@ -21,17 +20,7 @@ in
         interactiveShellInit =
           ""
           # 忽略问候
-          + "set -g fish_greeting\n"
-          # mamba 初始化
-          + (
-            if micromambaEnable then
-              ""
-              + "set -gx MAMBA_EXE ${lib.getExe pkgs.micromamba}\n"
-              + "set -gx MAMBA_ROOT_PREFIX $HOME/.mamba\n"
-              + "$MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source\n"
-            else
-              ""
-          );
+          + "set -g fish_greeting\n";
         # 命令别名
         shellAliases = {
           rm = "rm -i";

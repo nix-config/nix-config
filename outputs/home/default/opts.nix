@@ -66,13 +66,6 @@ let
         #     email = "";
         #   };
         # };
-        # Python 相关命令行工具
-        python = {
-          # Python 项目依赖管理和打包工具
-          poetry.enable = false;
-          # 在 C++ 中的重新实现的 Conda 包管理器 (静态链接版)
-          micromamba.enable = false;
-        };
         # AI 编程助手
         opencode = {
           enable = false;
