@@ -14,12 +14,12 @@ home *args:
 update *args:
     nix flake update {{args}}
 
-# 清理
+# 清理 (不清理 flake+direnv 环境)
 clean *args:
-    nh clean all --ask {{args}}
+    nh clean all --no-gcroots --ask {{args}}
 
 # 格式化 nix 文件
-fmt:
+format:
     treefmt .
 
 # 依赖分析
