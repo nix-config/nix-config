@@ -8,9 +8,7 @@
   返回值:
     字符串列表
 */
-{
-  ...
-}:
+inputs:
 let
   generateCountNames =
     baseName: count:

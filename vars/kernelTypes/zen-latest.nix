@@ -1,6 +1,4 @@
-{
-  ...
-}:
+inputs:
 let
   kernel = rec {
     name = "zen";

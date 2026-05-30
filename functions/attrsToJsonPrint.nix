@@ -7,9 +7,7 @@
   返回值:
     原输入值 attrs, 其类型和内容完全不变
 */
-{
-  ...
-}:
+inputs:
 let
   attrsToJsonPrint = attrs: builtins.trace (builtins.toJSON attrs) attrs;
 in

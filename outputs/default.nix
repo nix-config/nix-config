@@ -3,11 +3,11 @@ let
   # 从 nixpkgs 输入中获取 lib 工具库
   inherit (inputs.nixpkgs) lib;
   # 导入公共变量
-  vars = import ../vars { inherit inputs; };
+  vars = import ../vars inputs;
   # 导入选项集
-  optSets = import ./optSets { inherit inputs; };
+  optSets = import ./optSets inputs;
   # 导入公共函数
-  functions = import ../functions { inherit inputs; };
+  functions = import ../functions inputs;
 in
 {
   # 输出结构: { nixosConfigurations = { "主机名" = ... }; }

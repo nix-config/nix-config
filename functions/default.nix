@@ -1,8 +1,5 @@
-{
-  inputs,
-  ...
-}:
+inputs:
 let
-  importFilesForAttrs = import ./importFilesForAttrs.nix { inherit inputs; };
+  importFilesForAttrs = import ./importFilesForAttrs.nix inputs;
 in
 importFilesForAttrs ./.

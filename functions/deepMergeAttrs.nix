@@ -8,10 +8,7 @@
   返回值:
     合并后的新属性集
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   inherit (inputs.nixpkgs) lib;
   deepMergeAttrs =

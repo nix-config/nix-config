@@ -10,10 +10,7 @@
   返回值:
     由 recurseIntoAttrs 包裹的完整内核包集合 (通过 pkgs.linuxPackagesFor 生成)
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   inherit (inputs.nixpkgs) lib;
   mkKernelPackage =

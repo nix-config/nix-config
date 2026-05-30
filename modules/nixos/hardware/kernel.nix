@@ -7,7 +7,7 @@
 }:
 let
   # 从独立文件中导入内核构建函数, 传入 inputs 供其内部使用
-  mkKernelPackage = import ../../../functions/mkKernelPackage.nix { inherit inputs; };
+  mkKernelPackage = import ../../../functions/mkKernelPackage.nix inputs;
   # 获取用户配置的内核列表, 若未定义则默认为空列表
   cfg = opts.hardware.kernel or [ ];
   finallyEnable = cfg != [ ];

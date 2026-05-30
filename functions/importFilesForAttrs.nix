@@ -10,14 +10,11 @@
       - 若文件位于 dir/bar/baz.nix, 则生成属性 { bar.baz = <import 结果>; }
       - 若文件位于 dir/sub/dir/qux.nix, 则生成属性 { sub.dir.qux = <import 结果>; }
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
-  getDirNixFiles = import ./getDirNixFiles.nix { inherit inputs; };
+  getDirNixFiles = import ./getDirNixFiles.nix inputs;
   importFilesForAttrs =
     dir:
     let
@@ -58,7 +55,7 @@ let
         in
         parts;
       # 为每个文件生成一个局部属性集, 例如 { sub.dir.file = import ...; }
-      fileAttrs = builtins.map (
+      fileAttrs = map (
         file:
         let
           rel = relPath file;
@@ -67,7 +64,7 @@ let
         if attrPath == [ ] then
           throw "importFilesForAttrs: empty attribute path for file ${toString file}"
         else
-          lib.setAttrByPath attrPath (import file { inherit inputs; })
+          lib.setAttrByPath attrPath (import file inputs)
       ) allFiles;
     in
     # 深度合并所有局部属性集, 得到完整的嵌套属性集
