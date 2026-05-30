@@ -144,8 +144,13 @@ in
           # 模糊效果
           blur = {
             enabled = true;
-            size = 3;
-            passes = 1;
+            # 模糊半径
+            size = 2;
+            # 采样次数
+            passes = 3;
+            # 噪点纹理
+            noise = 0.03;
+            # 饱和度
             vibrancy = 0.1696;
           };
         };

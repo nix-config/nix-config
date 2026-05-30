@@ -16,9 +16,11 @@ in
         settings = {
           # 设置背景颜色
           background = "#000000";
-          # 设置背景透明度: 取值范围 0.0(完全透明)到 1.0(完全不透明)
-          background_opacity = 0.75;
-          # 光标形状: 可以将默认的方块(block)改成更细的竖线(beam)或下划线(underline)
+          # 设置背景透明度: 取值范围 0.0 (完全透明) 到 1.0 (完全不透明)
+          background_opacity = 0.5;
+          # 模糊背景: 0=关闭, 1=开启 (需要 compositor 支持)
+          background_blur = 1;
+          # 光标形状: beam (竖线), block (方块), underline (下划线)
           cursor_shape = "beam";
           # 光标跳转动画: 光标移动时产生渐变拖尾效果 (数值为拖尾长度)
           cursor_trail = 3;
