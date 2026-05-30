@@ -8,17 +8,14 @@
   返回值:
     { "基础名称" = ...; } 或 { "基础名称-1" = ...; "基础名称-2" = ...; ... }
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
-  buildPkgSets = import ./buildPkgSets.nix { inherit inputs; };
-  deepMergeAttrs = import ./deepMergeAttrs.nix { inherit inputs; };
-  mergeAttrsList = import ./mergeAttrsList.nix { inherit inputs; };
-  generateCountNames = import ./generateCountNames.nix { inherit inputs; };
+  buildPkgSets = import ./buildPkgSets.nix inputs;
+  deepMergeAttrs = import ./deepMergeAttrs.nix inputs;
+  mergeAttrsList = import ./mergeAttrsList.nix inputs;
+  generateCountNames = import ./generateCountNames.nix inputs;
   mkNixos =
     opts: baseName: vars:
     let

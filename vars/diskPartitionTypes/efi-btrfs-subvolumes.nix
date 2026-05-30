@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}:
+inputs:
 {
   device,
   espSize ? "1G",

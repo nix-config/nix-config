@@ -1,8 +1,5 @@
-{
-  inputs,
-  ...
-}:
+inputs:
 let
-  functions = import ../functions { inherit inputs; };
+  functions = import ../functions inputs;
 in
 functions.importFilesForAttrs ./.

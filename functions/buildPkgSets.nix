@@ -6,10 +6,7 @@
   返回值:
     包含多个对应平台的包集合属性集
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   buildPkgSets =
     system: with inputs; {

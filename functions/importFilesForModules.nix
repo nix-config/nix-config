@@ -6,13 +6,10 @@
   返回值:
     一个模块列表
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   # 导入辅助函数
-  getDirNixFiles = import ./getDirNixFiles.nix { inherit inputs; };
+  getDirNixFiles = import ./getDirNixFiles.nix inputs;
   importFilesForModules =
     dir:
     let

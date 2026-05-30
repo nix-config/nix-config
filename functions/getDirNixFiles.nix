@@ -6,10 +6,7 @@
   返回值:
     一个包含文件完整完整路径(字符串)的列表
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   inherit (inputs.nixpkgs) lib;
   getDirNixFiles =

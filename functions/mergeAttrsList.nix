@@ -7,14 +7,11 @@
   返回值:
     合并后的新属性集
 */
-{
-  inputs,
-  ...
-}:
+inputs:
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
-  deepMergeAttrs = import ./deepMergeAttrs.nix { inherit inputs; };
+  deepMergeAttrs = import ./deepMergeAttrs.nix inputs;
   mergeAttrsList = attrsList: lib.foldl' (acc: item: deepMergeAttrs acc item) { } attrsList;
 in
 mergeAttrsList
