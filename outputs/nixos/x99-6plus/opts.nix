@@ -47,6 +47,13 @@ let
               localPort = 5244;
               remotePort = 5244;
             }
+            {
+              name = "ollama";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 11434;
+              remotePort = 11434;
+            }
           ];
         };
       };
@@ -101,10 +108,12 @@ let
       customOptSets = {
         count = 1;
         cli = {
+          direnv.enable = true;
           zellij.enable = true;
           nvitop.enable = true;
         };
         shell.bash.enable = true;
+        service.ollama.enable = true;
       };
     };
   };
