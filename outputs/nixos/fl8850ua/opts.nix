@@ -122,7 +122,10 @@ let
         shell.bash.enable = true;
         editor = {
           nixvim.enable = true;
-          vscode.enable = true;
+          vscode = {
+            enable = true;
+            extensions.all.enable = true;
+          };
         };
         terminal.kitty.enable = true;
         internet = {
