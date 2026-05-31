@@ -16,6 +16,8 @@ let
     customOptSets = {
       # 输出数量
       count = 1;
+      # 初始状态版本
+      stateVersion = "26.05";
       # 输出平台
       system = vars.systemTypes.x86_64-linux;
       # nix-config 仓库路径
