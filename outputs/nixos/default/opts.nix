@@ -300,7 +300,22 @@ let
           # Neovim 的 Nix 配置
           nixvim.enable = false;
           # Visual Studio Code
-          vscode.enable = false;
+          vscode = {
+            enable = false;
+            # 扩展开关, 其中 all 为全部开启
+            extensions = {
+              all.enable = false;
+              # go.enable = true;
+              # nix.enable = true;
+              # base.enable = true;
+              # rust.enable = true;
+              # python.enable = true;
+              # remote.enable = true;
+              # reader.enable = true;
+              # markdown.enable = true;
+              # javascript.enable = true;
+            };
+          };
         };
         # ========== 终端模拟器 ==========
         terminal = {
