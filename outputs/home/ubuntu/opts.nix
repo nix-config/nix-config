@@ -12,6 +12,7 @@ let
     customOptSets = {
       count = 1;
       system = vars.systemTypes.x86_64-linux;
+      stateVersion = "26.05";
       nixConfigPath = "/home/ubuntu/workspace/mochen/nix-config";
       cli = {
         nvitop.enable = true;

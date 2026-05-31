@@ -9,7 +9,7 @@ let
     customOptSets = {
       count = 1;
       system = vars.systemTypes.x86_64-linux;
-      stateVersion = "25.11";
+      stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
         nix-ld.enable = true;

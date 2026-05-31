@@ -23,6 +23,7 @@ let
       count = userCustomOptSets.count or 1;
       system = userCustomOptSets.system or "x86_64-linux";
       pkgSets = buildPkgSets system;
+      stateVersion = userCustomOptSets.stateVersion or "26.05";
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
       homeOpts = deepMergeAttrs (mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
       # 根据 count 生成用户名称列表
@@ -35,9 +36,8 @@ let
             ../modules/home
             {
               home = {
-                inherit username;
+                inherit username stateVersion;
                 homeDirectory = "/home/${username}";
-                stateVersion = "26.11";
               };
             }
           ];

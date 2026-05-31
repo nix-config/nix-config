@@ -17,7 +17,7 @@ let
       # 输出平台
       system = vars.systemTypes.x86_64-linux;
       # 初始状态版本
-      stateVersion = "25.11";
+      stateVersion = "26.05";
       # nix-config 仓库路径
       nixConfigPath = "path/to/nix-config";
       # ========== 命令行工具 ==========

@@ -24,7 +24,7 @@ let
       count = hostCustomOptSets.count or 1;
       system = hostCustomOptSets.system or "x86_64-linux";
       pkgSets = buildPkgSets system;
-      stateVersion = hostCustomOptSets.stateVersion or "25.11";
+      stateVersion = hostCustomOptSets.stateVersion or "26.05";
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = deepMergeAttrs (mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 定义用户批量展开函数
@@ -96,9 +96,8 @@ let
                     {
                       imports = [ ../modules/home ];
                       home = {
-                        inherit username;
+                        inherit username stateVersion;
                         homeDirectory = "/home/${username}";
-                        stateVersion = "26.05";
                       };
                       # 通过 _module.args 将用户专属的 opts 传入 home 模块
                       _module.args = {
