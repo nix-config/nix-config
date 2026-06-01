@@ -149,7 +149,7 @@ in
             # 采样次数
             passes = 3;
             # 噪点纹理
-            noise = 0.03;
+            noise = 0.05;
             # 饱和度
             vibrancy = 0.1696;
           };
