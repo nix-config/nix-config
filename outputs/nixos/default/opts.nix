@@ -7,9 +7,7 @@
 let
   host = {
     # 预定义选项集列表
-    predefinedOptSetsList = [
-      # 按需启用
-    ];
+    # predefinedOptSetsList = with optSets; [ ];
     # 自定义选项集
     customOptSets = {
       # 输出数量
@@ -119,15 +117,16 @@ let
         zram.enable = false;
         # 蓝牙配置
         bluetooth.enable = false;
-        # 磁盘配置, 具体定义查看: vars/diskPartitionTypes
+        # 磁盘配置, 具体定义查看: vars/diskPartitionTypes/
         disk = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
-        # 内核配置, 具体定义查看: vars/kernelTypes
-        # kernel = [
-        #   vars.kernelTypes.latest
-        #   vars.kernelTypes.zen-latest
-        #   vars.kernelTypes.lqx-latest
+        # 内核配置, 具体定义查看: vars/kernelTypes/
+        # kernel = with vars.kernelTypes; [
+        #   zen.latest
+        #   xanmod.latest
+        #   generic.latest
+        #   ...
         # ];
         # 图形驱动配置
         graphics = {
@@ -203,11 +202,11 @@ let
         openssh.authorizedKeys.keys = [ ];
       };
       # 预定义选项集列表
-      predefinedOptSetsList = [
+      predefinedOptSetsList = with optSets; [
         # 提供使用此仓库所需要的环境
-        optSets.baseEnv
+        baseEnv
         # 提供一个开箱即用的 fish shell
-        optSets.fishShell
+        fishShell
       ];
       # 自定义选项集
       customOptSets = {

@@ -15,8 +15,13 @@ let
   entries = map (k: {
     # 保留名称用于后续 specialisation 命名
     name = k.name;
-    # 去掉 name 字段 (mkKernelPackage 不需要), 补上 pkgs 后调用内核构建函数
-    kernel = mkKernelPackage (removeAttrs k [ "name" ] // { inherit pkgs; });
+    kernel =
+      if k ? packages then
+        # 直接使用包
+        k.packages
+      else
+        # 去掉 name 字段 (mkKernelPackage 不需要), 补上 pkgs 后调用内核构建函数
+        mkKernelPackage (removeAttrs k [ "name" ] // { inherit pkgs; });
   }) cfg;
 in
 {

@@ -12,13 +12,15 @@ let
       stateVersion = "26.05";
       nixConfigPath = "home/admin/workspace/nix-config";
       cli.nix = {
-        substituters = [
-          "https://mirror.sjtu.edu.cn/nix-channels/store"
-          "https://cache.garnix.io"
-        ];
-        trusted-public-keys = [
-          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        ];
+          substituters = [
+            "https://attic.xuyh0120.win/lantian"
+            "https://cache.garnix.io"
+            "https://mirror.sjtu.edu.cn/nix-channels/store"
+          ];
+          trusted-public-keys = [
+            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+          ];
       };
       tool.clash-verge.enable = true;
       i18n.locale = vars.localeTypes.en-us;
@@ -41,7 +43,7 @@ let
           device = "/dev/vda";
           espSize = "100M";
         };
-        kernel = [ vars.kernelTypes.latest ];
+        kernel = with vars.kernelTypes; [ cachyos.server-lto ];
         networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
@@ -69,9 +71,9 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = [
-        optSets.baseEnv
-        optSets.fishShell
+      predefinedOptSetsList = with optSets; [
+        baseEnv
+        fishShell
       ];
       customOptSets = {
         count = 1;

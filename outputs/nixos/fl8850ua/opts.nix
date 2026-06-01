@@ -17,9 +17,11 @@ let
         nix = {
           substituters = [
             "https://cache.garnix.io"
+            "https://attic.xuyh0120.win/lantian"
           ];
           trusted-public-keys = [
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
           ];
         };
       };
@@ -57,11 +59,12 @@ let
         bluetooth.enable = true;
         graphics.type = vars.gpuTypes.amd;
         disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
-        kernel = [
-          vars.kernelTypes.latest
-          vars.kernelTypes.zen-latest
-          vars.kernelTypes.lqx-latest
-          vars.kernelTypes.xanmod-latest
+        kernel = with vars.kernelTypes; [
+          cachyos.bore-lto-v3
+          zen.latest
+          xanmod.latest
+          zen.lqx-latest
+          generic.latest
         ];
         networking = {
           inherit hostName;
@@ -93,10 +96,10 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = [
-        optSets.devEnv
-        optSets.baseEnv
-        optSets.fishShell
+      predefinedOptSetsList = with optSets; [
+        devEnv
+        baseEnv
+        fishShell
       ];
       customOptSets = {
         count = 1;

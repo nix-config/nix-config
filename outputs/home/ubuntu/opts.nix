@@ -5,9 +5,9 @@
 }:
 let
   user = {
-    predefinedOptSetsList = [
-      optSets.baseEnv
-      optSets.fishShell
+    predefinedOptSetsList = with optSets; [
+      baseEnv
+      fishShell
     ];
     customOptSets = {
       count = 1;

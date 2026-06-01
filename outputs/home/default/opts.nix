@@ -6,11 +6,11 @@
 let
   user = {
     # 预定义选项集列表
-    predefinedOptSetsList = [
+    predefinedOptSetsList = with optSets; [
       # 提供使用此仓库所需要的环境
-      optSets.baseEnv
+      baseEnv
       # 提供一个开箱即用的 fish shell
-      optSets.fishShell
+      fishShell
     ];
     # 自定义选项集
     customOptSets = {
