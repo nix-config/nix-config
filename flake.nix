@@ -56,6 +56,7 @@
       url = "github:noblepayne/opencode-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
   };
   outputs = inputs: import ./outputs inputs;
 }

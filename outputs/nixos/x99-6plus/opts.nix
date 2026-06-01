@@ -14,11 +14,13 @@ let
       cli = {
         nix = {
           substituters = [
-            "https://mirror.sjtu.edu.cn/nix-channels/store"
+            "https://attic.xuyh0120.win/lantian"
             "https://ai.cachix.org"
             "https://cache.garnix.io"
+            "https://mirror.sjtu.edu.cn/nix-channels/store"
           ];
           trusted-public-keys = [
+            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
@@ -67,7 +69,7 @@ let
             mountpoint = "/mnt/data";
           };
         };
-        kernel = [ vars.kernelTypes.latest ];
+        kernel = with vars.kernelTypes; [ cachyos.server-lto ];
         networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
@@ -101,9 +103,9 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = [
-        optSets.baseEnv
-        optSets.fishShell
+      predefinedOptSetsList = with optSets; [
+        baseEnv
+        fishShell
       ];
       customOptSets = {
         count = 1;
