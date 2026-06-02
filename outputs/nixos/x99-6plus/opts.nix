@@ -49,13 +49,6 @@ let
               localPort = 5244;
               remotePort = 5244;
             }
-            {
-              name = "ollama";
-              type = "tcp";
-              localIP = "localhost";
-              localPort = 11434;
-              remotePort = 11434;
-            }
           ];
         };
       };
@@ -69,7 +62,7 @@ let
             mountpoint = "/mnt/data";
           };
         };
-        kernel = with vars.kernelTypes; [ cachyos.server-lto ];
+        kernel = with vars.kernelTypes; [ cachyos.bmq-lto ];
         networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
@@ -115,7 +108,6 @@ let
           nvitop.enable = true;
         };
         shell.bash.enable = true;
-        service.ollama.enable = true;
       };
     };
   };

@@ -14,6 +14,7 @@ let
       cli = {
         nix-ld.enable = true;
         sudo-rs.enable = true;
+        hermes-agent.enable = true;
         nix = {
           substituters = [
             "https://attic.xuyh0120.win/lantian"
