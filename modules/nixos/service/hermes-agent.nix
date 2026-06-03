@@ -18,14 +18,16 @@ in
     sops.secrets."hermes.env" = lib.mkIf enableSopsNix {
       sopsFile = ../../../secrets/hermes.env;
       format = "dotenv";
-      owner = "root";
-      group = "wheel";
-      mode = "0440";
+      owner = "hermes";
+      mode = "0600";
     };
     services.hermes-agent = {
       enable = true;
       addToSystemPackages = true;
-      settings.model.default = "deepseek/deepseek-v4-pro";
+      settings = {
+        model.default = "deepseek-v4-pro";
+        gateway.platforms.qqbot.enabled = true;
+      };
       environmentFiles = [ config.sops.secrets."hermes.env".path ];
     };
   };
