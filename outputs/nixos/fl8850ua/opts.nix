@@ -66,6 +66,7 @@ let
           xanmod.latest
           zen.lqx-latest
           generic.latest
+          cachyos.bmq-lto
           cachyos.server-lto
         ];
         networking = {
