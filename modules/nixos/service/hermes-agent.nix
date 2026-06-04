@@ -25,7 +25,20 @@ in
       enable = true;
       addToSystemPackages = true;
       settings = {
-        model.default = "deepseek-v4-pro";
+        model = {
+          provider = "opencode-go";
+          default = "deepseek-v4-pro";
+        };
+        auxiliary = {
+          vision = {
+            provider = "opencode-go";
+            model = "qwen3.7-plus";
+          };
+          title_generation = {
+            provider = "opencode-go";
+            model = "deepseek-v4-flash";
+          };
+        };
         gateway.platforms.qqbot.enabled = true;
       };
       environmentFiles = [ config.sops.secrets."hermes.env".path ];
