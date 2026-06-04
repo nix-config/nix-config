@@ -3,17 +3,17 @@ let
   kernel = {
     latest = rec {
       name = "zen";
-      version = "7.0.10";
+      version = "7.0.11";
       modDirVersion = "${version}-${name}1";
       url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${modDirVersion}.tar.gz";
-      sha256 = "sha256-85wjUNtWc4UqGughRmcSPpIJDktxkj3Z6e4nTLaeqmg=";
+      sha256 = "sha256-cRQRMoLAB0cuX4mhakMOBBnl/ph0q1cCwYZ9iN80Dqo=";
     };
     lqx-latest = rec {
       name = "lqx";
-      version = "7.0.10";
+      version = "7.0.11";
       modDirVersion = "${version}-${name}1";
       url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${modDirVersion}.tar.gz";
-      sha256 = "sha256-wWDE7Wk43/itkauq9RSmw89qwuckDsfd1I+V2iFx1Hg=";
+      sha256 = "sha256-MJV55c0qxmqVhGxlcrHY2wRn0u3uQ/hefEVy00vmm70=";
     };
   };
 in
