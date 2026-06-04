@@ -29,8 +29,8 @@ in
           # Python 环境管理
           name = "vscode-python-envs";
           publisher = "ms-python";
-          version = "1.33.2026052901";
-          sha256 = "sha256-7UHosZVDSIG1asp4eKdTfFA9mv7t3HMNdQvfuyVsD3c=";
+          version = "1.33.2026060401";
+          sha256 = "sha256-7Aj7hODgYsxhHVGizE336uzFWHtc6w+M7ry302bswgM=";
         }
         {
           # Manim 动画侧边实时预览
