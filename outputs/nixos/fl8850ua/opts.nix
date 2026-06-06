@@ -38,6 +38,7 @@ let
         openssh.enable = true;
         snapper.enable = true;
         udiskie.enable = true;
+        openlist.enable = true;
         pipewire.enable = true;
         libinput.enable = true;
         sops-nix.enable = true;
@@ -51,6 +52,13 @@ let
               localIP = "localhost";
               localPort = 22;
               remotePort = 2222;
+            }
+            {
+              name = "openlist";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 5244;
+              remotePort = 5244;
             }
           ];
         };
@@ -91,6 +99,7 @@ let
         isNormalUser = true;
         description = "管理员";
         extraGroups = [
+          "alist"
           "wheel"
           "hermes"
           "networkmanager"
