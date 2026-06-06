@@ -30,7 +30,6 @@ let
         openssh.enable = true;
         comfyui.enable = true;
         sops-nix.enable = true;
-        openlist.enable = true;
         frp = {
           enable = true;
           role = vars.frpRoleTypes.client;
@@ -41,13 +40,6 @@ let
               localIP = "localhost";
               localPort = 22;
               remotePort = 2227;
-            }
-            {
-              name = "openlist";
-              type = "tcp";
-              localIP = "localhost";
-              localPort = 5244;
-              remotePort = 5244;
             }
           ];
         };

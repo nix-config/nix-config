@@ -11,6 +11,9 @@ let
   finallyEnable = cfg.enable or false;
 in
 {
+  # 首次启动执行:
+  # sudo journalctl -u alist --no-pager | grep -i "initial password"
+  # 获取初始随机密码后登陆, 在 Web 界面设置密码
   imports = [
     inputs.nur-moraxyc.nixosModules.alist
   ];
