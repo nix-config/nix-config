@@ -19,7 +19,7 @@ in
       sopsFile = ../../../secrets/hermes.env;
       format = "dotenv";
       owner = "hermes";
-      mode = "0600";
+      mode = "0660";
     };
     services.hermes-agent = {
       enable = true;
