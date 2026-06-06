@@ -97,7 +97,7 @@ let
                       imports = [ ../modules/home ];
                       home = {
                         inherit username stateVersion;
-                        homeDirectory = "/home/${username}";
+                        homeDirectory = lib.mkDefault "/home/${username}";
                       };
                       # 通过 _module.args 将用户专属的 opts 传入 home 模块
                       _module.args = {
