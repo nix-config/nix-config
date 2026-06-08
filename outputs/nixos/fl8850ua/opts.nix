@@ -14,7 +14,6 @@ let
       cli = {
         nix-ld.enable = true;
         sudo-rs.enable = true;
-        hermes-agent.enable = true;
         nix = {
           substituters = [
             "https://attic.xuyh0120.win/lantian"
@@ -38,10 +37,12 @@ let
         openssh.enable = true;
         snapper.enable = true;
         udiskie.enable = true;
+        searxng.enable = true;
         openlist.enable = true;
         pipewire.enable = true;
         libinput.enable = true;
         sops-nix.enable = true;
+        hermes-agent.enable = true;
         frp = {
           enable = true;
           role = vars.frpRoleTypes.client;
@@ -151,6 +152,32 @@ let
           rustdesk.enable = true;
           telegram-desktop.enable = true;
         };
+      };
+    };
+    hermes = {
+      base = {
+        description = "林予";
+        extraGroups = [
+          "wheel"
+        ];
+        hashedPassword = "$y$j9T$nczqPz4yX8Lop8pOnvIrD.$KqLOYhzxJ4x80jNCFtd6HPSgC.xYzlrMD1BFGi6PVYB";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
+        ];
+      };
+      predefinedOptSetsList = with optSets; [
+        devEnv
+        baseEnv
+        fishShell
+      ];
+      customOptSets = {
+        count = 1;
+        cli.git.user = {
+            name = "小鲮鱼";
+            email = "1835165361@qq.com";
+          };
+        shell.bash.enable = true;
+        desktop.type = vars.desktopTypes.disable;
       };
     };
   };

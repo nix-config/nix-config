@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = opts.cli.hermes-agent or { };
+  cfg = opts.service.hermes-agent or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
   finallyEnable = cfg.enable or false && enableSopsNix;
 in
@@ -39,6 +39,7 @@ in
             model = "deepseek-v4-flash";
           };
         };
+        web.search_backend = "searxng";
         gateway.platforms.qqbot.enabled = true;
       };
       environmentFiles = [ config.sops.secrets."hermes.env".path ];
