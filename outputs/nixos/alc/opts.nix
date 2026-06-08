@@ -12,15 +12,13 @@ let
       stateVersion = "26.05";
       nixConfigPath = "home/admin/workspace/nix-config";
       cli.nix = {
-          substituters = [
-            "https://attic.xuyh0120.win/lantian"
-            "https://cache.garnix.io"
-            "https://mirror.sjtu.edu.cn/nix-channels/store"
-          ];
-          trusted-public-keys = [
-            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-          ];
+        substituters = [
+          "https://cache.garnix.io"
+          "https://mirror.sjtu.edu.cn/nix-channels/store"
+        ];
+        trusted-public-keys = [
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        ];
       };
       tool.clash-verge.enable = true;
       i18n.locale = vars.localeTypes.en-us;
