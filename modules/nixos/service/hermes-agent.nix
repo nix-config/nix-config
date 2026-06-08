@@ -41,6 +41,20 @@ in
         };
         web.search_backend = "searxng";
         gateway.platforms.qqbot.enabled = true;
+        platform_toolsets = {
+          qqbot = [
+            "session_search"
+            "memory"
+            "clarify"
+            "terminal"
+            "file"
+            "web"
+            "vision"
+            "skills"
+            "delegation"
+            "todo"
+          ];
+        };
       };
       environmentFiles = [ config.sops.secrets."hermes.env".path ];
     };

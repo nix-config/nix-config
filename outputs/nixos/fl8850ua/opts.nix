@@ -16,11 +16,9 @@ let
         sudo-rs.enable = true;
         nix = {
           substituters = [
-            "https://attic.xuyh0120.win/lantian"
             "https://cache.garnix.io"
           ];
           trusted-public-keys = [
-            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
         };
@@ -71,12 +69,12 @@ let
         disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         kernel = with vars.kernelTypes; [
           cachyos.bore-lto-v3
-          zen.latest
-          xanmod.latest
-          zen.lqx-latest
-          generic.latest
-          cachyos.bmq-lto
-          cachyos.server-lto
+          # zen.latest
+          # xanmod.latest
+          # zen.lqx-latest
+          # generic.latest
+          # cachyos.bmq-lto
+          # cachyos.server-lto
         ];
         networking = {
           inherit hostName;
@@ -172,10 +170,13 @@ let
       ];
       customOptSets = {
         count = 1;
-        cli.git.user = {
+        cli = {
+          opencode.enable = true;
+          git.user = {
             name = "小鲮鱼";
             email = "1835165361@qq.com";
           };
+        };
         shell.bash.enable = true;
         desktop.type = vars.desktopTypes.disable;
       };

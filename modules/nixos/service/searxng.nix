@@ -20,7 +20,6 @@ in
     };
     services.searx = {
       enable = true;
-
       # 使用 Redis 限流/缓存/会话存储
       redisCreateLocally = true;
       # 使用 uWSGI 运行生产模式

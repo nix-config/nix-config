@@ -14,13 +14,11 @@ let
       cli = {
         nix = {
           substituters = [
-            "https://attic.xuyh0120.win/lantian"
             "https://ai.cachix.org"
             "https://cache.garnix.io"
             "https://mirror.sjtu.edu.cn/nix-channels/store"
           ];
           trusted-public-keys = [
-            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
