@@ -25,8 +25,8 @@ in
           # Ripple 框架辅支持
           name = "ripple-ts-vscode-plugin";
           publisher = "Ripple-TS";
-          version = "2.0.22";
-          sha256 = "sha256-kv1WDGng8qWTRIoBKw/rTxUUf5fN88DEqYYSkYq5xyg=";
+          version = "2.0.24";
+          sha256 = "sha256-3idWCMnycQ2OwoD485IepuHn7eREgNcrn8YKYEdkfhc=";
         }
       ];
   };
