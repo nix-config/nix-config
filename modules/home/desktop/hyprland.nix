@@ -95,7 +95,7 @@ in
         # ========== 自启动 ==========
         exec-once = lib.filter (x: x != null) [
           # DankMaterialShell
-          (lib.mkIf dmsEnable "dms run")
+          (lib.mkIf dmsEnable "bash -lc 'exec dms run'")
           # 输入法
           (lib.mkIf fcitx5Enable "fcitx5")
           # 自动挂载 U 盘
