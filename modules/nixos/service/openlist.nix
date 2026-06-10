@@ -38,5 +38,6 @@ in
       package = pkgs.openlist;
       settings.jwt_secret._secret = config.sops.templates."alist-jwt_secret".path;
     };
+    systemd.services.alist.path = [ pkgs.ffmpeg-headless ];
   };
 }
