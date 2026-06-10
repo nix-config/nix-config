@@ -2,7 +2,7 @@ keys:
   - &default age1waema24s6tgcds899jlnugjqh647pfhrcguqcw20gm63nnu53anqw0yhan
 
 creation_rules:
-  - path_regex: secrets/[^/]+\.(ini|env|yaml)$
+  - path_regex: ^secrets/(.*/)?[^/]+\.(ini|env|yaml|enc)$
     key_groups:
       - age:
           - *default
