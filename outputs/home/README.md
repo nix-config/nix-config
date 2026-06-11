@@ -62,14 +62,14 @@ cat outputs/home/default/opts.nix
 
 ## 3. 多实例输出模式
 
-当需要管理大量**配置相同、仅用户名不同**的机器时（如企业办公同质化部署），可以使用多实例输出模式，一次定义即可批量生成多台主机的配置。
+当需要管理大量**配置相同、仅用户名不同**的用户时（如企业办公同质化部署），可以使用多实例输出模式，一次定义即可批量生成多个用户的配置。
 
 ### 启用方式
 
-编辑目标主机目录下的 `opts.nix`，修改 `host.customOptSets.count`：
+编辑目标用户目录下的 `opts.nix`，修改 `user.customOptSets.count`：
 
 ```nix
-host.customOptSets = {
+user.customOptSets = {
   count = 5; # 生成 5 个实例
   ...
 };

@@ -27,15 +27,16 @@
 
 ```bash
 .
+├── docs/                                       # 项目文档
 ├── functions/                                  # 工具函数
 ├── modules/                                    # 模块
-│   ├──config/                                  # 原生配置文件
-│   ├──darwin/                                  # darwin 模块
-│   │  └──<category>/                           # 模块分类
-│   ├──home/                                    # home 模块
-│   │  └──<category>/                           # 模块分类
-│   └──nixos/                                   # nixos 模块
-│      └──<category>/                           # 模块分类
+│   ├── config/                                 # 原生配置文件
+│   ├── darwin/                                 # darwin 模块
+│   │   └── <category>/                         # 模块分类
+│   ├── home/                                   # home 模块
+│   │   └── <category>/                         # 模块分类
+│   └── nixos/                                  # nixos 模块
+│       └── <category>/                         # 模块分类
 ├── outputs/                                    # Flake 输出
 │   ├── home/                                   # 用户
 │   │   └── <user>/                             # 具体用户
@@ -62,10 +63,10 @@
 
 | Hostname                                        | Board                                                       | CPU                                                                                                                                                                       | RAM  | GPU                                                                                                                                                                          | Disk                                                                                                                                                                                 | OS  | Role     | State |
 | ----------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- | -------- | ----- |
-| [fl8850ua](./outputs/nixos/fl8850ua/opts.nix)   | [X515UA](https://www.asus.com/supportonly/x515ua/helpdesk/) | [AMD Ryzen 7 5700U](https://www.amd.com/en/support/downloads/drivers.html/processors/ryzen/ryzen-5000-series/amd-ryzen-7-5700u.html)                                      | 16GB | AMD Radeon RX Vega 8                                                                                                                                                         | 1TB STAT SSD                                                                                                                                                                         | ❄️  | Laptop   | ✅    |
+| [fl8850ua](./outputs/nixos/fl8850ua/opts.nix)   | [X515UA](https://www.asus.com/supportonly/x515ua/helpdesk/) | [AMD Ryzen 7 5700U](https://www.amd.com/en/support/downloads/drivers.html/processors/ryzen/ryzen-5000-series/amd-ryzen-7-5700u.html)                                      | 16GB | AMD Radeon RX Vega 8                                                                                                                                                         | 1TB SATA SSD                                                                                                                                                                         | ❄️  | Laptop   | ✅    |
 | [alc](./outputs/nixos/alc/opts.nix)             | —                                                           | Intel® Xeon® Platinum (2) @ 2.50 GHz                                                                                                                                      | 2GB  | Cirrus Logic GD 5446                                                                                                                                                         | 40GB VD                                                                                                                                                                              | ❄️  | VPS      | ✅    |
 | [wsl-work](./outputs/nixos/wsl-work/opts.nix)   | —                                                           | [Intel® Core™ i5-10500](https://www.intel.com/content/www/us/en/products/sku/199277/intel-core-i510500-processor-12m-cache-up-to-4-50-ghz/specifications.html)            | 16GB | [Intel® UHD Graphics 630](https://www.intel.com/content/www/us/en/support/products/126790/graphics/processor-graphics/intel-uhd-graphics-family/intel-uhd-graphics-630.html) | 256GB NVMe SSD                                                                                                                                                                       | ❄️  | WSL Dev  | ✅    |
-| [x99-6plus](./outputs/nixos/x99-6plus/opts.nix) | —                                                           | [Intel® Xeon® Processor E5-2680 v4](https://www.intel.com/content/www/us/en/products/sku/91754/intel-xeon-processor-e52680-v4-35m-cache-2-40-ghz/specifications.html) × 2 | 32GB | NVIDIA Tesla T10 16 GB × 2                                                                                                                                                   | [118GB Optane](https://www.intel.com/content/www/us/en/products/sku/211867/intel-optane-ssd-p1600x-series-118gb-m-2-80mm-pcie-3-0-x4-3d-xpoint/specifications.html) + 500GB STAT HDD | ❄️  | Server   | ✅    |
+| [x99-6plus](./outputs/nixos/x99-6plus/opts.nix) | —                                                           | [Intel® Xeon® Processor E5-2680 v4](https://www.intel.com/content/www/us/en/products/sku/91754/intel-xeon-processor-e52680-v4-35m-cache-2-40-ghz/specifications.html) × 2 | 32GB | NVIDIA Tesla T10 16 GB × 2                                                                                                                                                   | [118GB Optane](https://www.intel.com/content/www/us/en/products/sku/211867/intel-optane-ssd-p1600x-series-118gb-m-2-80mm-pcie-3-0-x4-3d-xpoint/specifications.html) + 500GB SATA HDD | ❄️  | Server   | ✅    |
 | [default](./outputs/nixos/default/opts.nix)     | —                                                           | —                                                                                                                                                                         | —    | —                                                                                                                                                                            | —                                                                                                                                                                                    | ❄️  | Template | 📋    |
 
 ### [Home Manager 用户](./outputs/home/README.md)
