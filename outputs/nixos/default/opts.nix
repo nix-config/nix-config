@@ -244,6 +244,8 @@ let
           nvitop.enable = false;
           # 跨 Shell 的提示符定制工具
           # starship.enable = true;
+          # AI 编程助手
+          opencode.enable = false;
           # 类似 Neofetch 但更快的系统信息工具
           # fastfetch.enable = true;
           # NixOS MCP
@@ -258,12 +260,6 @@ let
           #     email = "";
           #   };
           # };
-          # AI 编程助手
-          opencode = {
-            enable = false;
-            # 对支持 AVX 指令集的 CPU 开启优化
-            avx = true;
-          };
         };
         # ========== 实用工具 ==========
         tool = {
