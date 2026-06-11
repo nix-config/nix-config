@@ -36,17 +36,19 @@
 
 系统内置以下预定义选项集，位于 `outputs/optSets/` 目录下：
 
-| 文件                             | 说明           |
-| -------------------------------- | -------------- |
-| [baseEnv.nix](./baseEnv.nix)     | 基础环境选项集 |
-| [baseUsers.nix](./baseUsers.nix) | 基础用户选项集 |
+| 文件                             | 说明              |
+| -------------------------------- | ----------------- |
+| [baseEnv.nix](./baseEnv.nix)     | 基础环境选项集    |
+| [devEnv.nix](./devEnv.nix)       | 开发工具选项集    |
+| [fishShell.nix](./fishShell.nix) | Fish Shell 选项集 |
 
 建议按以下方式查阅具体内容：
 
 ```bash
 # 查看各选项集的定义
 cat outputs/optSets/baseEnv.nix
-cat outputs/optSets/baseUsers.nix
+cat outputs/optSets/devEnv.nix
+cat outputs/optSets/fishShell.nix
 ```
 
 > **💡 提示**：预定义选项集的内容可能随项目演进而调整，
@@ -63,7 +65,8 @@ let
   optSets = import ../../optSets { inherit inputs; };
   predefinedOptSetsList = [
     optSets.baseEnv         # 引用基础环境选项集
-    optSets.baseUsers       # 引用基础用户选项集
+    optSets.devEnv          # 引用开发工具选项集
+    optSets.fishShell       # 引用 Fish Shell 选项集
   ];
   customOptSets = { ... };  # 自定义配置
   opts = functions.mergeOptSetsList customOptSets predefinedOptSetsList;
