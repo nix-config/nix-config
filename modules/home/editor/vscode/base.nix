@@ -33,6 +33,8 @@ in
         adpyke.codesnap
         # 十六进制编辑器
         ms-vscode.hexeditor
+        # just 语言支持
+        nefrob.vscode-just-syntax
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
