@@ -26,15 +26,6 @@ let
 in
 {
   config = lib.mkIf finallyEnable {
-    # CachyOS 等自定义内核不带 buildDTBs / target 属性, 需要显式处理
-    # x86-64 不需要 DTB, ARM 则保持默认行为
-    hardware.deviceTree.enable = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 false;
-    # x86-64 内核文件固定为 bzImage, ARM 为 Image
-    system.boot.loader.kernelFile = lib.mkForce (
-      if pkgs.stdenv.hostPlatform.isx86_64 then "bzImage"
-      else if pkgs.stdenv.hostPlatform.isAarch64 then "Image"
-      else "bzImage"
-    );
     # 将列表中的第一个内核设为当前系统的默认内核包 (mkDefault 允许用户覆盖)
     boot.kernelPackages = lib.mkDefault (builtins.head entries).kernel;
     # 将剩余内核配置为 specialisation, 这样在启动时可选不同的内核
