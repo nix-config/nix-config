@@ -16,11 +16,11 @@ let
           substituters = [
             "https://ai.cachix.org"
             "https://cache.garnix.io"
-            "https://mirror.sjtu.edu.cn/nix-channels/store"
           ];
           trusted-public-keys = [
             "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+            "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };
       };
@@ -93,6 +93,7 @@ let
       customOptSets = {
         count = 1;
         cli = {
+          ssh.enable = true;
           direnv.enable = true;
           zellij.enable = true;
           nvitop.enable = true;

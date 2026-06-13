@@ -16,11 +16,11 @@ let
         sudo-rs.enable = true;
         nix = {
           substituters = [
-            "https://mirror.sjtu.edu.cn/nix-channels/store"
             "https://cache.garnix.io"
           ];
           trusted-public-keys = [
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+            "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };
       };
