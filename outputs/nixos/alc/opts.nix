@@ -14,7 +14,6 @@ let
       cli.nix = {
         substituters = [
           "https://cache.garnix.io"
-          "https://mirror.sjtu.edu.cn/nix-channels/store"
         ];
         trusted-public-keys = [
           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
@@ -42,7 +41,7 @@ let
           device = "/dev/vda";
           espSize = "100M";
         };
-        kernel = with vars.kernelTypes; [ cachyos.server-lto ];
+        kernel = with vars.kernelTypes; [ cachyos.bmq-lto ];
         networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };

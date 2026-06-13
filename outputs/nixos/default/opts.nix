@@ -26,15 +26,18 @@ let
         nix = {
           substituters = [
             # 上海交大镜像源
-            "https://mirror.sjtu.edu.cn/nix-channels/store"
+            # "https://mirror.sjtu.edu.cn/nix-channels/store"
             # 中科大镜像源
             # "https://mirrors.ustc.edu.cn/nix-channels/store"
             # 清华镜像源
             # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+            # nixified-ai 缓存
+            # "https://ai.cachix.org"
             # garnix 缓存
             # "https://cache.garnix.io"
           ];
           trusted-public-keys = [
+            # "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
             # "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
         };
