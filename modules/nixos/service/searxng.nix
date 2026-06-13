@@ -11,7 +11,7 @@ let
 in
 {
   config = lib.mkIf finallyEnable {
-    sops.secrets."searxng/env" = {
+    sops.secrets."searxng.env" = {
       sopsFile = ../../../secrets/searxng.env;
       format = "dotenv";
       owner = "searx";
@@ -30,7 +30,7 @@ in
         # 直连 HTTP 端口 (不依赖 Nginx)
         http = ":8888";
       };
-      environmentFile = config.sops.secrets."searxng/env".path;
+      environmentFile = config.sops.secrets."searxng.env".path;
       settings = {
         # 支持的请求格式
         search.formats = [

@@ -109,13 +109,19 @@ let
       customOptSets = {
         count = 1;
         cli = {
-          ssh.enable = true;
           direnv.enable = true;
           zellij.enable = true;
           opencode.enable = true;
           git.user = {
             name = "骑士姬";
             email = "2067834160@qq.com";
+          };
+          ssh = {
+            enable = true;
+            enableSshSecrets = [
+              "id_ed25519_ssh"
+              "id_ed25519_git"
+            ];
           };
         };
         tool = {

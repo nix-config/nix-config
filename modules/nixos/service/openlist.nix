@@ -18,17 +18,9 @@ in
     inputs.nur-moraxyc.nixosModules.alist
   ];
   config = lib.mkIf finallyEnable {
-    sops.secrets."alist/jwt_secret" = {
-      sopsFile = ../../../secrets/alist.yaml;
-      format = "yaml";
-      owner = "alist";
-      group = "alist";
-      mode = "0400";
-    };
-    sops.templates."alist-jwt_secret" = {
-      content = ''
-        ${config.sops.placeholder."alist/jwt_secret"}
-      '';
+    sops.secrets."alist/jwt-secret" = {
+      sopsFile = ../../../secrets/alist/jwt-secret.enc;
+      format = "binary";
       owner = "alist";
       group = "alist";
       mode = "0400";
@@ -36,7 +28,7 @@ in
     services.alist = {
       enable = true;
       package = pkgs.openlist;
-      settings.jwt_secret._secret = config.sops.templates."alist-jwt_secret".path;
+      settings.jwt_secret._secret = config.sops.secrets."alist/jwt-secret".path;
     };
     systemd.services.alist.path = [ pkgs.ffmpeg-headless ];
   };

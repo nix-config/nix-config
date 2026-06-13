@@ -93,10 +93,13 @@ let
       customOptSets = {
         count = 1;
         cli = {
-          ssh.enable = true;
           direnv.enable = true;
           zellij.enable = true;
           nvitop.enable = true;
+          ssh = {
+            enable = true;
+            enableSshSecrets = [ "id_ed25519_ssh" ];
+          };
         };
         shell.bash.enable = true;
       };

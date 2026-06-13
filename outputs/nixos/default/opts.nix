@@ -225,8 +225,6 @@ let
           # eza.enable = true;
           # 命令行模糊搜索工具
           # fzf.enable = true;
-          # 安全远程登录客户端
-          ssh.enable = false;
           # 命令运行器, 类似 Makefile
           # just.enable = true;
           # 密钥管理工具
@@ -263,6 +261,12 @@ let
           #     email = "";
           #   };
           # };
+          # 安全远程登录客户端
+          ssh = {
+            enable = false;
+            # 需要解密的 ssh 密钥名称列表
+            enableSshSecrets = [ ];
+          };
         };
         # ========== 实用工具 ==========
         tool = {

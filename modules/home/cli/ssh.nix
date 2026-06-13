@@ -8,34 +8,29 @@ let
   cfg = opts.cli.ssh or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
   finallyEnable = cfg.enable or false && enableSopsNix;
-  # 需要从同一个 yaml 中解密的 ssh 密钥名称列表
-  sshSecretNames = [
-    "ssh/id_ed25519"
-    "ssh/id_ed25519_git"
-    "ssh/id_ed25519_6309_4090D"
-  ];
+  enableSshSecrets = cfg.enableSshSecrets or [ ];
 in
 {
   config = lib.mkIf finallyEnable {
     sops.secrets =
-      lib.genAttrs sshSecretNames (name: {
-        sopsFile = ../../../secrets/ssh.yaml;
-        format = "yaml";
-        mode = "0400";
+      lib.genAttrs (map (n: "ssh/${n}") enableSshSecrets) (name: {
+        sopsFile = ../../../secrets/ssh/${baseNameOf name}.enc;
+        format = "binary";
+        mode = "0600";
         path = "${config.home.homeDirectory}/.ssh/${baseNameOf name}";
       })
       // {
         "ssh/config" = {
-          sopsFile = ../../../secrets/ssh.yaml;
-          format = "yaml";
-          mode = "0400";
+          sopsFile = ../../../secrets/ssh/config.enc;
+          format = "binary";
+          mode = "0600";
         };
       };
     programs.ssh = {
       enable = true;
       # 导入解密后的配置
       includes = [ config.sops.secrets."ssh/config".path ];
-      # 默认配置
+      # 禁用默认配置
       enableDefaultConfig = false;
     };
   };
