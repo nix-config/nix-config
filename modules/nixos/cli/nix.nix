@@ -13,15 +13,15 @@ let
 in
 {
   sops.secrets = {
-    "nix-secret-key" = lib.mkIf enableSopsNix {
-      sopsFile = ../../../secrets/secret-key-pem/remote-build-binary-cache.enc;
+    "nix/secret-key" = lib.mkIf enableSopsNix {
+      sopsFile = ../../../secrets/nix/secret-key.enc;
       format = "binary";
       owner = "root";
       group = "root";
       mode = "0600";
     };
-    "nix-extra-options.conf" = lib.mkIf enableSopsNix {
-      sopsFile = ../../../secrets/nix.ini;
+    "nix/extra-options.conf" = lib.mkIf enableSopsNix {
+      sopsFile = ../../../secrets/nix/extra-options.ini;
       format = "ini";
       # 只有 root 和 sudo 用户可读
       owner = "root";
@@ -47,12 +47,12 @@ in
         "@wheel"
       ];
       secret-key-files = lib.mkIf enableSopsNix [
-        config.sops.secrets."nix-secret-key".path
+        config.sops.secrets."nix/secret-key".path
       ];
     };
     # 通过 !include 包含运行时生成的配置文件(宽容模式, 如果指定的文件不存在 Nix 会忽略该指令)
     extraOptions = lib.mkIf enableSopsNix "!include ${
-      config.sops.secrets."nix-extra-options.conf".path
+      config.sops.secrets."nix/extra-options.conf".path
     }";
   };
 }
