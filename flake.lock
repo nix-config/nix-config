@@ -864,22 +864,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1781427349,
-        "narHash": "sha256-wbDUU4YXDe7r1fa6xax/oxsFJGjFUyjLxA3IIkrncQ4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "7b7abc3ef415f4043cb12c48229c263cfa057da0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_7",
@@ -950,17 +934,24 @@
       "inputs": {
         "flake-parts": "flake-parts_9",
         "nix-cachyos-kernel": "nix-cachyos-kernel_2",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "path": "repositories/knightfemale/nur-packages",
-        "type": "path"
+        "lastModified": 1781436250,
+        "narHash": "sha256-O+zQFwosUaVRTOY7I0heYfjesGn8zhHoG67ED8sjK48=",
+        "owner": "knightfemale",
+        "repo": "nur-packages",
+        "rev": "aa38cd8ad4196aaaacfb5b0e5d2250bf116e3b7c",
+        "type": "github"
       },
       "original": {
-        "path": "repositories/knightfemale/nur-packages",
-        "type": "path"
-      },
-      "parent": []
+        "owner": "knightfemale",
+        "ref": "master",
+        "repo": "nur-packages",
+        "type": "github"
+      }
     },
     "nur-moraxyc": {
       "inputs": {

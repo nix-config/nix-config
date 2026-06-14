@@ -53,9 +53,11 @@
       url = "github:NousResearch/hermes-agent/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur-knightfemale = {
+      url = "github:knightfemale/nur-packages/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/master";
-    self.submodules = true;
-    nur-knightfemale.url = ././repositories/knightfemale/nur-packages;
   };
   outputs = inputs: import ./outputs inputs;
 }
