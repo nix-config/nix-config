@@ -8,14 +8,15 @@
   返回值:
     { "基础名称" = ...; } 或 { "基础名称-1" = ...; "基础名称-2" = ...; ... }
 */
-inputs:
+{
+  inputs,
+  functions,
+  ...
+}:
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
   buildPkgSets = import ./buildPkgSets.nix inputs;
-  deepMergeAttrs = import ./deepMergeAttrs.nix inputs;
-  mergeAttrsList = import ./mergeAttrsList.nix inputs;
-  generateCountNames = import ./generateCountNames.nix inputs;
   mkNixos =
     opts: baseName: vars:
     let
@@ -26,7 +27,7 @@ let
       pkgSets = buildPkgSets system;
       stateVersion = hostCustomOptSets.stateVersion or "26.05";
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
-      nixosOpts = deepMergeAttrs (mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
+      nixosOpts = functions.deepMergeAttrs (functions.mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 定义用户批量展开函数
       expandUsers =
         users:
@@ -35,12 +36,12 @@ let
           let
             # 强制 root 用户 count 为 1
             count = if baseName == "root" then 1 else (attrs.customOptSets.count or 1);
-            names = generateCountNames baseName count;
+            names = functions.generateCountNames baseName count;
           in
           lib.genAttrs names (_: attrs)
         ) users;
       # 根据 count 生成主机名称列表
-      hostNames = generateCountNames baseName count;
+      hostNames = functions.generateCountNames baseName count;
       # 展开后的用户属性集
       expandedUsers = expandUsers (opts.users or { });
       # 提取所有用户的 base 配置(即 users.<name>.base)
@@ -52,7 +53,7 @@ let
         hostName:
         let
           # 深度合并特定的 hostName 到原有 nixosOpts 中
-          nixosOpts' = deepMergeAttrs nixosOpts { hardware.networking.hostName = hostName; };
+          nixosOpts' = functions.deepMergeAttrs nixosOpts { hardware.networking.hostName = hostName; };
         in
         {
           ${hostName} = lib.nixosSystem {
@@ -60,7 +61,12 @@ let
             pkgs = pkgSets.pkgs;
             # 传给子模块的参数
             specialArgs = {
-              inherit vars inputs pkgSets;
+              inherit
+                vars
+                inputs
+                pkgSets
+                functions
+                ;
               opts = nixosOpts';
             };
             modules = [
@@ -89,9 +95,9 @@ let
                       # 合并用户级别的预定义选项列表和自定义选项
                       homePredefined = attrs.predefinedOptSetsList or [ ];
                       homeCustom = attrs.customOptSets or { };
-                      homeOpts = deepMergeAttrs (mergeAttrsList homePredefined) homeCustom;
+                      homeOpts = functions.deepMergeAttrs (functions.mergeAttrsList homePredefined) homeCustom;
                       # 再与全局主机选项合并, 作为最终传递给 home 模块的 opts
-                      homeOpts' = deepMergeAttrs nixosOpts' homeOpts;
+                      homeOpts' = functions.deepMergeAttrs nixosOpts' homeOpts;
                     in
                     {
                       imports = [ ../modules/home ];
@@ -106,7 +112,14 @@ let
                     }
                   ) nonRootUsers;
                   # 全局 extraSpecialArgs 不传递 opts, 避免覆盖用户专属配置
-                  extraSpecialArgs = { inherit vars inputs pkgSets; };
+                  extraSpecialArgs = {
+                    inherit
+                      vars
+                      inputs
+                      pkgSets
+                      functions
+                      ;
+                  };
                 };
               }
             ];

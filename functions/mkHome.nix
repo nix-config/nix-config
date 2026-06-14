@@ -7,14 +7,15 @@
   返回值:
     { "基础名称" = ...; } 或 { "基础名称" = ...; "基础名称-1" = ...; "基础名称-2" = ...; }
 */
-inputs:
+{
+  inputs,
+  functions,
+  ...
+}:
 let
   inherit (inputs.nixpkgs) lib;
   # 导入辅助函数
   buildPkgSets = import ./buildPkgSets.nix inputs;
-  deepMergeAttrs = import ./deepMergeAttrs.nix inputs;
-  mergeAttrsList = import ./mergeAttrsList.nix inputs;
-  generateCountNames = import ./generateCountNames.nix inputs;
   mkHome =
     opts: baseName: vars:
     let
@@ -25,9 +26,9 @@ let
       pkgSets = buildPkgSets system;
       stateVersion = userCustomOptSets.stateVersion or "26.05";
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
-      homeOpts = deepMergeAttrs (mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
+      homeOpts = functions.deepMergeAttrs (functions.mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
       # 根据 count 生成用户名称列表
-      userNames = generateCountNames baseName count;
+      userNames = functions.generateCountNames baseName count;
       # 定义生成单个 homeConfigurations 的函数
       mkSingleHome = username: {
         ${username} = inputs.home-manager.lib.homeManagerConfiguration {
@@ -42,7 +43,12 @@ let
             }
           ];
           extraSpecialArgs = {
-            inherit vars inputs pkgSets;
+            inherit
+              vars
+              inputs
+              pkgSets
+              functions
+              ;
             opts = homeOpts;
           };
         };
