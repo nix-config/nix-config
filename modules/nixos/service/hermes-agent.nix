@@ -3,6 +3,7 @@
   opts,
   config,
   inputs,
+  pkgSets,
   ...
 }:
 let
@@ -61,5 +62,16 @@ in
       };
       environmentFiles = [ config.sops.secrets."hermes.env".path ];
     };
+    # 注入 lark-oapi 及其依赖到 hermes-agent 的 Python 环境 (Feishu 网关依赖)
+    systemd.services.hermes-agent.environment.PYTHONPATH =
+      let
+        inherit (pkgSets.pkgs-knightfemale.python312Packages) lark-oapi;
+        inherit (pkgSets.pkgs.python312Packages) requests-toolbelt pycryptodome;
+      in
+      lib.concatStringsSep ":" [
+        "${lark-oapi}/lib/python3.12/site-packages"
+        "${pycryptodome}/lib/python3.12/site-packages"
+        "${requests-toolbelt}/lib/python3.12/site-packages"
+      ];
   };
 }

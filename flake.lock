@@ -630,6 +630,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-knightfemale": {
+      "locked": {
+        "lastModified": 1781404487,
+        "narHash": "sha256-P7Rnw3DoFdObM7OzdTOw6tMieVYq9TwX5XdCVUT+e2g=",
+        "owner": "knightfemale",
+        "repo": "nixpkgs",
+        "rev": "0d17f9824f3426055e959f1306453932528aba76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "knightfemale",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1774748309,
@@ -922,6 +938,7 @@
         "nixos-unstable": "nixos-unstable",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-knightfemale": "nixpkgs-knightfemale",
         "nixvim": "nixvim",
         "nur": "nur",
         "nur-moraxyc": "nur-moraxyc",

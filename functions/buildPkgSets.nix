@@ -21,6 +21,11 @@ let
         inherit system;
         config.allowUnfree = true;
       };
+      # knightfemale fork 版 nixpkgs 包集合
+      pkgs-knightfemale = import nixpkgs-knightfemale {
+        inherit system;
+        config.allowUnfree = true;
+      };
     };
 in
 buildPkgSets
