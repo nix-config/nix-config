@@ -40,19 +40,22 @@ in
           };
         };
         web.search_backend = "searxng";
-        gateway.platforms.qqbot.enabled = true;
+        gateway.platforms = {
+          # qqbot.enabled = true;
+          feishu.enabled = true;
+        };
         platform_toolsets = {
-          qqbot = [
-            "session_search"
+          feishu = [
+            "web"
+            "file"
+            "todo"
             "memory"
+            "skills"
+            "vision"
             "clarify"
             "terminal"
-            "file"
-            "web"
-            "vision"
-            "skills"
             "delegation"
-            "todo"
+            "session_search"
           ];
         };
       };
