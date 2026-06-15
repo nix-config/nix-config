@@ -171,6 +171,7 @@
   "audioVisualizerEnabled": true,
   "audioScrollMode": "volume",
   "audioWheelScrollAmount": 5,
+  "audioDeviceScrollVolumeEnabled": false,
   "clockCompactMode": false,
   "focusedWindowCompactMode": false,
   "focusedWindowSize": 1,
@@ -621,6 +622,11 @@
     }
   },
   "clipboardEnterToPaste": false,
+  "clipboardVisibleEntryActions": [
+    "pin",
+    "edit",
+    "delete"
+  ],
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
   "frameEnabled": false,
