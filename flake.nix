@@ -57,7 +57,6 @@
       url = "github:knightfemale/nur-packages/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/master";
   };
   outputs = inputs: import ./outputs inputs;
 }
