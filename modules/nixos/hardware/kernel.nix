@@ -6,22 +6,14 @@
   ...
 }:
 let
-  # 从独立文件中导入内核构建函数, 传入 inputs 供其内部使用
-  mkKernelPackage = import ../../../functions/mkKernelPackage.nix inputs;
   # 获取用户配置的内核列表, 若未定义则默认为空列表
   cfg = opts.hardware.kernel or [ ];
   finallyEnable = cfg != [ ];
+  kernels = inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system};
   # 遍历每个内核配置, 构建出 { name, kernel } 属性的条目列表
-  entries = map (k: {
-    # 保留名称用于后续 specialisation 命名
-    name = k.name;
-    kernel =
-      if k ? packages then
-        # 直接使用包
-        k.packages
-      else
-        # 去掉 name 字段 (mkKernelPackage 不需要), 补上 pkgs 后调用内核构建函数
-        mkKernelPackage (removeAttrs k [ "name" ] // { inherit pkgs; });
+  entries = map (name: {
+    inherit name;
+    kernel = pkgs.linuxPackagesFor kernels.${name};
   }) cfg;
 in
 {

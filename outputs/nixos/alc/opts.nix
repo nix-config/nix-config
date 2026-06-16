@@ -41,7 +41,7 @@ let
           device = "/dev/vda";
           espSize = "100M";
         };
-        kernel = with vars.kernelTypes; [ cachyos.bmq-lto ];
+        kernel = [ "kernel-cachyos-bmq-lto" ];
         networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
