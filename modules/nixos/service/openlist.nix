@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   opts,
   config,
   inputs,
@@ -12,24 +11,22 @@ let
 in
 {
   # 首次启动执行:
-  # sudo journalctl -u alist --no-pager | grep -i "initial password"
+  # sudo journalctl -u openlist --no-pager | grep -i "initial password"
   # 获取初始随机密码后登陆, 在 Web 界面设置密码
   imports = [
-    inputs.nur-moraxyc.nixosModules.alist
+    inputs.nur-knightfemale.nixosModules.openlist
   ];
   config = lib.mkIf finallyEnable {
-    sops.secrets."alist/jwt-secret" = {
-      sopsFile = ../../../secrets/alist/jwt-secret.enc;
+    sops.secrets."openlist/jwt-secret" = {
+      sopsFile = ../../../secrets/openlist/jwt-secret.enc;
       format = "binary";
-      owner = "alist";
-      group = "alist";
+      owner = "openlist";
+      group = "openlist";
       mode = "0400";
     };
-    services.alist = {
+    services.openlist = {
       enable = true;
-      package = pkgs.openlist;
-      settings.jwt_secret._secret = config.sops.secrets."alist/jwt-secret".path;
+      settings.jwt_secret._secret = config.sops.secrets."openlist/jwt-secret".path;
     };
-    systemd.services.alist.path = [ pkgs.ffmpeg-headless ];
   };
 }

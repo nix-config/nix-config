@@ -1,8 +1,10 @@
 {
   inputs = {
+    self.submodules = true;
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/master";
+    # nixpkgs-knightfemale.url = ./repositories/NixOS/nixpkgs;
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # 与当前 flake 的 inputs.nixpkgs 保持一致
@@ -33,10 +35,6 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur-moraxyc = {
-      url = "github:Moraxyc/nur-packages/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     mcp-nixos = {
       url = "github:utensils/mcp-nixos/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +53,7 @@
     };
     nur-knightfemale = {
       url = "github:knightfemale/nur-packages/master";
+      # url = ./repositories/knightfemale/nur-packages;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

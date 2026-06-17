@@ -91,7 +91,6 @@ let
         isNormalUser = true;
         description = "管理员";
         extraGroups = [
-          "alist"
           "wheel"
           "hermes"
           "networkmanager"
