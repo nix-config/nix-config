@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   opts,
   ...
 }:
@@ -11,6 +12,9 @@ in
   config = lib.mkIf finallyEnable {
     programs.opencode = {
       enable = true;
+      extraPackages = with pkgs; [
+        bun
+      ];
     };
   };
 }
