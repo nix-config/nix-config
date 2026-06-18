@@ -34,7 +34,7 @@ lib.mergeAttrsList (
       hostCustomOptSets = opts.host.customOptSets or [ ];
       count = hostCustomOptSets.count or 1;
       system = hostCustomOptSets.system or "x86_64-linux";
-      pkgSets = functions.mk.pkgSets system;
+      pkgSets = functions.mk.pkgSets system inputs;
       stateVersion = hostCustomOptSets.stateVersion or "26.05";
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;

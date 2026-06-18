@@ -32,7 +32,7 @@ lib.mergeAttrsList (
       userCustomOptSets = opts.user.customOptSets or { };
       count = userCustomOptSets.count or 1;
       system = userCustomOptSets.system or "x86_64-linux";
-      pkgSets = functions.mk.pkgSets system;
+      pkgSets = functions.mk.pkgSets system inputs;
       stateVersion = userCustomOptSets.stateVersion or "26.05";
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
       homeOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
