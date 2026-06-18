@@ -3,14 +3,8 @@
     # self.submodules = true;
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/master";
+    # nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/master";
     # nixpkgs-knightfemale.url = ./repositories/NixOS/nixpkgs;
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      # 与当前 flake 的 inputs.nixpkgs 保持一致
-      # 避免依赖的 nixpkgs 版本不一致导致问题
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur = {
       url = "github:nix-community/NUR/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +39,10 @@
     };
     daeuniverse = {
       url = "github:daeuniverse/flake.nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent = {
