@@ -37,7 +37,7 @@ lib.mergeAttrsList (
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
       homeOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
       # 根据 count 生成用户名称列表
-      userNames = functions.generateCountNames baseName count;
+      userNames = functions.mk.numberedStrings baseName count;
     in
     builtins.listToAttrs (
       map (username: {

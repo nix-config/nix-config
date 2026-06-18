@@ -691,11 +691,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781762807,
-        "narHash": "sha256-2chQfxKrDvdxwNmA3hBng+URfUtR7sVJ6Eiof+gL47k=",
+        "lastModified": 1781776842,
+        "narHash": "sha256-0YVpunZsTmUtppYmz/lGEgvbTzBM0+zuGiDSyo1NmGA=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "a642a78e027866316eec3424f9fbea525370f27f",
+        "rev": "05aca8c2e9fb3b2e071bec5ea2d691bb1e5ab2bd",
         "type": "github"
       },
       "original": {

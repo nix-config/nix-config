@@ -39,7 +39,7 @@ lib.mergeAttrsList (
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
       nixosOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 根据 count 生成主机名称列表
-      hostNames = functions.generateCountNames baseName count;
+      hostNames = functions.mk.numberedStrings baseName count;
       # 展开后的用户属性集
       expandedUsers = lib.concatMapAttrs (
         name: attrs:
@@ -47,7 +47,7 @@ lib.mergeAttrsList (
           # 强制 root 用户 count 为 1
           count = if name == "root" then 1 else (attrs.customOptSets.count or 1);
         in
-        lib.genAttrs (functions.generateCountNames name count) (_: attrs)
+        lib.genAttrs (functions.mk.numberedStrings name count) (_: attrs)
       ) (opts.users or { });
       # 提取所有用户的 base 配置 (即 users.<name>.base)
       usersBase = lib.mapAttrs (_: user: user.base or { }) expandedUsers;
