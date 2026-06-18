@@ -485,22 +485,6 @@
         "type": "github"
       }
     },
-    "nixos-unstable": {
-      "locked": {
-        "lastModified": 1781577229,
-        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -600,6 +584,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-nixos-unstable": {
+      "locked": {
+        "lastModified": 1781577229,
+        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1781332575,
@@ -691,11 +691,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781705373,
-        "narHash": "sha256-qLS84GOX0+9mbN/8r/5BOMa6HWgdA+BmmUhCOXnlfNs=",
+        "lastModified": 1781761331,
+        "narHash": "sha256-p0uF3/mizHDW6OpoMZgNliE3KRLTaKLNOuntZxS+UbQ=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "cd0aa961012f1d630b18798c9cebeaec06516aaa",
+        "rev": "e09c58fe9ce3eb379edfb44cc98af9e5fcf0a422",
         "type": "github"
       },
       "original": {
@@ -802,10 +802,10 @@
         "home-manager": "home-manager",
         "mcp-nixos": "mcp-nixos",
         "nixified-ai": "nixified-ai",
-        "nixos-unstable": "nixos-unstable",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-knightfemale": "nixpkgs-knightfemale",
+        "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
         "nixvim": "nixvim",
         "nur": "nur",
         "nur-knightfemale": "nur-knightfemale",
