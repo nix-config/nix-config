@@ -16,9 +16,9 @@ in
       protonPackages = with pkgs; [
         dwproton-bin
       ];
+      extraPackages = with pkgs; [
+        umu-launcher
+      ];
     };
-    home.packages = with pkgs; [
-      umu-launcher
-    ];
   };
 }
