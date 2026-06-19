@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   opts,
   config,
   inputs,
@@ -9,6 +10,7 @@ let
   cfg = opts.service.hermes-agent or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
   finallyEnable = cfg.enable or false && enableSopsNix;
+  byterover-cli = inputs.nur-knightfemale.packages.${pkgs.system}.byterover-cli;
 in
 {
   imports = [
@@ -25,6 +27,9 @@ in
       enable = true;
       addToSystemPackages = true;
       extraDependencyGroups = [ "feishu" ];
+      extraPackages = [
+        byterover-cli
+      ];
       settings = {
         model = {
           provider = "opencode-go";
@@ -41,6 +46,7 @@ in
           };
         };
         web.search_backend = "searxng";
+        memory.provider = "byterover";
         gateway.platforms = {
           # qqbot.enabled = true;
           feishu.enabled = true;

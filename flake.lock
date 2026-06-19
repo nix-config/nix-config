@@ -3,11 +3,11 @@
     "cachyos-kernel": {
       "flake": false,
       "locked": {
-        "lastModified": 1781336955,
-        "narHash": "sha256-F/16TiN0VORWqw/Swbooudq+Q/IXQhNo8/X95ulVoVk=",
+        "lastModified": 1781767284,
+        "narHash": "sha256-cjIw6fLHT1shDREFkhsMeZeRAYO7z+cnauxmpUkSdp4=",
         "owner": "CachyOS",
         "repo": "linux-cachyos",
-        "rev": "4b6a36474960318d2c250c57abd00b33a83b0bf5",
+        "rev": "d9b3cd77b1aa6fd4dc4baa3d876a598f884f5472",
         "type": "github"
       },
       "original": {
@@ -19,11 +19,11 @@
     "cachyos-kernel-patches": {
       "flake": false,
       "locked": {
-        "lastModified": 1781257359,
-        "narHash": "sha256-J2/PBS+5u6osnWZUB7UTjLaD+S8diM+6hlOWDoX/+bw=",
+        "lastModified": 1781605133,
+        "narHash": "sha256-lmxxhcZt3qSHPS3ETDeN2OIZqC4yIa3uVpMXuIR+8Rc=",
         "owner": "CachyOS",
         "repo": "kernel-patches",
-        "rev": "46b45d26b536195f3ee8bc510b96b7fa47567163",
+        "rev": "3d40b72fc3c40581269f9e7a12433950f2fd6d95",
         "type": "github"
       },
       "original": {
@@ -448,11 +448,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1781376913,
-        "narHash": "sha256-xlbs7ktpl2Vi/+atLzMSXXuoEZPk8LJt6JNv9xjVeWU=",
+        "lastModified": 1781811723,
+        "narHash": "sha256-o0Y3TIykOACq7nwwoSzeQOhQhheI7P4x0PvHtUsoXPY=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "636da48ce0cf6c6487940e43cc49b73a7f6e00a2",
+        "rev": "26da04e24aef2993ea256917be42d18f83ce8e8b",
         "type": "github"
       },
       "original": {
@@ -586,11 +586,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1781332575,
-        "narHash": "sha256-tyh5yzbIN2ftH+uilyTWR6WCMZQeh3m5iOowTLNodyk=",
+        "lastModified": 1781793837,
+        "narHash": "sha256-T9/Q/A5B/Q1hC65fdwCz0aKVN7u1MDXGQXMKgoMQ1Hw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "51effaf9783e0226281ad10e95a4af6c8a145316",
+        "rev": "05eced6879632fc2f62fec56f2e33269157984ef",
         "type": "github"
       },
       "original": {
@@ -675,11 +675,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781776842,
-        "narHash": "sha256-0YVpunZsTmUtppYmz/lGEgvbTzBM0+zuGiDSyo1NmGA=",
+        "lastModified": 1781880671,
+        "narHash": "sha256-ixFy03GTZUZ+bSI2e0CwRafANkXf9eZuGMSdaXgImzM=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "05aca8c2e9fb3b2e071bec5ea2d691bb1e5ab2bd",
+        "rev": "99945c46827204d2a63338a184bd9ed29b400aba",
         "type": "github"
       },
       "original": {
