@@ -310,6 +310,13 @@
   "batteryProfileName": "",
   "batteryPostLockMonitorTimeout": 0,
   "batteryChargeLimit": 100,
+  "batteryNotifyChargeLimit": false,
+  "batteryCriticalThreshold": 10,
+  "batteryNotifyCritical": true,
+  "batteryLowThreshold": 20,
+  "batteryNotifyLow": false,
+  "batteryNotificationType": 0,
+  "batteryAutoPowerSaver": false,
   "lockBeforeSuspend": false,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": true,
@@ -640,6 +647,8 @@
     }
   },
   "clipboardEnterToPaste": false,
+  "clipboardRememberTypeFilter": false,
+  "clipboardTypeFilter": "all",
   "clipboardVisibleEntryActions": [
     "pin",
     "edit",
