@@ -14,11 +14,11 @@ in
     programs.vscode.enable = true;
     home.file = {
       ".vscode/argv.json" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/argv.json";
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/modules/home/editor/vscode/config/argv.json";
         force = true;
       };
       ".config/Code/User/settings.json" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/vscode/settings.json";
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/modules/home/editor/vscode/config/settings.json";
         force = true;
       };
     };

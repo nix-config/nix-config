@@ -13,7 +13,7 @@ in
   config = lib.mkIf finallyEnable {
     home.file = {
       ".config/DankMaterialShell" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/dms";
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/modules/home/desktop/dms/config";
         force = true;
       };
     };
