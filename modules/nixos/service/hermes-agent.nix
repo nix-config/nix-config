@@ -10,7 +10,7 @@ let
   cfg = opts.service.hermes-agent or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
   finallyEnable = cfg.enable or false && enableSopsNix;
-  byterover-cli = inputs.nur-knightfemale.packages.${pkgs.system}.byterover-cli;
+  byterover-cli = inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system}.byterover-cli;
 in
 {
   imports = [
