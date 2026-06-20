@@ -5,6 +5,7 @@
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/master";
     # nixpkgs-knightfemale.url = ./repositories/NixOS/nixpkgs;
+    nixpkgs-knightfemale-byterover-cli.url = "github:knightfemale/nixpkgs/byterover-cli";
     nur = {
       url = "github:nix-community/NUR/main";
       inputs.nixpkgs.follows = "nixpkgs";

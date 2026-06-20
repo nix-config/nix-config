@@ -544,6 +544,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-knightfemale-byterover-cli": {
+      "locked": {
+        "lastModified": 1781964620,
+        "narHash": "sha256-xp2tTs+ctmIqXhrvlPc/+kv5tHaK2zdFgMTI0EbYYkg=",
+        "owner": "knightfemale",
+        "repo": "nixpkgs",
+        "rev": "431fdceb457fbdc66ffd61e6d6ca9a7c7d4091c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "knightfemale",
+        "ref": "byterover-cli",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1774748309,
@@ -810,6 +826,7 @@
         "nixified-ai": "nixified-ai",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-knightfemale-byterover-cli": "nixpkgs-knightfemale-byterover-cli",
         "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
         "nixvim": "nixvim",
         "nur": "nur",
