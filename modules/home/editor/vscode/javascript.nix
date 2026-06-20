@@ -1,33 +1,27 @@
 {
   lib,
   pkgs,
+  inputs,
   opts,
   ...
 }:
 let
+  vscode-marketplace =
+    (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
   cfg = opts.editor.vscode.extensions.javascript or { };
   finallyEnable = cfg.enable or false || opts.editor.vscode.extensions.all.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {
-    programs.vscode.profiles.default.extensions =
-      with pkgs.vscode-extensions;
-      [
-        # ESLint 集成
-        dbaeumer.vscode-eslint
-        # Tailwind CSS 语法支持
-        bradlc.vscode-tailwindcss
-        # Svelte 框架支持
-        svelte.svelte-vscode
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          # Ripple 框架辅支持
-          name = "ripple-ts-vscode-plugin";
-          publisher = "Ripple-TS";
-          version = "2.0.34";
-          sha256 = "sha256-G5aTb92wIVvAObMc5MKY4L7BB8tB6e9+W1KAgxa13Oo=";
-        }
-      ];
+    programs.vscode.profiles.default.extensions = with vscode-marketplace; [
+      # ESLint 集成
+      dbaeumer.vscode-eslint
+      # Tailwind CSS 语法支持
+      bradlc.vscode-tailwindcss
+      # Svelte 框架支持
+      svelte.svelte-vscode
+      # Ripple 框架辅支持
+      ripple-ts.ripple-ts-vscode-plugin
+    ];
   };
 }
