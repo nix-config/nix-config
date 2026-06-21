@@ -1,0 +1,137 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
+  "sisyphus_agent": {
+    // 保留原生 build agent，
+    "default_builder_enabled": true,
+    // 保留原生 plan agent
+    "replace_plan": false,
+  },
+  // 开启自动回退链
+  "model_fallback": true,
+  "agents": {
+    // 主编排 claude-like
+    "sisyphus": {
+      "model": "opencode-go/kimi-k2.7-code",
+    },
+    // 架构咨询 / 疑难调试 gpt-like
+    "oracle": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "variant": "max",
+      "textVerbosity": "low",
+      "temperature": 0.2,
+    },
+    // 计划制定 claude-like/gpt-like
+    "prometheus": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "variant": "max",
+      "temperature": 0.1,
+    },
+    // 快速上下文检索
+    "explore": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "variant": "low",
+      "maxTokens": 4096,
+      "temperature": 0.1,
+    },
+    // 文档与代码调研
+    "librarian": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "variant": "low",
+      "maxTokens": 4096,
+      "temperature": 0.1,
+    },
+    // 待办事项编排 claude-like/gpt-like
+    "atlas": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "variant": "medium",
+      "temperature": 0.1,
+    },
+    // 深度自主执行 gpt-like
+    "hephaestus": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "variant": "max",
+      "temperature": 0.1,
+    },
+    // 计划审核 claude-like
+    "metis": {
+      "model": "opencode-go/glm-5.2",
+      "temperature": 0.2,
+    },
+    // 计划质疑 gpt-like
+    "momus": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "variant": "max",
+      "textVerbosity": "low",
+      "temperature": 0.3,
+    },
+    // 视觉理解
+    "multimodal-looker": {
+      "model": "opencode/mimo-v2.5-free",
+      "fallback_models": ["opencode-go/qwen3.7-plus"],
+      "temperature": 0.1,
+    },
+  },
+  "categories": {
+    // 推理的任务 gpt-like
+    "ultrabrain": {
+      "model": "opencode-go/glm-5.2",
+      "variant": "max",
+      "temperature": 0.1,
+    },
+    // 复杂编程 / 深度逻辑 gpt-like
+    "deep": {
+      "model": "opencode-go/glm-5.2",
+      "variant": "max",
+      "temperature": 0.1,
+    },
+    // 简单任务
+    "quick": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "maxTokens": 4096,
+      "variant": "low",
+      "temperature": 0.1,
+    },
+    // 文档撰写 claude-like
+    "writing": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "temperature": 0.7,
+    },
+    // 前端 / UI / UX / CSS
+    "visual-engineering": {
+      "model": "opencode/mimo-v2.5-free",
+      "fallback_models": ["opencode-go/qwen3.7-plus"],
+      "temperature": 0.5,
+    },
+    // 创意 / 非传统思路求解
+    "artistry": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "temperature": 0.9,
+    },
+    // 通用多模态
+    "multimodal": {
+      "model": "opencode/mimo-v2.5-free",
+      "fallback_models": ["opencode-go/qwen3.7-plus"],
+      "temperature": 0.5,
+    },
+    // 未命中具体分类的复杂任务回退 claude-like
+    "unspecified-high": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "variant": "max",
+      "temperature": 0.3,
+    },
+    // 未命中具体分类的日常任务回退
+    "unspecified-low": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "fallback_models": ["opencode-go/deepseek-v4-flash"],
+      "temperature": 0.3,
+    },
+  },
+}
