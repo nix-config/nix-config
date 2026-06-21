@@ -247,7 +247,10 @@
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "wifi",
-  "iconTheme": "System Default",
+  "iconThemeDark": "System Default",
+  "iconThemeLight": "System Default",
+  "iconThemePerMode": false,
+  "lastAppliedIconTheme": "",
   "cursorSettings": {
     "theme": "System Default",
     "size": 24,
