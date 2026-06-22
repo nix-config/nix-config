@@ -68,7 +68,14 @@ let
         bluetooth.enable = true;
         graphics.type = vars.gpuTypes.amd;
         disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
-        kernel = [ "kernel-cachyos-bore-lto-v3" ];
+        kernel = {
+          types = [ "kernel-cachyos-bore-lto-v3" ];
+          configs = {
+            DRM_I915 = "no";
+            DRM_RADEON = "no";
+            DRM_NOUVEAU = "no";
+          };
+        };
         networking = {
           inherit hostName;
           networkmanager.enable = true;

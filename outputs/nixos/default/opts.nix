@@ -124,13 +124,19 @@ let
         disk = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
-        # 内核配置, 具体定义查看: vars/kernelTypes/
-        # kernel = with vars.kernelTypes; [
-        #   zen.latest
-        #   xanmod.latest
-        #   generic.latest
-        #   ...
-        # ];
+        # 内核配置
+        # kernel = {
+        #   # 类型
+        #   types = [
+        #     "kernel-zen-latest"
+        #     ...
+        #   ];
+        #   # 额外参数
+        #   configs = {
+        #     DRM_NOUVEAU = "no";
+        #     ...
+        #   };
+        # };
         # 图形驱动配置
         graphics = {
           # GPU 类型, 可选项:

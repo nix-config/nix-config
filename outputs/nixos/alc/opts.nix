@@ -41,7 +41,15 @@ let
           device = "/dev/vda";
           espSize = "100M";
         };
-        kernel = [ "kernel-cachyos-bmq-lto" ];
+        kernel = {
+          types = [ "kernel-cachyos-bmq-lto" ];
+          configs = {
+            DRM_I915 = "no";
+            DRM_AMDGPU = "no";
+            DRM_RADEON = "no";
+            DRM_NOUVEAU = "no";
+          };
+        };
         networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
