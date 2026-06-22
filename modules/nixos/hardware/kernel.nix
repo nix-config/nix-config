@@ -8,7 +8,6 @@
 let
   # 获取用户配置的内核列表, 若未定义则默认为空列表
   cfg = opts.hardware.kernel or { };
-  finallyEnable = cfg != { };
   types = cfg.types or [ ];
   configs = cfg.configs or { };
   kernels = inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system};
@@ -19,28 +18,32 @@ let
   }) types;
 in
 {
-  config = lib.mkIf finallyEnable {
-    boot = {
+  config = lib.mkMerge [
+    (lib.mkIf (types != [ ]) {
       # 将列表中的第一个内核设为当前系统的默认内核包 (mkDefault 允许用户覆盖)
-      kernelPackages = lib.mkDefault (builtins.head entries).kernel;
+      boot.kernelPackages = lib.mkIf (types != [ ]) (lib.mkDefault (builtins.head entries).kernel);
+      # 将剩余内核配置为 specialisation, 这样在启动时可选不同的内核
+      specialisation = lib.mkIf (types != [ ]) (
+        builtins.listToAttrs (
+          map (e: {
+            name = e.name;
+            value = {
+              # mkForce 强制覆盖该 specialisation 的内核包
+              configuration.boot.kernelPackages = lib.mkForce e.kernel;
+            };
+          }) (builtins.tail entries) # 跳过第一个 (已设为默认)
+        )
+      );
+    })
+    (lib.mkIf (configs != { }) {
       # 通过 structuredExtraConfig 将 kernelConfig 注入内核选项
-      kernelPatches = [
+      boot.kernelPatches = lib.mkIf (configs != { }) [
         {
           name = "extra-kernel-config";
           patch = null;
           structuredExtraConfig = lib.mapAttrs (_: v: lib.kernel."${v}") configs;
         }
       ];
-    };
-    # 将剩余内核配置为 specialisation, 这样在启动时可选不同的内核
-    specialisation = builtins.listToAttrs (
-      map (e: {
-        name = e.name;
-        value = {
-          # mkForce 强制覆盖该 specialisation 的内核包
-          configuration.boot.kernelPackages = lib.mkForce e.kernel;
-        };
-      }) (builtins.tail entries) # 跳过第一个 (已设为默认)
-    );
-  };
+    })
+  ];
 }

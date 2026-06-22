@@ -71,9 +71,11 @@ let
         kernel = {
           types = [ "kernel-cachyos-bore-lto-v3" ];
           configs = {
+            DRM_XE = "no";
             DRM_I915 = "no";
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
+            OBJTOOL_WERROR = "no";
           };
         };
         networking = {
