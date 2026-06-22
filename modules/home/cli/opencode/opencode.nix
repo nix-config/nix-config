@@ -17,15 +17,10 @@ in
       extraPackages = with pkgs; [
         bun
       ];
-      settings = {
-        plugin = [
-          "oh-my-openagent"
-        ]; 
-      };
     };
     home.file = {
-      ".config/opencode/oh-my-openagent.jsonc" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/oh-my-openagent.jsonc";
+      ".config/opencode" = {
+        source = config.lib.file.mkOutOfStoreSymlink configPath;
         force = true;
       };
     };

@@ -1,0 +1,103 @@
+{
+  "preset": "opencode-go",
+  "disabled_agents": [],
+  // 开启自动回退
+  "fallback": {
+    "enabled": true,
+    "timeoutMs": 15000,
+    "retryDelayMs": 500,
+    "retry_on_empty": true,
+  },
+  "presets": {
+    "opencode-go": {
+      "orchestrator": {
+        "model": [
+          {
+            "id": "opencode-go/glm-5.2",
+            "variant": "medium",
+          },
+        ],
+      },
+      "oracle": {
+        "model": [
+          {
+            "id": "opencode/deepseek-v4-flash-free",
+            "variant": "max",
+          },
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "max",
+          },
+        ],
+      },
+      "council": {
+        "model": [
+          {
+            "id": "opencode/deepseek-v4-flash-free",
+            "variant": "high",
+          },
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "high",
+          },
+        ],
+      },
+      "librarian": {
+        "model": [
+          {
+            "id": "opencode/deepseek-v4-flash-free",
+            "variant": "low",
+          },
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "low",
+          },
+        ],
+      },
+      "explorer": {
+        "model": [
+          {
+            "id": "opencode/deepseek-v4-flash-free",
+            "variant": "low",
+          },
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "low",
+          },
+        ],
+      },
+      "designer": {
+        "model": [
+          {
+            "id": "opencode-go/kimi-k2.7-code",
+            "variant": "medium",
+          },
+        ],
+      },
+      "fixer": {
+        "model": [
+          {
+            "id": "opencode/deepseek-v4-flash-free",
+            "variant": "low",
+          },
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "low",
+          },
+        ],
+      },
+      "observer": {
+        "model": [
+          {
+            "id": "opencode/mimo-v2.5-free",
+            "variant": "medium",
+          },
+          {
+            "id": "opencode-go/qwen3.7-plus",
+            "variant": "medium",
+          },
+        ],
+      },
+    },
+  },
+}
