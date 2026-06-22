@@ -75,7 +75,6 @@ let
             DRM_I915 = "no";
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
-            OBJTOOL_WERROR = "no";
           };
         };
         networking = {

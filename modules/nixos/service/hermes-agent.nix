@@ -33,7 +33,7 @@ in
       settings = {
         model = {
           provider = "opencode-go";
-          default = "deepseek-v4-pro";
+          default = "deepseek-v4-flash";
         };
         auxiliary = {
           vision = {
