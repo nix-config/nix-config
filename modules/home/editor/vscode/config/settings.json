@@ -105,7 +105,7 @@
   // 禁用文件删除确认
   "explorer.confirmDelete": false,
   // 扩展自动更新
-  "extensions.autoUpdate": false,
+  "extensions.autoUpdate": "off",
   // 文件嵌套规则配置
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.js",
@@ -199,5 +199,5 @@
     "*tpl": "jinja",
   },
   // indent-rainbow 应该跳过缩进错误检测的语言
-  "indentRainbow.ignoreErrorLanguages": ["*"]
+  "indentRainbow.ignoreErrorLanguages": ["*"],
 }
