@@ -26,7 +26,10 @@ in
     };
     services.openlist = {
       enable = true;
-      settings.jwt_secret._secret = config.sops.secrets."openlist/jwt-secret".path;
+      settings = {
+        scheme.address = "0.0.0.0";
+        jwt_secret._secret = config.sops.secrets."openlist/jwt-secret".path;
+      };
     };
   };
 }

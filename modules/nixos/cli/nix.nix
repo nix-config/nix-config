@@ -43,7 +43,7 @@ in
         "flakes"
       ];
       trusted-users = [
-        "root"
+        # 默认已开启 "root"
         "@wheel"
       ];
       secret-key-files = lib.mkIf enableSopsNix [
