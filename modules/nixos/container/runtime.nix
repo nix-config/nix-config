@@ -11,8 +11,8 @@ let
 in
 {
   config = lib.mkIf finallyEnable (
-    if runtimeType == "podman" then
-      {
+    lib.mkMerge [
+      (lib.optionalAttrs (runtimeType == "podman") {
         environment.systemPackages = with pkgs; [
           podman-compose
         ];
@@ -28,9 +28,8 @@ in
           # 指定 oci-containers 使用 podman 后端
           oci-containers.backend = "podman";
         };
-      }
-    else if runtimeType == "docker" then
-      {
+      })
+      (lib.optionalAttrs (runtimeType == "docker") {
         environment.systemPackages = with pkgs; [
           docker-compose
         ];
@@ -42,8 +41,7 @@ in
           # 指定 oci-containers 使用 docker 后端
           oci-containers.backend = "docker";
         };
-      }
-    else
-      { }
+      })
+    ]
   );
 }

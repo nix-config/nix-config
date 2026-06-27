@@ -28,14 +28,16 @@ in
             # 输入时立即隐藏鼠标
             hide-when-typing = "yes";
           };
-          main = {
-            # DPI 感知
-            dpi-aware = "yes";
-          }
-          // lib.optionalAttrs fishEnable {
-            # 指定 shell
-            shell = "fish";
-          };
+          main = lib.mkMerge [
+            {
+              # DPI 感知
+              dpi-aware = "yes";
+            }
+            (lib.optionalAttrs fishEnable {
+              # 指定 shell
+              shell = "fish";
+            })
+          ];
         };
       };
     };

@@ -24,7 +24,9 @@ in
       {
         enable = true;
         inherit role;
-        environmentFiles = [ config.sops.secrets."frp.env".path ];
+        environmentFiles = [
+          config.sops.secrets."frp.env".path
+        ];
         settings = {
           auth = {
             method = "token";
@@ -34,7 +36,7 @@ in
         };
       }
       # 服务端特有配置
-      (lib.mkIf (role == "server") {
+      (lib.optionalAttrs (role == "server") {
         settings = {
           bindAddr = "0.0.0.0";
           bindPort = 7000;
@@ -47,7 +49,7 @@ in
         };
       })
       # 客户端特有配置
-      (lib.mkIf (role == "client") {
+      (lib.optionalAttrs (role == "client") {
         settings = {
           serverAddr = "{{ .Envs.ADDR }}";
           serverPort = 7000;

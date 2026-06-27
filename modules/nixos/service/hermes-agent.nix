@@ -17,7 +17,7 @@ in
     inputs.hermes-agent.nixosModules.default
   ];
   config = lib.mkIf finallyEnable {
-    sops.secrets."hermes.env" = lib.mkIf enableSopsNix {
+    sops.secrets."hermes.env" = lib.optionalAttrs enableSopsNix {
       sopsFile = ../../../secrets/hermes.env;
       format = "dotenv";
       owner = "hermes";
@@ -26,7 +26,9 @@ in
     services.hermes-agent = {
       enable = true;
       addToSystemPackages = true;
-      extraDependencyGroups = [ "feishu" ];
+      extraDependencyGroups = [
+        "feishu"
+      ];
       extraPackages = [
         byterover-cli
       ];
@@ -48,7 +50,6 @@ in
         web.search_backend = "searxng";
         memory.provider = "byterover";
         gateway.platforms = {
-          # qqbot.enabled = true;
           feishu.enabled = true;
         };
         platform_toolsets = {
@@ -66,7 +67,9 @@ in
           ];
         };
       };
-      environmentFiles = [ config.sops.secrets."hermes.env".path ];
+      environmentFiles = [
+        config.sops.secrets."hermes.env".path
+      ];
     };
   };
 }

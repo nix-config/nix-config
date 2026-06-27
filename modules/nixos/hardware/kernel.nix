@@ -19,25 +19,23 @@ let
 in
 {
   config = lib.mkMerge [
-    (lib.mkIf (types != [ ]) {
+    (lib.optionalAttrs (types != [ ]) {
       # 将列表中的第一个内核设为当前系统的默认内核包 (mkDefault 允许用户覆盖)
-      boot.kernelPackages = lib.mkIf (types != [ ]) (lib.mkDefault (builtins.head entries).kernel);
+      boot.kernelPackages = lib.mkDefault (builtins.head entries).kernel;
       # 将剩余内核配置为 specialisation, 这样在启动时可选不同的内核
-      specialisation = lib.mkIf (types != [ ]) (
-        builtins.listToAttrs (
-          map (e: {
-            name = e.name;
-            value = {
-              # mkForce 强制覆盖该 specialisation 的内核包
-              configuration.boot.kernelPackages = lib.mkForce e.kernel;
-            };
-          }) (builtins.tail entries) # 跳过第一个 (已设为默认)
-        )
+      specialisation = builtins.listToAttrs (
+        map (e: {
+          name = e.name;
+          value = {
+            # mkForce 强制覆盖该 specialisation 的内核包
+            configuration.boot.kernelPackages = lib.mkForce e.kernel;
+          };
+        }) (builtins.tail entries) # 跳过第一个 (已设为默认)
       );
     })
-    (lib.mkIf (configs != { }) {
+    (lib.optionalAttrs (configs != { }) {
       # 通过 structuredExtraConfig 将 kernelConfig 注入内核选项
-      boot.kernelPatches = lib.mkIf (configs != { }) [
+      boot.kernelPatches = [
         {
           name = "extra-kernel-config";
           patch = null;

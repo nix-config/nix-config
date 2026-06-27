@@ -61,11 +61,7 @@ let
         # hyprland
         type = vars.desktopTypes.disable;
         # DankMaterialShell
-        dms = {
-          enable = false;
-          # 软件渲染模式 (用于无 GPU 或虚拟化环境)
-          softwareRenderingEnable = false;
-        };
+        dms.enable = false;
       };
       # ========== 系统服务 ==========
       service = {

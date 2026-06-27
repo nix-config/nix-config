@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   opts,
   ...
 }:
@@ -22,19 +21,21 @@ in
           # 忽略问候
           + "set -g fish_greeting\n";
         # 命令别名
-        shellAliases = {
-          rm = "rm -i";
-        }
-        // lib.optionalAttrs batEnable {
-          cat = "bat";
-        }
-        // lib.optionalAttrs btopEnable {
-          top = "btop";
-        }
-        // lib.optionalAttrs nixvimEnable {
-          vi = "nvim";
-          vim = "nvim";
-        };
+        shellAliases = lib.mkMerge [
+          {
+            rm = "rm -i";
+          }
+          (lib.optionalAttrs batEnable {
+            cat = "bat";
+          })
+          (lib.optionalAttrs btopEnable {
+            top = "btop";
+          })
+          (lib.optionalAttrs nixvimEnable {
+            vi = "nvim";
+            vim = "nvim";
+          })
+        ];
       };
       # 启用 fzf 集成
       fzf.enableFishIntegration = true;

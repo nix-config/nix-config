@@ -95,11 +95,11 @@ in
         # ========== 自启动 ==========
         exec-once = lib.filter (x: x != null) [
           # DankMaterialShell
-          (lib.mkIf dmsEnable "bash -lc 'exec dms run'")
+          (lib.optionalAttrs dmsEnable "bash -lc 'exec dms run'")
           # 输入法
-          (lib.mkIf fcitx5Enable "fcitx5")
+          (lib.optionalAttrs fcitx5Enable "fcitx5")
           # 自动挂载 U 盘
-          (lib.mkIf udiskieEnable "udiskie")
+          (lib.optionalAttrs udiskieEnable "udiskie")
         ];
         # ========== 环境变量 ==========
         env = [
