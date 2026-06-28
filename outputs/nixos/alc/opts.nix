@@ -42,14 +42,13 @@ let
           espSize = "100M";
         };
         kernel = {
-          types = [ "kernel-cachyos-bmq-lto" ];
+          types = [ "kernel-cachyos-server-lto" ];
           configs = {
             DRM_XE = "no";
             DRM_I915 = "no";
             DRM_AMDGPU = "no";
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
-            OBJTOOL_WERROR = "no";
           };
         };
         networking.hostName = hostName;
