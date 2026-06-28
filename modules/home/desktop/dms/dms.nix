@@ -6,7 +6,7 @@
 }:
 let
   cfg = opts.desktop.dms or { };
-  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
+  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
   configPath = "${opts.nixConfigPath}/modules/home/desktop/dms/config";
 in
 {

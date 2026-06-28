@@ -7,7 +7,7 @@
 let
   cfg = opts.cli.btop or { };
   finallyEnable = cfg.enable or false;
-  gpuType = opts.hardware.graphics.type or "";
+  gpuType = opts.hardware.graphics.type or "none";
 in
 {
   config = lib.mkIf finallyEnable {

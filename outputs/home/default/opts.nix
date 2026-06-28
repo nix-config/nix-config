@@ -1,12 +1,7 @@
-{
-  vars,
-  optSets,
-  ...
-}:
-let
+vars: {
   user = {
     # 预定义选项集列表
-    predefinedOptSetsList = with optSets; [
+    predefinedOptSetsList = with vars.optSets; [
       # 提供使用此仓库所需要的环境
       baseEnv
       # 提供一个开箱即用的 fish shell
@@ -156,7 +151,4 @@ let
       };
     };
   };
-in
-{
-  inherit user;
 }

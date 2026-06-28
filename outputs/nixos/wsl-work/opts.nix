@@ -1,10 +1,4 @@
-{
-  vars,
-  optSets,
-  hostName,
-  ...
-}:
-let
+vars: {
   host = {
     customOptSets = {
       count = 1;
@@ -47,7 +41,6 @@ let
         zram.enable = true;
         graphics.type = vars.gpuTypes.none;
         boot-loader.type = vars.bootLoaderTypes.wsl;
-        networking.hostName = hostName;
       };
       container = {
         enable = true;
@@ -76,10 +69,10 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = [
-        optSets.devEnv
-        optSets.baseEnv
-        optSets.fishShell
+      predefinedOptSetsList = with vars.optSets; [
+        devEnv
+        baseEnv
+        fishShell
       ];
       customOptSets = {
         count = 1;
@@ -103,8 +96,4 @@ let
       };
     };
   };
-in
-{
-  inherit host;
-  inherit users;
 }

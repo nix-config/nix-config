@@ -6,7 +6,7 @@
 }:
 let
   cfg = opts.desktop or { };
-  finallyEnable = (cfg.type or "") == "hyprland";
+  finallyEnable = (cfg.type or "none") == "hyprland";
   btopEnable = opts.cli.btop.enable or false;
   yaziEnable = opts.cli.yazi.enable or false;
   dmsEnable = opts.desktop.dms.enable or false;

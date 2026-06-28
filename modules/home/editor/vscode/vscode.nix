@@ -6,7 +6,7 @@
 }:
 let
   cfg = opts.editor.vscode or { };
-  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
+  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
   configPath = "${opts.nixConfigPath}/modules/home/editor/vscode/config";
 in
 {

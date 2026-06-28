@@ -1,10 +1,4 @@
-{
-  vars,
-  optSets,
-  hostName,
-  ...
-}:
-let
+vars: {
   host = {
     # 预定义选项集列表
     # predefinedOptSetsList = with optSets; [ ];
@@ -143,8 +137,6 @@ let
         };
         # 网络配置
         networking = {
-          # 主机名
-          inherit hostName;
           # 网络连接管理
           networkmanager.enable = false;
           # 网络代理
@@ -207,7 +199,7 @@ let
         openssh.authorizedKeys.keys = [ ];
       };
       # 预定义选项集列表
-      predefinedOptSetsList = with optSets; [
+      predefinedOptSetsList = with vars.optSets; [
         # 提供使用此仓库所需要的环境
         baseEnv
         # 提供一个开箱即用的 fish shell
@@ -349,8 +341,4 @@ let
       };
     };
   };
-in
-{
-  inherit host;
-  inherit users;
 }

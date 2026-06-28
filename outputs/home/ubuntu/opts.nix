@@ -1,11 +1,6 @@
-{
-  vars,
-  optSets,
-  ...
-}:
-let
+vars: {
   user = {
-    predefinedOptSetsList = with optSets; [
+    predefinedOptSetsList = with vars.optSets; [
       baseEnv
       fishShell
     ];
@@ -25,7 +20,4 @@ let
       };
     };
   };
-in
-{
-  inherit user;
 }

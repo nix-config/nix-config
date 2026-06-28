@@ -6,8 +6,8 @@
 }:
 let
   cfg = opts.desktop or { };
-  desktopNotEnable = (cfg.type or "") == "";
-  desktopWslEnable = (cfg.type or "") == "wsl";
+  desktopNotEnable = (cfg.type or "none") == "none";
+  desktopWslEnable = (cfg.type or "none") == "wsl";
   finallyEnable = !desktopNotEnable && !desktopWslEnable;
 in
 {

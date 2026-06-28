@@ -6,7 +6,7 @@
 }:
 let
   cfg = opts.cli.nvitop or { };
-  finallyEnable = cfg.enable or false && ((opts.hardware.graphics.type or "") == "nvidia");
+  finallyEnable = (cfg.enable or false) && ((opts.hardware.graphics.type or "none") == "nvidia");
 in
 {
   config = lib.mkIf finallyEnable {

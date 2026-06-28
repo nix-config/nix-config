@@ -7,8 +7,8 @@
 let
   cfg = opts.cli.fastfetch or { };
   finallyEnable = cfg.enable or false;
-  desktopNotEnable = (opts.desktop.type or "") == "";
-  desktopWslEnable = (opts.desktop.type or "") == "wsl";
+  desktopNotEnable = (opts.desktop.type or "none") == "none";
+  desktopWslEnable = (opts.desktop.type or "none") == "wsl";
   useFastfetchMinimal = desktopNotEnable || desktopWslEnable;
   # 配置中使用的变量和函数
   width = 64; # 第二列的宽度, 可自由调整

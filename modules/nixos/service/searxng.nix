@@ -7,7 +7,7 @@
 let
   cfg = opts.service.searxng or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
-  finallyEnable = cfg.enable or false && enableSopsNix;
+  finallyEnable = (cfg.enable or false) && enableSopsNix;
   firewall = cfg.firewall or { enable = false; };
 in
 {

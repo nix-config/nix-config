@@ -2,7 +2,6 @@
   lib,
   vars,
   inputs,
-  optSets,
   functions,
   ...
 }:
@@ -26,10 +25,7 @@ lib.mergeAttrsList (
   map (
     baseName:
     let
-      opts = import (./. + "/${baseName}/opts.nix") {
-        inherit vars optSets;
-        hostName = baseName;
-      };
+      opts = import (./. + "/${baseName}/opts.nix") vars;
       # 从 opts 获取信息
       hostCustomOptSets = opts.host.customOptSets or [ ];
       count = hostCustomOptSets.count or 1;
@@ -74,7 +70,7 @@ lib.mergeAttrsList (
                 pkgSets
                 functions
                 ;
-              opts = nixosOpts';
+              opts = functions.checkAttrs "${hostName}.opts." vars.schema nixosOpts';
             };
             modules = [
               # nixos 模块
@@ -114,7 +110,7 @@ lib.mergeAttrsList (
                       };
                       # 通过 _module.args 将用户专属的 opts 传入 home 模块
                       _module.args = {
-                        opts = homeOpts';
+                        opts = functions.checkAttrs "${hostName}.${username}.opts." vars.schema homeOpts';
                       };
                     }
                   ) nonRootUsers;

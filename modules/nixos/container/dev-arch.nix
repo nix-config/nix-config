@@ -5,7 +5,7 @@
 }:
 let
   cfg = opts.container.dev-arch or { };
-  finallyEnable = cfg.enable or false && opts.container.enable or false;
+  finallyEnable = (cfg.enable or false) && opts.container.enable or false;
 in
 {
   config = lib.mkIf finallyEnable {

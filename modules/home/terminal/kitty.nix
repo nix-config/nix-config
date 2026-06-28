@@ -5,7 +5,7 @@
 }:
 let
   cfg = opts.terminal.kitty or { };
-  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
+  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
   fishEnable = opts.shell.fish.enable or false;
 in
 {

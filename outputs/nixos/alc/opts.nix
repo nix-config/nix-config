@@ -1,10 +1,4 @@
-{
-  vars,
-  optSets,
-  hostName,
-  ...
-}:
-let
+vars: {
   host = {
     customOptSets = {
       count = 1;
@@ -51,7 +45,6 @@ let
             DRM_NOUVEAU = "no";
           };
         };
-        networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
     };
@@ -78,7 +71,7 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = with optSets; [
+      predefinedOptSetsList = with vars.optSets; [
         baseEnv
         fishShell
       ];
@@ -89,8 +82,4 @@ let
       };
     };
   };
-in
-{
-  inherit host;
-  inherit users;
 }

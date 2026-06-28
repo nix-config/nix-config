@@ -7,7 +7,7 @@
 let
   cfg = opts.cli.ssh or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
-  finallyEnable = cfg.enable or false && enableSopsNix;
+  finallyEnable = (cfg.enable or false) && enableSopsNix;
   enableSshSecrets = cfg.enableSshSecrets or [ ];
 in
 {

@@ -2,7 +2,6 @@
   lib,
   vars,
   inputs,
-  optSets,
   functions,
   ...
 }:
@@ -24,10 +23,7 @@ lib.mergeAttrsList (
   map (
     baseName:
     let
-      opts = import (./. + "/${baseName}/opts.nix") {
-        inherit vars optSets;
-        hostName = baseName;
-      };
+      opts = import (./. + "/${baseName}/opts.nix") vars;
       # 从 opts 获取信息
       userCustomOptSets = opts.user.customOptSets or { };
       count = userCustomOptSets.count or 1;
@@ -61,7 +57,7 @@ lib.mergeAttrsList (
               pkgSets
               functions
               ;
-            opts = homeOpts;
+            opts = functions.checkAttrs "${username}.opts." vars.schema homeOpts;
           };
         };
       }) userNames

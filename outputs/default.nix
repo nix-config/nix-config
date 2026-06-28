@@ -4,8 +4,6 @@ let
   inherit (inputs.nixpkgs) lib;
   # 导入公共变量
   vars = import ../vars functions;
-  # 导入选项集
-  optSets = import ./optSets functions;
   # 导入公共函数
   functions = inputs.nur-knightfemale.functions;
 in
@@ -16,7 +14,6 @@ in
       lib
       vars
       inputs
-      optSets
       functions
       ;
   };
@@ -26,7 +23,6 @@ in
       lib
       vars
       inputs
-      optSets
       functions
       ;
   };

@@ -7,7 +7,7 @@
 let
   cfg = opts.i18n or { };
   isWsl = opts.hardware.boot-loader.type == "wsl";
-  finallyEnable = (cfg.locale or "en-US") == "zh-CN" && !isWsl;
+  finallyEnable = (cfg.locale or "en-us") == "zh-cn" && !isWsl;
 in
 {
   config = lib.mkIf finallyEnable {

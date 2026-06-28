@@ -1,14 +1,8 @@
-{
-  vars,
-  optSets,
-  hostName,
-  ...
-}:
-let
+vars: {
   host = {
     customOptSets = {
       count = 1;
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
@@ -25,9 +19,9 @@ let
         };
       };
       tool.clash-verge.enable = true;
-      i18n.locale = vars.localeTypes.zh-cn;
+      i18n.locale = "zh-cn";
       desktop = {
-        type = vars.desktopTypes.hyprland;
+        type = "hyprland";
         dms.enable = true;
       };
       service = {
@@ -44,7 +38,7 @@ let
         hermes-agent.enable = true;
         frp = {
           enable = true;
-          role = vars.frpRoleTypes.client;
+          role = "client";
           proxies = [
             {
               name = "ssh-fl8850ua";
@@ -66,7 +60,7 @@ let
       hardware = {
         zram.enable = true;
         bluetooth.enable = true;
-        graphics.type = vars.gpuTypes.amd;
+        graphics.type = "amd";
         disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         kernel = {
           types = [ "kernel-cachyos-bore-lto-v3" ];
@@ -78,10 +72,10 @@ let
           };
         };
         networking = {
-          inherit hostName;
+          # inherit hostName;
           networkmanager.enable = true;
         };
-        boot-loader.type = vars.bootLoaderTypes.systemd-boot;
+        boot-loader.type = "systemd-boot";
       };
     };
   };
@@ -108,7 +102,7 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = with optSets; [
+      predefinedOptSetsList = with vars.optSets; [
         devEnv
         baseEnv
         fishShell
@@ -169,7 +163,7 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = with optSets; [
+      predefinedOptSetsList = with vars.optSets; [
         devEnv
         baseEnv
         fishShell
@@ -184,12 +178,8 @@ let
           };
         };
         shell.bash.enable = true;
-        desktop.type = vars.desktopTypes.disable;
+        desktop.type = "none";
       };
     };
   };
-in
-{
-  inherit host;
-  inherit users;
 }

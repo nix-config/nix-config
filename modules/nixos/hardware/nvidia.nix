@@ -6,7 +6,7 @@
 }:
 let
   cfg = opts.hardware.graphics or { };
-  finallyEnable = cfg.type or "" == "nvidia";
+  finallyEnable = cfg.type or "none" == "nvidia";
   containerEnable = opts.container.enable or false;
 in
 {

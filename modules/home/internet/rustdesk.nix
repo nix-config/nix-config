@@ -6,7 +6,7 @@
 }:
 let
   cfg = opts.internet.rustdesk or { };
-  finallyEnable = cfg.enable or false && ((opts.desktop.type or "") != "");
+  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
 in
 {
   config = lib.mkIf finallyEnable {

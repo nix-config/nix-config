@@ -1,10 +1,4 @@
-{
-  vars,
-  optSets,
-  hostName,
-  ...
-}:
-let
+vars: {
   host = {
     customOptSets = {
       count = 1;
@@ -62,7 +56,6 @@ let
             DRM_NOUVEAU = "no";
           };
         };
-        networking.hostName = hostName;
         boot-loader.type = vars.bootLoaderTypes.systemd-boot;
       };
       container = {
@@ -78,7 +71,7 @@ let
         hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
-          ''command="${host.customOptSets.nixConfigPath}/scripts/ssh-container-intelligent-entry.sh dev-arch",no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmCmFzsdE+O2Xmi58kcN4gYuW+Y1Zlz8bnHWJ4MYpyD''
+          ''command="/home/admin/workspace/nix-config/scripts/ssh-container-intelligent-entry.sh dev-arch",no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmCmFzsdE+O2Xmi58kcN4gYuW+Y1Zlz8bnHWJ4MYpyD''
         ];
       };
     };
@@ -95,7 +88,7 @@ let
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
         ];
       };
-      predefinedOptSetsList = with optSets; [
+      predefinedOptSetsList = with vars.optSets; [
         baseEnv
         fishShell
       ];
@@ -114,8 +107,4 @@ let
       };
     };
   };
-in
-{
-  inherit host;
-  inherit users;
 }
