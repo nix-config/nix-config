@@ -6,17 +6,17 @@ vars: {
     ];
     customOptSets = {
       count = 1;
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/ubuntu/workspace/mochen/nix-config";
       cli = {
         nvitop.enable = true;
       };
       i18n = {
-        locale = vars.localeTypes.zh-cn;
+        locale = "zh-cn";
       };
       hardware = {
-        graphics.type = vars.gpuTypes.nvidia;
+        graphics.type = "nvidia";
       };
     };
   };

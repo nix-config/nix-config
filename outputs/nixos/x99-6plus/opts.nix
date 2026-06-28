@@ -2,7 +2,7 @@ vars: {
   host = {
     customOptSets = {
       count = 1;
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
@@ -24,7 +24,7 @@ vars: {
         sops-nix.enable = true;
         frp = {
           enable = true;
-          role = vars.frpRoleTypes.client;
+          role = "client";
           proxies = [
             {
               name = "ssh-x99-6plus";
@@ -38,7 +38,7 @@ vars: {
       };
       hardware = {
         zram.enable = true;
-        graphics.type = vars.gpuTypes.nvidia;
+        graphics.type = "nvidia";
         disk = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
           data = vars.diskPartitionTypes.xfs {
@@ -56,11 +56,11 @@ vars: {
             DRM_NOUVEAU = "no";
           };
         };
-        boot-loader.type = vars.bootLoaderTypes.systemd-boot;
+        boot-loader.type = "systemd-boot";
       };
       container = {
         enable = true;
-        type = vars.containerTypes.podman;
+        type = "podman";
         dev-arch.enable = true;
       };
     };

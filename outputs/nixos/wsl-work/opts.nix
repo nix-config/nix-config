@@ -2,7 +2,7 @@ vars: {
   host = {
     customOptSets = {
       count = 1;
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       stateVersion = "25.11";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
@@ -18,14 +18,14 @@ vars: {
           ];
         };
       };
-      i18n.locale = vars.localeTypes.zh-cn;
-      desktop.type = vars.desktopTypes.wsl;
+      i18n.locale = "zh-cn";
+      desktop.type = "wsl";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
         frp = {
           enable = true;
-          role = vars.frpRoleTypes.client;
+          role = "client";
           proxies = [
             {
               name = "ssh-wsl-work";
@@ -39,12 +39,12 @@ vars: {
       };
       hardware = {
         zram.enable = true;
-        graphics.type = vars.gpuTypes.none;
-        boot-loader.type = vars.bootLoaderTypes.wsl;
+        graphics.type = "none";
+        boot-loader.type = "wsl";
       };
       container = {
         enable = true;
-        type = vars.containerTypes.podman;
+        type = "podman";
       };
     };
   };

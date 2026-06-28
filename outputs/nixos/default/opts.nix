@@ -7,7 +7,7 @@ vars: {
       # 输出数量
       count = 1;
       # 输出平台
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       # 初始状态版本
       stateVersion = "26.05";
       # nix-config 仓库路径
@@ -46,14 +46,14 @@ vars: {
         # 语言环境, 可选项:
         # en-us
         # zh-cn
-        locale = vars.localeTypes.en-us;
+        locale = "en-us";
       };
       # ========== 桌面环境 ==========
       desktop = {
         # 桌面类型, 可选项:
-        # disable (不启用桌面, 这将连带禁用所有图形应用)
+        # none (不启用桌面, 这将连带禁用所有图形应用)
         # hyprland
-        type = vars.desktopTypes.disable;
+        type = "none";
         # DankMaterialShell
         dms.enable = false;
       };
@@ -88,7 +88,7 @@ vars: {
         # 内网穿透工具
         frp = {
           enable = false;
-          role = vars.frpRoleTypes.server;
+          role = "server";
           proxies = [ ];
         };
         # P2P VPN 服务
@@ -133,7 +133,7 @@ vars: {
           # none (默认)
           # amd
           # nvidia
-          type = vars.gpuTypes.none;
+          type = "none";
         };
         # 网络配置
         networking = {
@@ -157,7 +157,7 @@ vars: {
           # 启动加载器, 可选项:
           # systemd-boot (默认)
           # grub (目前未实现)
-          type = vars.bootLoaderTypes.systemd-boot;
+          type = "systemd-boot";
         };
       };
       # ========== 容器管理 ==========
@@ -166,7 +166,7 @@ vars: {
         # 容器运行时类型, 可选项:
         # podman (默认)
         # docker
-        type = vars.containerTypes.podman;
+        type = "podman";
         # Arch 开发容器
         dev-arch.enable = true;
         # Portainer 代理

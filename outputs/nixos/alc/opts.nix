@@ -2,7 +2,7 @@ vars: {
   host = {
     customOptSets = {
       count = 1;
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "home/admin/workspace/nix-config";
       cli.nix = {
@@ -15,13 +15,13 @@ vars: {
         ];
       };
       tool.clash-verge.enable = true;
-      i18n.locale = vars.localeTypes.en-us;
+      i18n.locale = "en-us";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
         frp = {
           enable = true;
-          role = vars.frpRoleTypes.server;
+          role = "server";
         };
         rustdesk-server = {
           enable = true;
@@ -30,7 +30,7 @@ vars: {
       };
       hardware = {
         zram.enable = true;
-        graphics.type = vars.gpuTypes.none;
+        graphics.type = "none";
         disk.main = vars.diskPartitionTypes.efi-ext4 {
           device = "/dev/vda";
           espSize = "100M";
@@ -45,7 +45,7 @@ vars: {
             DRM_NOUVEAU = "no";
           };
         };
-        boot-loader.type = vars.bootLoaderTypes.systemd-boot;
+        boot-loader.type = "systemd-boot";
       };
     };
   };

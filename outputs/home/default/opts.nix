@@ -14,7 +14,7 @@ vars: {
       # 初始状态版本
       stateVersion = "26.05";
       # 输出平台
-      system = vars.systemTypes.x86_64-linux;
+      system = "x86_64-linux";
       # nix-config 仓库路径
       nixConfigPath = "path/to/nix-config";
       # ========== 命令行工具 ==========
@@ -88,7 +88,7 @@ vars: {
         # 语言环境, 可选项:
         # en-us
         # zh-cn
-        locale = vars.localeTypes.en-us;
+        locale = "en-us";
       };
       # ========== 媒体应用 ==========
       media = {
@@ -146,7 +146,7 @@ vars: {
           # none (默认)
           # amd
           # nvidia
-          type = vars.gpuTypes.none;
+          type = "none";
         };
       };
     };
