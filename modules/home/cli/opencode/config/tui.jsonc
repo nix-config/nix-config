@@ -2,5 +2,6 @@
   "$schema": "https://opencode.ai/tui.json",
   "plugin": [
     "opencode-visual-cache@latest",
+    "opencode-subagent-magazine@latest",
   ],
 }

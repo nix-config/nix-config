@@ -12,7 +12,7 @@ home *args:
 
 # 更新锁文件
 update *args: 
-    -cd repositories/knightfemale/nur-packages && nix flake update {{args}}
+    -cd ./repositories/knightfemale/nur-packages/ && nix flake update {{args}}
     nix flake update {{args}}
 
 # 清理 (不清理 flake+direnv 环境)

@@ -1,10 +1,14 @@
-vars: {
+vars:
+let
+  nixConfigPath = "/home/admin/workspace/nix-config";
+in
+{
   host = {
     customOptSets = {
       count = 1;
       system = "x86_64-linux";
       stateVersion = "26.05";
-      nixConfigPath = "/home/admin/workspace/nix-config";
+      inherit nixConfigPath;
       cli = {
         nix = {
           substituters = [
@@ -71,7 +75,7 @@ vars: {
         hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
-          ''command="/home/admin/workspace/nix-config/scripts/ssh-container-intelligent-entry.sh dev-arch",no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmCmFzsdE+O2Xmi58kcN4gYuW+Y1Zlz8bnHWJ4MYpyD''
+          ''command="${nixConfigPath}/scripts/ssh-container-intelligent-entry.sh dev-arch",no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmCmFzsdE+O2Xmi58kcN4gYuW+Y1Zlz8bnHWJ4MYpyD''
         ];
       };
     };
