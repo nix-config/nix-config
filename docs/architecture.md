@@ -22,49 +22,80 @@
 ## 1. 整体架构
 
 ```mermaid
-flowchart TD
-    FLAKE["flake.nix"] --> OUT["outputs/default.nix"]
+flowchart LR
+    subgraph INPUT["输入层"]
+        FLAKE["flake.nix"]
+        VARS["vars/"]
+    end
 
-    OUT --> NIXOS["nixos/default.nix<br/>readDir 发现主机目录"]
-    OUT --> HOME["home/default.nix<br/>readDir 发现用户目录"]
+    subgraph DECLARE["声明层"]
+        OPTS["outputs/*/*/opts.nix"]
+        HW["outputs/nixos/*/hardware-configuration.nix"]
+    end
 
-    NIXOS --> HOST_LOOP["遍历每个主机目录"]
-    HOST_LOOP --> HOST_OPTS["加载 opts.nix<br/>注入 hostName"]
-    HOST_OPTS --> MK_NIXOS["functions.mkNixos<br/>生成 nixosConfiguration"]
-    MK_NIXOS --> MERGE_HOSTS["foldl' //<br/>合并所有主机配置"]
+    subgraph ENGINE["编排层 (合并注入)"]
+        NIXOS["outputs/nixos/default.nix"]
+        HOME["outputs/home/default.nix"]
+    end
 
-    HOME --> USER_LOOP["遍历每个用户目录"]
-    USER_LOOP --> USER_OPTS["加载 opts.nix<br/>注入 userName"]
-    USER_OPTS --> MK_HOME["functions.mkHome<br/>生成 homeConfiguration"]
-    MK_HOME --> MERGE_USERS["foldl' //<br/>合并所有用户配置"]
+    subgraph CONSUME["消费层"]
+        MOD_NIXOS["modules/nixos/*"]
+        MOD_HOME["modules/home/*"]
+    end
 
-    MERGE_HOSTS --> FINAL["flake outputs"]
-    MERGE_USERS --> FINAL
+    subgraph ENGINE2["编排层 (组装输出)"]
+        NIXOS2["outputs/nixos/default.nix"]
+        HOME2["outputs/home/default.nix"]
+    end
 
-    MK_NIXOS --> MODULES_NIXOS["modules/nixos/<br/>importFilesForModules 加载"]
-    MK_NIXOS --> HM_NIXOS["home-manager.nixosModules<br/>集成用户配置"]
-    MK_HOME --> MODULES_HOME["modules/home/<br/>importFilesForModules 加载"]
+    subgraph OUTPUT["输出层"]
+        NIXOS_CFG["nixosConfigurations"]
+        HOME_CFG["homeConfigurations"]
+    end
 
-    style FLAKE fill:#e1f5fe
-    style OUT fill:#e1f5fe
-    style FINAL fill:#c8e6c9
-    style MK_NIXOS fill:#fff3e0
-    style MK_HOME fill:#fff3e0
+    FLAKE -->|"inputs"| NIXOS
+    FLAKE -->|"inputs"| HOME
+    VARS -->|"varSets"| NIXOS
+    VARS -->|"varSets"| HOME
+    NIXOS -->|"vars"| OPTS
+    HOME -->|"vars"| OPTS
+    OPTS -->|"optSets"| NIXOS
+    OPTS -->|"optSets"| HOME
+    HW -->|"nixosModules"| NIXOS2
+
+    NIXOS -->|"opts, inputs"| MOD_NIXOS
+    HOME -->|"opts, inputs"| MOD_HOME
+
+    MOD_NIXOS -->|"nixosModules"| NIXOS2
+    MOD_HOME -->|"homeModules"| HOME2
+    NIXOS2 -->|"nixosSystem"| NIXOS_CFG
+    HOME2 -->|"homeManagerConfiguration"| HOME_CFG
+
+    style INPUT fill:#e3f2fd
+    style DECLARE fill:#e8eaf6
+    style ENGINE fill:#fff3e0
+    style CONSUME fill:#e8f5e9
+    style ENGINE2 fill:#fff3e0
+    style OUTPUT fill:#f3e5f5
 ```
 
 ---
 
+> **图中六层与九大维度的关系**：前九个维度分别对应架构的不同侧面 —— 细粒度控制横跨声明→消费→输出三层；高隔离在声明、消费、编排三层各自体现；松耦合通过编排层驱动全层次自动发现；多模式活跃于编排层和输出层。后五个补充维度则揭示了各层间的设计哲学：显式声明约束声明层→消费层交互，约定优于配置贯穿输入→输出全链路，声明式不可变是整座架构的基石，关注点分离驱动分层设计本身，最小知识原则保护消费层模块的独立性。建议阅读每个维度前先回顾架构图，找到它对应的图层位置。
+
 ## 2. 核心维度一：细粒度（Fine-Grained Control）
+
+> **图层映射**：此维度的三层控制体系分别对应 **声明层**（optSets 组合抽象）、**消费层**（opts 逐项控制）和 **输出层**（批量实例生成）。
 
 ### 三层粒度控制体系
 
 本框架提供三层递进式的粒度控制，从单个软件行为到大规模部署，满足不同场景的精确控制需求。
 
-| 层级           | 控制范围         | 实现方式                                     | 典型场景                         |
-| -------------- | ---------------- | -------------------------------------------- | -------------------------------- |
-| **opts 层**    | 单个软件行为     | `opts.<category>.<module>.enable` + 细化参数 | 精确开关某个工具，调整其配置参数 |
-| **optSets 层** | 组合式抽象       | 预定义选项集 + `mergeAttrsList` 深度合并     | 减少样板代码，复用常见配置组合   |
-| **批量输出层** | 大规模同质化实例 | `count` 变量 + `mkNixos`/`mkHome` 工厂函数   | 企业多台同配置主机的快速生成     |
+| 层级           | 控制范围         | 实现方式                                          | 典型场景                         |
+| -------------- | ---------------- | ------------------------------------------------- | -------------------------------- |
+| **opts 层**    | 单个软件行为     | `opts.<category>.<module>.enable` + 细化参数      | 精确开关某个工具，调整其配置参数 |
+| **optSets 层** | 组合式抽象       | 预定义选项集 + `recursiveMergeAttrsList` 深度合并 | 减少样板代码，复用常见配置组合   |
+| **批量输出层** | 大规模同质化实例 | `count` 变量 + `numberedStrings` 函数             | 企业多台同配置主机的快速生成     |
 
 #### 层级详解
 
@@ -104,20 +135,22 @@ flowchart TD
 
 ##### 第三层：批量输出层 —— 大规模实例工厂
 
-对于需要部署大量同构主机/用户的场景（如集群、实验室），通过 `count` 变量控制生成的实例数量，配合 `mkNixos` / `mkHome` 工厂函数实现自动化批量生成。
+对于需要部署大量同构主机/用户的场景（如集群、实验室），通过 `count` 变量控制生成的实例数量，由 `outputs/nixos/default.nix` 或 `outputs/home/default.nix` 中的 `numberedStrings` 函数实现自动化批量生成。
 
 ### 设计思想
 
-| 思想                                             | 在本框架中的体现                                                                                  |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
-| **分层架构（Layered Architecture）**             | 五层架构清晰分离了入口、编排、配置、实现和基础设施，每层只依赖下层                                |
-| **工厂模式（Factory Pattern）**                  | `mkNixos` / `mkHome` 函数封装了配置创建逻辑，通过参数化实现不同实例的生成                         |
-| **组合优于继承（Composition over Inheritance）** | `optSets` 通过 `mergeAttrsList` + `deepMergeAttrs` 组合多个选项集，而非建立继承链                 |
-| **参数化类型/泛型思想**                          | `mkNixos(opts, hostName)` 类似泛型函数，`buildPkgSets(system)` 根据系统架构参数化生成不同的包集合 |
+| 思想                                             | 在本框架中的体现                                                                                                            |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| **分层架构（Layered Architecture）**             | 清晰分离了输入层（flake.nix、vars/）、声明层（opts.nix）、编排层（outputs/default.nix）、消费层（modules/），每层只依赖前层 |
+| **工厂模式（Factory Pattern）**                  | `lib.nixosSystem` / `homeManagerConfiguration` 封装了配置创建逻辑，通过 opts 参数化实现不同实例                             |
+| **组合优于继承（Composition over Inheritance）** | `optSets` 通过 `recursiveMergeAttrsList` + `recursiveMergeAttrs` 组合多个选项集，而非建立继承链                             |
+| **参数化类型/泛型思想**                          | opts 是统一配置接口，`pkgSets` 根据系统架构参数化生成不同的包集合                                                           |
 
 ---
 
 ## 3. 核心维度二：高隔离（High Isolation）
+
+> **图层映射**：此维度的三层面隔离机制分别作用于 **声明层**（主机/用户间隔离）、**消费层**（模块间隔离）和 **编排层**（实例隔离）。
 
 ### 三层面隔离机制
 
@@ -142,18 +175,20 @@ flowchart TD
 
 ## 4. 核心维度三：松耦合（Loose Coupling）
 
+> **图层映射**：此维度的自动发现机制由 **编排层** 驱动，覆盖 **输入层**（vars、optSets）、**声明层**（主机/用户）和 **消费层**（模块），依靠 `importFilesForModules`、`importFilesForAttrs` 等编排函数实现。
+
 ### 六层自动发现机制
 
 松耦合的核心实现是**约定优于配置**的自动发现机制。系统在多个层级实现了自动扫描和加载，使得新增组件几乎无需修改现有代码。
 
-| 层级              | 发现机制                         | 新增操作            | 删除操作 | 发现位置                                                  |
-| ----------------- | -------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
-| **主机 Host**     | `readDir ./.` + filter           | 创建目录 + opts.nix | 删除目录 | [outputs/nixos/default.nix](../outputs/nixos/default.nix) |
-| **用户 User**     | `readDir ./.` + filter           | 创建目录 + opts.nix | 删除目录 | [outputs/home/default.nix](../outputs/home/default.nix)   |
-| **NixOS 模块**    | `importFilesForModules` 递归扫描 | 创建 .nix 文件      | 删除文件 | [modules/nixos/default.nix](../modules/nixos/default.nix) |
-| **Home 模块**     | `importFilesForModules` 递归扫描 | 创建 .nix 文件      | 删除文件 | [modules/home/default.nix](../modules/home/default.nix)   |
-| **选项集 OptSet** | `importFilesForAttrs` 扫描 .nix  | 创建 .nix 文件      | 删除文件 | [optSets/default.nix](../outputs/optSets/default.nix)     |
-| **变量 Vars**     | `importFilesForAttrs` 扫描 .nix  | 创建 .nix 文件      | 删除文件 | [vars/default.nix](../vars/default.nix)                   |
+| 层级              | 发现机制                         | 新增操作            | 删除操作 | 发现位置                                                   |
+| ----------------- | -------------------------------- | ------------------- | -------- | ---------------------------------------------------------- |
+| **主机 Host**     | `readDir ./.` + filter           | 创建目录 + opts.nix | 删除目录 | [outputs/nixos/default.nix](../outputs/nixos/default.nix)  |
+| **用户 User**     | `readDir ./.` + filter           | 创建目录 + opts.nix | 删除目录 | [outputs/home/default.nix](../outputs/home/default.nix)    |
+| **NixOS 模块**    | `importFilesForModules` 递归扫描 | 创建 .nix 文件      | 删除文件 | [modules/nixos/default.nix](../modules/nixos/default.nix)  |
+| **Home 模块**     | `importFilesForModules` 递归扫描 | 创建 .nix 文件      | 删除文件 | [modules/home/default.nix](../modules/home/default.nix)    |
+| **选项集 OptSet** | `importFilesForAttrs` 扫描 .nix  | 创建 .nix 文件      | 删除文件 | [vars/optSets/](../vars/optSets/)（通过 vars/default.nix） |
+| **变量 Vars**     | `importFilesForAttrs` 扫描 .nix  | 创建 .nix 文件      | 删除文件 | [vars/default.nix](../vars/default.nix)                    |
 
 ### 设计思想
 
@@ -169,17 +204,19 @@ flowchart TD
 
 ## 5. 核心维度四：多模式（Multi-Mode）
 
+> **图层映射**：此维度表现出 **编排层**（批量/单机策略切换）和 **输出层**（独立/集成 Home 模式、多 nixpkgs 实例）的灵活性。
+
 ### 五种运行模式
 
 本框架支持五种不同的运行模式，以适应从个人开发到企业部署的各种场景。
 
-| 模式                | 触发条件                        | 适用场景                               | 关键代码位置                                                |
-| ------------------- | ------------------------------- | -------------------------------------- | ----------------------------------------------------------- |
-| **单机模式**        | `count <= 1`（默认）            | 个人开发机、服务器                     | [functions/mkNixos.nix](../functions/mkNixos.nix)           |
-| **批量模式**        | `count > 1`                     | 企业同质化部署、集群                   | [functions/mkNixos.nix](../functions/mkNixos.nix)           |
-| **独立 Home 模式**  | `outputs/home/` 下的用户目录    | `nh home switch` 直接使用 Home Manager | [functions/mkHome.nix](../functions/mkHome.nix)             |
-| **集成 Home 模式**  | NixOS 主机配置中的 `users` 定义 | 作为 NixOS 模块被主机导入              | [functions/mkNixos.nix](../functions/mkNixos.nix)           |
-| **多 nixpkgs 实例** | `pkgSets` 定义 3 套 pkgs        | 稳定性需求、版本锁定                   | [functions/buildPkgSets.nix](../functions/buildPkgSets.nix) |
+| 模式                | 触发条件                        | 适用场景                               | 关键代码位置                                              |
+| ------------------- | ------------------------------- | -------------------------------------- | --------------------------------------------------------- |
+| **单机模式**        | `count <= 1`（默认）            | 个人开发机、服务器                     | [outputs/nixos/default.nix](../outputs/nixos/default.nix) |
+| **批量模式**        | `count > 1`                     | 企业同质化部署、集群                   | [outputs/nixos/default.nix](../outputs/nixos/default.nix) |
+| **独立 Home 模式**  | `outputs/home/` 下的用户目录    | `nh home switch` 直接使用 Home Manager | [outputs/home/default.nix](../outputs/home/default.nix)   |
+| **集成 Home 模式**  | NixOS 主机配置中的 `users` 定义 | 作为 NixOS 模块被主机导入              | [outputs/nixos/default.nix](../outputs/nixos/default.nix) |
+| **多 nixpkgs 实例** | `pkgSets` 定义 3 套 pkgs        | 稳定性需求、版本锁定                   | `functions.mk.pkgSets`（repositories/ 中定义）            |
 
 #### 模式详解
 
@@ -208,28 +245,23 @@ hostNames = ["defualt-1", "defualt-2", ..., "defualt-100"]
 
 ```nix
 # 独立模式的调用链
-outputs/default.nix → home/default.nix → mkHome → homeConfigurations
+outputs/default.nix → home/default.nix → homeManagerConfiguration → homeConfigurations
 
 # 集成模式的调用链
-outputs/default.nix → nixos/default.nix → mkNixos → home-manager.nixosModules
+outputs/default.nix → nixos/default.nix → lib.nixosSystem → home-manager.nixosModules
 ```
 
 ##### 模式 5：多 nixpkgs 实例
 
-为了平衡稳定性和最新特性，框架同时维护三个 nixpkgs 实例：
+框架通过 `functions.mk.pkgSets` 同时维护多个 nixpkgs 实例（定义在 `repositories/knightfemale/nur-packages/functions/mk/pkgSets.nix`）：
 
 ```nix
 pkgSets = system: {
-  pkgs = import nixpkgs { inherit system; };       # master（最新）
-  pkgs-unstable = import nixpkgs-unstable { ... }; # nixos-unstable
-  pkgs-2511 = import nixpkgs-2511 { ... };         # nixos-25.11（稳定版）
+  pkgs = import nixpkgs { inherit system; };             # master（最新）
+  pkgs-unstable = import nixpkgs-nixos-unstable { ... }; # nixos-unstable
+  # 更多 pkgs 实例按需添加
 };
 ```
-
-模块可以根据需要选择使用哪个 pkgs 实例：
-
-- 系统关键组件使用 `pkgs-2511`（稳定）
-- 开发工具使用 `pkgs-unstable` 或 `pkgs`（最新特性）
 
 ### 设计思想
 
@@ -242,6 +274,8 @@ pkgSets = system: {
 ---
 
 ## 6. 补充维度五：显式声明（Explicit Declaration）
+
+> **图层映射**：此维度集中体现在 **声明层**（`opts.nix` 集中声明所有配置意图）和 **消费层**（模块通过 `opts.<分类>.<模块>` 接口读取配置）。
 
 > _"Explicit is better than implicit."_ — The Zen of Python
 
@@ -282,7 +316,7 @@ pkgSets = system: {
 
 - 主机配置的唯一真相源：`outputs/nixos/<host>/opts.nix`
 - 用户独立配置的唯一真相源：`outputs/home/<user>/opts.nix`
-- 可复用配置的组合源：`outputs/optSets/*.nix`
+- 可复用配置的组合源：`vars/optSets/*.nix`
 
 ### 价值
 
@@ -294,6 +328,8 @@ pkgSets = system: {
 ---
 
 ## 7. 补充维度六：约定优于配置（Convention over Configuration）
+
+> **图层映射**：此维度贯穿 **输入层→声明层→编排层→消费层**，目录名即身份标识、放入即生效、文件发现协议等约定体系由编排层的自动发现函数统一执行。
 
 > _"Convention over Configuration is not about having no configuration. It's about having sensible defaults and letting you override them when needed."_ — DHH (Rails 创始人)
 
@@ -372,6 +408,8 @@ touch modules/nixos/service/*.nix
 
 ## 8. 补充维度七：声明式不可变基础设施（Declarative Immutable Infrastructure）
 
+> **图层映射**：此维度是整座架构的哲学基石 — **声明层**（declarative opts）、**消费层**（pure module functions）、**编排层**（combinator functions）、**输出层**（immutable store paths）共同体现了函数式声明式范式。
+
 ### 核心理念
 
 本框架是**声明式**和**不可变性**原则的彻底实践者。
@@ -397,13 +435,13 @@ touch modules/nixos/service/*.nix
 
 本框架深刻体现了函数式编程（FP）范式：
 
-| FP 概念  | Nix 表达            | 本框架体现                                         |
-| -------- | ------------------- | -------------------------------------------------- |
-| 纯函数   | 相同输入 → 相同输出 | opts → configuration（确定性构建）                 |
-| 不可变性 | 值一旦创建不可修改  | store 路径不可变，新配置 = 新路径                  |
-| 引用透明 | 表达式可替换为其值  | Nix 的惰性求值和缓存                               |
-| 一等函数 | 函数可作为值传递    | `mkNixos`、`mkHome`、`buildPkgSets` 等高阶函数     |
-| 组合性   | 小函数组合成大功能  | `mergeAttrsList` + `deepMergeAttrs` 组合多个选项集 |
+| FP 概念  | Nix 表达            | 本框架体现                                                       |
+| -------- | ------------------- | ---------------------------------------------------------------- |
+| 纯函数   | 相同输入 → 相同输出 | opts → configuration（确定性构建）                               |
+| 不可变性 | 值一旦创建不可修改  | store 路径不可变，新配置 = 新路径                                |
+| 引用透明 | 表达式可替换为其值  | Nix 的惰性求值和缓存                                             |
+| 一等函数 | 函数可作为值传递    | `pkgSets`、`numberedStrings`、`checkAttrs` 等高阶函数            |
+| 组合性   | 小函数组合成大功能  | `recursiveMergeAttrsList` + `recursiveMergeAttrs` 组合多个选项集 |
 
 ### 价值
 
@@ -416,6 +454,8 @@ touch modules/nixos/service/*.nix
 ---
 
 ## 9. 补充维度八：关注点分离（Separation of Concerns）
+
+> **图层映射**：此维度正是六层架构设计的根本动因 — **输入层**（原始素材）↔ **声明层**（配置意图）↔ **编排层**（发现与组装）↔ **消费层**（功能实现）↔ **输出层**（最终产物），每层职责单一。
 
 ### 核心理念
 
@@ -438,15 +478,15 @@ modules/
 - **nixos 模块**：运行在系统级别，影响所有用户，需要 root 权限
 - **home 模块**：运行在用户级别，只影响当前用户，无需 root
 
-#### 分离 2：选项定义 vs 选项消费
+#### 分离 2：选项定义（声明层） vs 选项消费（消费层）
 
 ```bash
-outputs/nixos/<host>/opts.nix        # 定义：我要什么
-modules/nixos/service/openssh.nix # 消费：如何实现
+outputs/nixos/<host>/opts.nix        # 声明层：我要什么
+modules/nixos/service/openssh.nix    # 消费层：如何实现
 ```
 
-- **定义端**（opts.nix）：声明式地描述期望状态
-- **消费端**（module）：读取 opts 并实施配置
+- **声明层**（opts.nix）：声明式地描述期望状态
+- **消费层**（module）：读取 opts 并实施配置
 
 这种分离使得：
 
@@ -454,28 +494,28 @@ modules/nixos/service/openssh.nix # 消费：如何实现
 - 实现可以独立于具体配置进行复用
 - 测试可以 mock opts 来验证模块行为
 
-#### 分离 3：输出组装 vs 功能实现
+#### 分离 3：输出组装（编排层） vs 功能实现（消费层 + 输入层）
 
 ```bash
-outputs/default.nix              # 组装：如何将各部分组合在一起
-outputs/nixos/default.nix        # 组装：主机级别的发现与组装
-modules/                         # 实现：具体的功能代码
-functions/                       # 实现：工具函数
-vars/                            # 实现：变量定义
+outputs/default.nix               # 编排层：发现与组装入口
+outputs/nixos/default.nix         # 编排层：主机级别发现与组装（含两阶段：注入 + 输出）
+modules/                          # 消费层：具体的功能实现
+vars/                             # 输入层：原始变量和选项集素材
 ```
 
-- **输出层**：负责发现、加载、合并，不包含业务逻辑
-- **实现层**：包含具体的配置逻辑，不知道自己如何被组装
+- **编排层**：负责发现、加载、合并，不包含业务逻辑（分为"合并注入"和"组装输出"两阶段）
+- **消费层**：包含具体的配置逻辑，不知道自己如何被组装
+- **输入层**：提供变量定义和可复用配置片段
 
 ### MVC 变体类比
 
 可以将本框架类比为 MVC 模式的变体：
 
-| MVC 组件   | 本框架对应                           | 职责                     |
-| ---------- | ------------------------------------ | ------------------------ |
-| Model      | `opts.nix`                           | 数据模型，定义配置的状态 |
-| View       | 生成的 NixOS 配置                    | 最终呈现的系统状态       |
-| Controller | `outputs/default.nix` + `functions/` | 编排和协调               |
+| MVC 组件   | 本框架对应                     | 职责                     |
+| ---------- | ------------------------------ | ------------------------ |
+| Model      | `opts.nix` (声明层)            | 数据模型，定义配置的状态 |
+| View       | `nixosConfigurations` (输出层) | 最终呈现的系统状态       |
+| Controller | `outputs/default.nix` (编排层) | 编排和协调               |
 
 ### 价值
 
@@ -487,6 +527,8 @@ vars/                            # 实现：变量定义
 ---
 
 ## 10. 补充维度九：最小知识原则（Least Knowledge / Law of Demeter）
+
+> **图层映射**：此维度最直观地体现在 **声明层→消费层** 的数据流 — opts 是模块唯一的"朋友"，`opts.<分类>.<模块>` 隔离了模块间的直接知识。
 
 ### 核心理念
 
@@ -563,6 +605,6 @@ opts.nix 扮演了 **中介者（Mediator）** 的角色，但比经典的 GoF �
 
 <div align="center">
 
-_架构设计的终极目标是让复杂变得简单，让变化变得可控。_
+如有问题，欢迎查阅 ❓ [常见问题](./faq.md) 或提交 Issue
 
 </div>

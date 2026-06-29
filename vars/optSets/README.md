@@ -1,4 +1,4 @@
-# 🧩 选项集管理
+# 🧩 选项集 (optSets)
 
 [⬅️ 返回主文档](../../README.md)
 
@@ -34,7 +34,7 @@
 
 ## 2. 预定义选项集说明
 
-系统内置以下预定义选项集，位于 `outputs/optSets/` 目录下：
+系统内置以下预定义选项集，位于 `vars/optSets/` 目录下：
 
 | 文件                             | 说明              |
 | -------------------------------- | ----------------- |
@@ -46,9 +46,9 @@
 
 ```bash
 # 查看各选项集的定义
-cat outputs/optSets/baseEnv.nix
-cat outputs/optSets/devEnv.nix
-cat outputs/optSets/fishShell.nix
+cat vars/optSets/baseEnv.nix
+cat vars/optSets/devEnv.nix
+cat vars/optSets/fishShell.nix
 ```
 
 > **💡 提示**：预定义选项集的内容可能随项目演进而调整，
@@ -58,26 +58,29 @@ cat outputs/optSets/fishShell.nix
 
 ## 3. 如何使用选项集
 
-在 `opts.nix` 中导入并引用选项集：
+选项集通过 `vars.optSets` 引用，在 `opts.nix` 中使用：
 
 ```nix
-let
-  optSets = import ../../optSets { inherit inputs; };
-  predefinedOptSetsList = [
-    optSets.baseEnv         # 引用基础环境选项集
-    optSets.devEnv          # 引用开发工具选项集
-    optSets.fishShell       # 引用 Fish Shell 选项集
-  ];
-  customOptSets = { ... };  # 自定义配置
-  opts = functions.mergeOptSetsList customOptSets predefinedOptSetsList;
-in
-opts
+vars: {
+  host = {
+    # 引用预定义选项集（可选）
+    predefinedOptSetsList = with vars.optSets; [
+      baseEnv     # 基础环境
+      devEnv      # 开发工具
+      fishShell   # Fish Shell
+    ];
+    # 自定义配置（优先级更高）
+    customOptSets = {
+      # ...
+    };
+  };
+}
 ```
 
 **合并机制**：
 
-- `mergeOptSetsList` 按列表顺序从右向左合并（后者覆盖前者）
-- 自定义配置 `customOptSets` 拥有最高优先级，可覆盖任何预定义选项集的值
+- `predefinedOptSetsList` 先通过 `recursiveMergeAttrsList` 合并（从左到右，后者覆盖前者）
+- 然后 `customOptSets` 通过 `recursiveMergeAttrs` 覆盖（最高优先级）
 - 支持深度合并，不会丢失未被覆盖的字段
 
 ---
@@ -87,14 +90,14 @@ opts
 创建新的选项集仅需 **2 步**，无需修改任何其他文件：
 
 ```bash
-# 在 outputs/optSets/ 下创建新的 .nix 文件
-touch outputs/optSets/myOptSet.nix
+# 在 vars/optSets/ 下创建新的 .nix 文件
+touch vars/optSets/myOptSet.nix
 
 # 编写选项集内容
-nano outputs/optSets/myOptSet.nix
+nano vars/optSets/myOptSet.nix
 ```
 
-> **💡 自动发现机制**：`default.nix` 通过 `importDirFiles` 自动扫描目录下所有 `.nix` 文件，
+> **💡 自动发现机制**：`vars/default.nix` 通过 `importFilesForAttrs` 自动扫描目录下所有 `.nix` 文件，
 > 新建的选项集文件会自动被识别和导出，无需手动注册！
 
 **无需做的操作** ❌：
@@ -106,8 +109,6 @@ nano outputs/optSets/myOptSet.nix
 ---
 
 <div align="center">
-
-### 开始构建你的选项集吧！🚀
 
 如有问题，欢迎查阅 [常见问题](../../docs/faq.md) 或提交 Issue
 
