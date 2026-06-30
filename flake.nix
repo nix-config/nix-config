@@ -32,7 +32,7 @@
     };
     mcp-nixos = {
       url = "github:utensils/mcp-nixos/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     nixified-ai = {
       url = "github:nixified-ai/flake/master";
