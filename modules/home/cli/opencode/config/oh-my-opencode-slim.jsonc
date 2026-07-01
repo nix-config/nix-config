@@ -1,19 +1,12 @@
 {
   "preset": "opencode-go",
   "disabled_agents": [],
-  // 开启自动回退
-  "fallback": {
-    "enabled": true,
-    "timeoutMs": 15000,
-    "retryDelayMs": 500,
-    "retry_on_empty": true,
-  },
   "presets": {
-    "opencode-go": {
+    "opencode-zen-free": {
       "orchestrator": {
         "model": [
           {
-            "id": "opencode-go/glm-5.2",
+            "id": "opencode/deepseek-v4-flash-free",
             "variant": "medium",
           },
         ],
@@ -22,10 +15,6 @@
         "model": [
           {
             "id": "opencode/deepseek-v4-flash-free",
-            "variant": "max",
-          },
-          {
-            "id": "opencode-go/deepseek-v4-flash",
             "variant": "max",
           },
         ],
@@ -48,10 +37,6 @@
             "id": "opencode/deepseek-v4-flash-free",
             "variant": "low",
           },
-          {
-            "id": "opencode-go/deepseek-v4-flash",
-            "variant": "low",
-          },
         ],
       },
       "explorer": {
@@ -60,16 +45,12 @@
             "id": "opencode/deepseek-v4-flash-free",
             "variant": "low",
           },
-          {
-            "id": "opencode-go/deepseek-v4-flash",
-            "variant": "low",
-          },
         ],
       },
       "designer": {
         "model": [
           {
-            "id": "opencode-go/kimi-k2.7-code",
+            "id": "opencode/deepseek-v4-flash-free",
             "variant": "medium",
           },
         ],
@@ -80,6 +61,68 @@
             "id": "opencode/deepseek-v4-flash-free",
             "variant": "low",
           },
+        ],
+      },
+      "observer": {
+        "model": [
+          {
+            "id": "opencode/mimo-v2.5-free",
+            "variant": "medium",
+          },
+        ],
+      },
+    },
+    "opencode-go": {
+      "orchestrator": {
+        "model": [
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "medium",
+          },
+        ],
+      },
+      "oracle": {
+        "model": [
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "max",
+          },
+        ],
+      },
+      "council": {
+        "model": [
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "high",
+          },
+        ],
+      },
+      "librarian": {
+        "model": [
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "low",
+          },
+        ],
+      },
+      "explorer": {
+        "model": [
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "low",
+          },
+        ],
+      },
+      "designer": {
+        "model": [
+          {
+            "id": "opencode-go/deepseek-v4-flash",
+            "variant": "medium",
+          },
+        ],
+      },
+      "fixer": {
+        "model": [
           {
             "id": "opencode-go/deepseek-v4-flash",
             "variant": "low",
@@ -89,11 +132,7 @@
       "observer": {
         "model": [
           {
-            "id": "opencode/mimo-v2.5-free",
-            "variant": "medium",
-          },
-          {
-            "id": "opencode-go/qwen3.7-plus",
+            "id": "opencode-go/mimo-v2.5",
             "variant": "medium",
           },
         ],
