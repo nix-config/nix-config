@@ -1,6 +1,22 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "lsp": true,
+  "mcp": {
+    "mcp-nixos": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "mcp-nixos",
+      ],
+    },
+    "codebase-memory-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "codebase-memory-mcp",
+      ],
+    },
+  },
   "plugin": [
     "oh-my-opencode-slim@latest",
   ],

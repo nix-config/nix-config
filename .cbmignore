@@ -1,0 +1,8 @@
+# 1. 忽略 repositories 下的所有一级子目录
+/repositories/*/
+# 2. 取消忽略 knightfemale 目录
+!/repositories/knightfemale/
+# 3. 忽略 knightfemale 下的所有一级子目录
+/repositories/knightfemale/*/
+# 4. 取消忽略 nur-packages 目录
+!/repositories/knightfemale/nur-packages/
