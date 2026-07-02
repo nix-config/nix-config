@@ -20,7 +20,7 @@
 | home 模块   | Home Manager 用户级配置 |
 | darwin 模块 | macOS 配置              |
 
-所有模块通过编排层的 `importFilesForModules` 自动发现，零注册。
+所有模块通过编排层的 `recursive.collectFilesToList` 自动发现，零注册。
 
 ---
 
@@ -78,7 +78,7 @@ in
 }
 ```
 
-> **💡 自动发现机制**：通过 `importFilesForModules` 递归扫描子目录，新建并被 git 跟踪的 `.nix` 模块文件会被自动识别并导入，无需手动注册！
+> **💡 自动发现机制**：通过 `recursive.collectFilesToList` 递归扫描目录，新建并被 git 跟踪的 `.nix` 模块文件会被自动识别并导入，无需手动注册！
 
 **无需做的操作** ❌：
 

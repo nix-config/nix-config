@@ -1,15 +1,15 @@
 inputs:
 let
-  inherit (lib) types;
   inherit (inputs.nixpkgs) lib;
-  int = types.int;
-  str = types.str;
-  bool = types.bool;
-  enum = types.enum;
-  attrs = types.attrs;
-  listOfStr = types.listOf types.str;
-  attrsOfStr = types.attrsOf types.str;
-  listOfAttrs = types.listOf types.attrs;
+  inherit (lib) types;
+  inherit (types) int;
+  inherit (types) str;
+  inherit (types) bool;
+  inherit (types) enum;
+  inherit (types) attrs;
+  listOfStr = types.listOf str;
+  attrsOfStr = types.attrsOf str;
+  listOfAttrs = types.listOf attrs;
 in
 {
   count = int;

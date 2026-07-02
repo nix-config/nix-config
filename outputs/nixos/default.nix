@@ -33,7 +33,7 @@ lib.mergeAttrsList (
       pkgSets = functions.mk.pkgSets system inputs;
       stateVersion = hostCustomOptSets.stateVersion or "26.05";
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
-      nixosOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
+      nixosOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 根据 count 生成主机名称列表
       hostNames = functions.mk.numberedStrings baseName count;
       # 展开后的用户属性集
@@ -55,7 +55,7 @@ lib.mergeAttrsList (
         hostName:
         let
           # 深度合并特定的 hostName 到原有 nixosOpts 中
-          nixosOpts' = functions.recursiveMergeAttrs nixosOpts { hardware.networking.hostName = hostName; };
+          nixosOpts' = functions.recursive.mergeAttrs nixosOpts { hardware.networking.hostName = hostName; };
         in
         {
           name = hostName;
@@ -98,9 +98,9 @@ lib.mergeAttrsList (
                       # 合并用户级别的预定义选项列表和自定义选项
                       homePredefined = attrs.predefinedOptSetsList or [ ];
                       homeCustom = attrs.customOptSets or { };
-                      homeOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList homePredefined) homeCustom;
+                      homeOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList homePredefined) homeCustom;
                       # 再与全局主机选项合并, 作为最终传递给 home 模块的 opts
-                      homeOpts' = functions.recursiveMergeAttrs nixosOpts' homeOpts;
+                      homeOpts' = functions.recursive.mergeAttrs nixosOpts' homeOpts;
                     in
                     {
                       imports = [ ../../modules/home ];

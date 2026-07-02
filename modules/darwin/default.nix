@@ -3,5 +3,5 @@
   ...
 }:
 {
-  imports = functions.importFilesForModules ./.;
+  imports = functions.recursive.importFilesToModules ./.;
 }

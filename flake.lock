@@ -726,11 +726,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782919794,
-        "narHash": "sha256-1xbYRp2g4hWs2w5AJC9r8Qhdi1ZcRE4OFcnn+B1U718=",
+        "lastModified": 1782972790,
+        "narHash": "sha256-deFCW/Vu4w/q+ZyyY1CCBvu8poNmpLHgSE9rdWUePQo=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "463afd577df098db932a054f167849b85a2c57a5",
+        "rev": "9a12370c4ba9d39f6e3b03a9399aeadb5122ce7f",
         "type": "github"
       },
       "original": {

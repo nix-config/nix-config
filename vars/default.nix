@@ -1,1 +1,1 @@
-functions: functions.importFilesForAttrs ./.
+functions: functions.recursive.collectFilesToNestedAttrs ./.

@@ -31,7 +31,7 @@ lib.mergeAttrsList (
       pkgSets = functions.mk.pkgSets system inputs;
       stateVersion = userCustomOptSets.stateVersion or "26.05";
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
-      homeOpts = functions.recursiveMergeAttrs (functions.recursiveMergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
+      homeOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
       # 根据 count 生成用户名称列表
       userNames = functions.mk.numberedStrings baseName count;
     in

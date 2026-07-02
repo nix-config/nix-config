@@ -79,8 +79,8 @@ vars: {
 
 **合并机制**：
 
-- `predefinedOptSetsList` 先通过 `recursiveMergeAttrsList` 合并（从左到右，后者覆盖前者）
-- 然后 `customOptSets` 通过 `recursiveMergeAttrs` 覆盖（最高优先级）
+- `predefinedOptSetsList` 先通过 `recursive.mergeAttrsList` 合并（从左到右，后者覆盖前者）
+- 然后 `customOptSets` 通过 `recursive.mergeAttrs` 覆盖（最高优先级）
 - 支持深度合并，不会丢失未被覆盖的字段
 
 ---
@@ -97,7 +97,7 @@ touch vars/optSets/myOptSet.nix
 nano vars/optSets/myOptSet.nix
 ```
 
-> **💡 自动发现机制**：`vars/default.nix` 通过 `importFilesForAttrs` 自动扫描目录下所有 `.nix` 文件，
+> **💡 自动发现机制**：`vars/default.nix` 通过 `recursive.collectFilesToNestedAttrs` 自动扫描目录下所有 `.nix` 文件，
 > 新建的选项集文件会自动被识别和导出，无需手动注册！
 
 **无需做的操作** ❌：

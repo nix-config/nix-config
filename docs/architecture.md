@@ -91,11 +91,11 @@ flowchart LR
 
 本框架提供三层递进式的粒度控制，从单个软件行为到大规模部署，满足不同场景的精确控制需求。
 
-| 层级           | 控制范围         | 实现方式                                          | 典型场景                         |
-| -------------- | ---------------- | ------------------------------------------------- | -------------------------------- |
-| **opts 层**    | 单个软件行为     | `opts.<category>.<module>.enable` + 细化参数      | 精确开关某个工具，调整其配置参数 |
-| **optSets 层** | 组合式抽象       | 预定义选项集 + `recursiveMergeAttrsList` 深度合并 | 减少样板代码，复用常见配置组合   |
-| **批量输出层** | 大规模同质化实例 | `count` 变量 + `numberedStrings` 函数             | 企业多台同配置主机的快速生成     |
+| 层级           | 控制范围         | 实现方式                                           | 典型场景                         |
+| -------------- | ---------------- | -------------------------------------------------- | -------------------------------- |
+| **opts 层**    | 单个软件行为     | `opts.<category>.<module>.enable` + 细化参数       | 精确开关某个工具，调整其配置参数 |
+| **optSets 层** | 组合式抽象       | 预定义选项集 + `recursive.mergeAttrsList` 深度合并 | 减少样板代码，复用常见配置组合   |
+| **批量输出层** | 大规模同质化实例 | `count` 变量 + `numberedStrings` 函数              | 企业多台同配置主机的快速生成     |
 
 #### 层级详解
 
@@ -143,7 +143,7 @@ flowchart LR
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
 | **分层架构（Layered Architecture）**             | 清晰分离了输入层（flake.nix、vars/）、声明层（opts.nix）、编排层（outputs/default.nix）、消费层（modules/），每层只依赖前层 |
 | **工厂模式（Factory Pattern）**                  | `lib.nixosSystem` / `homeManagerConfiguration` 封装了配置创建逻辑，通过 opts 参数化实现不同实例                             |
-| **组合优于继承（Composition over Inheritance）** | `optSets` 通过 `recursiveMergeAttrsList` + `recursiveMergeAttrs` 组合多个选项集，而非建立继承链                             |
+| **组合优于继承（Composition over Inheritance）** | `optSets` 通过 `recursive.mergeAttrsList` + `recursive.mergeAttrs` 组合多个选项集，而非建立继承链                           |
 | **参数化类型/泛型思想**                          | opts 是统一配置接口，`pkgSets` 根据系统架构参数化生成不同的包集合                                                           |
 
 ---
@@ -175,20 +175,20 @@ flowchart LR
 
 ## 4. 核心维度三：松耦合（Loose Coupling）
 
-> **图层映射**：此维度的自动发现机制由 **编排层** 驱动，覆盖 **输入层**（vars、optSets）、**声明层**（主机/用户）和 **消费层**（模块），依靠 `importFilesForModules`、`importFilesForAttrs` 等编排函数实现。
+> **图层映射**：此维度的自动发现机制由 **编排层** 驱动，覆盖 **输入层**（vars、optSets）、**声明层**（主机/用户）和 **消费层**（模块），依靠 `recursive.collectFilesToList`、`recursive.collectFilesToNestedAttrs` 等编排函数实现。
 
 ### 六层自动发现机制
 
 松耦合的核心实现是**约定优于配置**的自动发现机制。系统在多个层级实现了自动扫描和加载，使得新增组件几乎无需修改现有代码。
 
-| 层级              | 发现机制                         | 新增操作            | 删除操作 | 发现位置                                                   |
-| ----------------- | -------------------------------- | ------------------- | -------- | ---------------------------------------------------------- |
-| **主机 Host**     | `readDir ./.` + filter           | 创建目录 + opts.nix | 删除目录 | [outputs/nixos/default.nix](../outputs/nixos/default.nix)  |
-| **用户 User**     | `readDir ./.` + filter           | 创建目录 + opts.nix | 删除目录 | [outputs/home/default.nix](../outputs/home/default.nix)    |
-| **NixOS 模块**    | `importFilesForModules` 递归扫描 | 创建 .nix 文件      | 删除文件 | [modules/nixos/default.nix](../modules/nixos/default.nix)  |
-| **Home 模块**     | `importFilesForModules` 递归扫描 | 创建 .nix 文件      | 删除文件 | [modules/home/default.nix](../modules/home/default.nix)    |
-| **选项集 OptSet** | `importFilesForAttrs` 扫描 .nix  | 创建 .nix 文件      | 删除文件 | [vars/optSets/](../vars/optSets/)（通过 vars/default.nix） |
-| **变量 Vars**     | `importFilesForAttrs` 扫描 .nix  | 创建 .nix 文件      | 删除文件 | [vars/default.nix](../vars/default.nix)                    |
+| 层级              | 发现机制                                        | 新增操作            | 删除操作 | 发现位置                                                   |
+| ----------------- | ----------------------------------------------- | ------------------- | -------- | ---------------------------------------------------------- |
+| **主机 Host**     | `readDir ./.` + filter                          | 创建目录 + opts.nix | 删除目录 | [outputs/nixos/default.nix](../outputs/nixos/default.nix)  |
+| **用户 User**     | `readDir ./.` + filter                          | 创建目录 + opts.nix | 删除目录 | [outputs/home/default.nix](../outputs/home/default.nix)    |
+| **NixOS 模块**    | `recursive.collectFilesToList` 递归扫描         | 创建 .nix 文件      | 删除文件 | [modules/nixos/default.nix](../modules/nixos/default.nix)  |
+| **Home 模块**     | `recursive.collectFilesToList` 递归扫描         | 创建 .nix 文件      | 删除文件 | [modules/home/default.nix](../modules/home/default.nix)    |
+| **选项集 OptSet** | `recursive.collectFilesToNestedAttrs` 扫描 .nix | 创建 .nix 文件      | 删除文件 | [vars/optSets/](../vars/optSets/)（通过 vars/default.nix） |
+| **变量 Vars**     | `recursive.collectFilesToNestedAttrs` 扫描 .nix | 创建 .nix 文件      | 删除文件 | [vars/default.nix](../vars/default.nix)                    |
 
 ### 设计思想
 
@@ -435,13 +435,13 @@ touch modules/nixos/service/*.nix
 
 本框架深刻体现了函数式编程（FP）范式：
 
-| FP 概念  | Nix 表达            | 本框架体现                                                       |
-| -------- | ------------------- | ---------------------------------------------------------------- |
-| 纯函数   | 相同输入 → 相同输出 | opts → configuration（确定性构建）                               |
-| 不可变性 | 值一旦创建不可修改  | store 路径不可变，新配置 = 新路径                                |
-| 引用透明 | 表达式可替换为其值  | Nix 的惰性求值和缓存                                             |
-| 一等函数 | 函数可作为值传递    | `pkgSets`、`numberedStrings`、`checkAttrs` 等高阶函数            |
-| 组合性   | 小函数组合成大功能  | `recursiveMergeAttrsList` + `recursiveMergeAttrs` 组合多个选项集 |
+| FP 概念  | Nix 表达            | 本框架体现                                                         |
+| -------- | ------------------- | ------------------------------------------------------------------ |
+| 纯函数   | 相同输入 → 相同输出 | opts → configuration（确定性构建）                                 |
+| 不可变性 | 值一旦创建不可修改  | store 路径不可变，新配置 = 新路径                                  |
+| 引用透明 | 表达式可替换为其值  | Nix 的惰性求值和缓存                                               |
+| 一等函数 | 函数可作为值传递    | `pkgSets`、`numberedStrings`、`checkAttrs` 等高阶函数              |
+| 组合性   | 小函数组合成大功能  | `recursive.mergeAttrsList` + `recursive.mergeAttrs` 组合多个选项集 |
 
 ### 价值
 
