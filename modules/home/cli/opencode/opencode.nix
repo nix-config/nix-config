@@ -15,6 +15,8 @@ in
     programs.opencode = {
       enable = true;
       extraPackages = with pkgs; [
+        gh
+        jq
         bun
       ];
     };

@@ -40,7 +40,7 @@ in
         auxiliary = {
           vision = {
             provider = "opencode-go";
-            model = "qwen3.7-plus";
+            model = "mimo-v2.5";
           };
           title_generation = {
             provider = "opencode-go";
