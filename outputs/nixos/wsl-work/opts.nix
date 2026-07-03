@@ -79,6 +79,7 @@ vars: {
         cli = {
           direnv.enable = true;
           opencode.enable = true;
+          hermes-agent.enable = true;
           git.user = {
             name = "Knight";
             email = "2067834160@qq.com";

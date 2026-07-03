@@ -3,7 +3,6 @@
   pkgs,
   opts,
   config,
-  pkgSets,
   ...
 }:
 let
@@ -19,9 +18,6 @@ in
         bun
       ];
     };
-    home.packages = with pkgSets.pkgs-knightfemale-codebase-memory-mcp; [
-      codebase-memory-mcp-ui
-    ];
     home.file = {
       ".config/opencode" = {
         source = config.lib.file.mkOutOfStoreSymlink configPath;

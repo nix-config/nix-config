@@ -6,7 +6,6 @@
     # nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/master";
     # nixpkgs-knightfemale.url = ./repositories/NixOS/nixpkgs;
     nixpkgs-knightfemale-byterover-cli.url = "github:knightfemale/nixpkgs/byterover-cli";
-    nixpkgs-knightfemale-codebase-memory-mcp.url = "github:knightfemale/nixpkgs/codebase-memory-mcp";
     nur = {
       url = "github:nix-community/NUR/main";
       inputs.nixpkgs.follows = "nixpkgs";
