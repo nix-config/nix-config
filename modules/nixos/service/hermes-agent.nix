@@ -17,7 +17,7 @@ in
     inputs.hermes-agent.nixosModules.default
   ];
   config = lib.mkIf finallyEnable {
-    sops.secrets."hermes.env" = lib.optionalAttrs enableSopsNix {
+    sops.secrets."hermes.env" = lib.mkIf enableSopsNix {
       sopsFile = ../../../secrets/hermes.env;
       format = "dotenv";
       owner = "hermes";
