@@ -39,7 +39,7 @@ in
             socket = "/run/searx/searx.sock";
             chmod-socket = "660";
             # 直连 HTTP 端口 (不依赖 Nginx)
-            http = ":8888";
+            http = ":32115";
           };
           environmentFile = "/run/secrets/searxng.env";
           settings = {
