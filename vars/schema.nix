@@ -10,18 +10,13 @@ let
   listOfStr = types.listOf str;
   attrsOfStr = types.attrsOf str;
   listOfAttrs = types.listOf attrs;
+  systems = lib.systems.flakeExposed;
 in
 {
   # 输出数量
   count = int;
   # 输出平台
-  system = enum [
-    "i686-linux"
-    "x86_64-linux"
-    "x86_64-darwin"
-    "aarch64-linux"
-    "aarch64-darwin"
-  ];
+  system = enum systems;
   # 初始状态版本
   stateVersion = str;
   # nix-config 仓库路径
