@@ -10,9 +10,11 @@ vars: {
         sudo-rs.enable = true;
         nix = {
           substituters = [
+            "https://ai.cachix.org"
             "https://cache.garnix.io"
           ];
           trusted-public-keys = [
+            "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
@@ -20,6 +22,7 @@ vars: {
       };
       desktop.type = "wsl";
       service = {
+        comfyui.enable = true;
         openssh.enable = true;
         searxng.enable = true;
         sops-nix.enable = true;
@@ -39,8 +42,7 @@ vars: {
         };
       };
       hardware = {
-        zram.enable = true;
-        graphics.type = "none";
+        graphics.type = "nvidia";
         boot-loader.type = "wsl";
       };
     };
@@ -76,6 +78,7 @@ vars: {
         count = 1;
         cli = {
           direnv.enable = true;
+          nvitop.enable = true;
           zellij.enable = true;
           git.user = {
             name = "骑士姬";

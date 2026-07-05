@@ -38,7 +38,6 @@ vars: {
         };
       };
       hardware = {
-        zram.enable = true;
         graphics.type = "none";
         boot-loader.type = "wsl";
       };

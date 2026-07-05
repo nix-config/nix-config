@@ -9,22 +9,19 @@ in
       system = "x86_64-linux";
       stateVersion = "26.05";
       inherit nixConfigPath;
-      cli = {
-        nix = {
-          substituters = [
-            "https://ai.cachix.org"
-            "https://cache.garnix.io"
-          ];
-          trusted-public-keys = [
-            "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-            "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
-          ];
-        };
+      cli.nix = {
+        substituters = [
+          "https://ai.cachix.org"
+          "https://cache.garnix.io"
+        ];
+        trusted-public-keys = [
+          "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+          "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
+        ];
       };
       service = {
         openssh.enable = true;
-        comfyui.enable = true;
         sops-nix.enable = true;
         frp = {
           enable = true;
