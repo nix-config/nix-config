@@ -4,7 +4,7 @@ vars: {
       count = 1;
       system = "x86_64-linux";
       stateVersion = "26.05";
-      nixConfigPath = "home/admin/workspace/nix-config";
+      nixConfigPath = "/home/admin/workspace/nix-config";
       cli.nix = {
         substituters = [
           "https://cache.garnix.io"

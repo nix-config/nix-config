@@ -1,4 +1,5 @@
 {
+  lib,
   opts,
   ...
 }:
@@ -9,13 +10,16 @@ let
   firewall = cfg.firewall or { enable = false; };
   networkmanager = cfg.networkmanager or { enable = false; };
   isWsl = opts.hardware.boot-loader.type == "wsl";
+  finallyEnable = cfg.enable or true;
 in
 {
-  networking = {
-    inherit hostName;
-    inherit proxy;
-    inherit firewall;
-    inherit networkmanager;
-    resolvconf.enable = !isWsl;
+  config = lib.mkIf finallyEnable {
+    networking = {
+      inherit hostName;
+      inherit proxy;
+      inherit firewall;
+      inherit networkmanager;
+      resolvconf.enable = !isWsl;
+    };
   };
 }
