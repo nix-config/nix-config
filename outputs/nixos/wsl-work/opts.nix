@@ -72,12 +72,12 @@ vars: {
         devEnv
         baseEnv
         fishShell
+        opencodeEnv
       ];
       customOptSets = {
         count = 1;
         cli = {
           direnv.enable = true;
-          opencode.enable = true;
           git.user = {
             name = "Knight";
             email = "2067834160@qq.com";

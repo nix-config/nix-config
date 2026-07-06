@@ -100,14 +100,13 @@ vars: {
         devEnv
         baseEnv
         fishShell
+        opencodeEnv
       ];
       customOptSets = {
         count = 1;
         cli = {
           direnv.enable = true;
           zellij.enable = true;
-          opencode.enable = true;
-          codebase-memory-mcp.enable = true;
           git.user = {
             name = "骑士姬";
             email = "2067834160@qq.com";
