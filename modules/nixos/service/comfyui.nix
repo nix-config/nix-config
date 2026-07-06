@@ -2,12 +2,15 @@
   lib,
   pkgs,
   opts,
+  config,
   inputs,
   ...
 }:
 let
   cfg = opts.service.comfyui or { };
-  finallyEnable = cfg.enable or false;
+  gpuType = (opts.hardware.graphics.type or "none");
+  finallyEnable = (cfg.enable or false) && gpuType == "nvidia";
+  isWsl = (opts.hardware.boot-loader.type or "none") == "wsl";
   # 定义模型
   realesrgan-x4plus-anime-6b = pkgs.fetchResource {
     name = "RealESRGAN_x4plus_anime_6B.pth";
@@ -26,21 +29,37 @@ in
   imports = [
     inputs.nixified-ai.nixosModules.comfyui
   ];
-  config = lib.mkIf finallyEnable {
-    services.comfyui = {
-      enable = true;
-      host = "0.0.0.0";
-      acceleration = "cuda";
-      customNodes = with pkgs.comfyuiPackages; [
-        comfyui-rgthree
-        comfyui-crystools
-        comfyui-ultimatesdupscale
-        comfyui-pythongosssss-custom-scripts
-      ];
-      models = [
-        realesrgan-x4plus-anime-6b
-        diffusion-pytorch-model-promax
-      ];
-    };
-  };
+  config = lib.mkIf finallyEnable (
+    lib.mkMerge [
+      {
+        services.comfyui = {
+          enable = true;
+          host = "0.0.0.0";
+          port = 32099;
+          acceleration = "cuda";
+          customNodes = with pkgs.comfyuiPackages; [
+            comfyui-rgthree
+            comfyui-crystools
+            comfyui-ultimatesdupscale
+            comfyui-pythongosssss-custom-scripts
+          ];
+          models = [
+            realesrgan-x4plus-anime-6b
+            diffusion-pytorch-model-promax
+          ];
+        };
+      }
+      (lib.optionalAttrs (!isWsl) {
+        systemd.services.comfyui = {
+          environment.LD_LIBRARY_PATH = "${config.hardware.nvidia.package.out}/lib";
+        };
+      })
+      (lib.optionalAttrs isWsl {
+        systemd.services.comfyui = {
+          serviceConfig.DeviceAllow = [ "/dev/dxg rwm" ];
+          environment.LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
+        };
+      })
+    ]
+  );
 }

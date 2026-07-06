@@ -6,14 +6,14 @@
 }:
 let
   cfg = opts.hardware.graphics or { };
-  isWsl = opts.hardware.boot-loader.type == "wsl";
   finallyEnable = (cfg.type or "none") == "nvidia";
-  containerEnable = opts.container.enable or false;
+  containerEnable = (opts.container.enable or false);
+  isWsl = (opts.hardware.boot-loader.type or "none") == "wsl";
 in
 {
   config = lib.mkIf finallyEnable (
     lib.mkMerge [
-      {
+      (lib.optionalAttrs (!isWsl) {
         # 为 Xorg 和 Wayland 加载 NVIDIA 驱动
         services.xserver.videoDrivers = [ "nvidia" ];
         hardware = {
@@ -37,7 +37,10 @@ in
           # 启动时运行 nvidia-container-toolkit, 启用Nvidia设备的动态CDI配置
           nvidia-container-toolkit.enable = containerEnable;
         };
-      }
+        environment.sessionVariables.LD_LIBRARY_PATH = [
+          "${config.hardware.nvidia.package.out}/lib"
+        ];
+      })
       (lib.optionalAttrs isWsl {
         environment.sessionVariables.LD_LIBRARY_PATH = [
           "/usr/lib/wsl/lib"
