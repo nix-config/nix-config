@@ -151,10 +151,7 @@ in
       "hyprland"
     ];
     # DankMaterialShell
-    dms = {
-      enable = bool;
-      softwareRenderingEnable = bool;
-    };
+    dms.enable = bool;
   };
   # 系统服务
   service = {
@@ -216,13 +213,9 @@ in
   # 硬件配置
   hardware = {
     # 内存压缩配置
-    zram = {
-      enable = bool;
-    };
+    zram.enable = bool;
     # 蓝牙配置
-    bluetooth = {
-      enable = bool;
-    };
+    bluetooth.enable = bool;
     # 图形驱动配置
     graphics = {
       type = enum [
