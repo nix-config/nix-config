@@ -35,7 +35,7 @@ in
         services.comfyui = {
           enable = true;
           host = "0.0.0.0";
-          port = 32099;
+          port = 8188;
           acceleration = "cuda";
           customNodes = with pkgs.comfyuiPackages; [
             comfyui-rgthree
