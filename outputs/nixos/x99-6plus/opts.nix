@@ -23,6 +23,18 @@ in
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
+        llama-cpp = {
+          enable = true;
+          extraSettings = {
+            model = "/mnt/data/huggingface/Qwen3.6-35B-A3B-IQ4_XS.gguf";
+            mmproj = "/mnt/data/huggingface/mmproj-Qwen3.6-35B-A3B-f16.gguf";
+            tensor-split = "8,16";
+            temp = 1.0;
+            top-k = 20;
+            top-p = 0.95;
+            presence-penalty = 1.5;
+          };
+        };
         frp = {
           enable = true;
           role = "client";
@@ -60,7 +72,7 @@ in
         boot-loader.type = "systemd-boot";
       };
       container = {
-        enable = true;
+        # enable = true;
         type = "podman";
         dev-arch.enable = true;
       };
