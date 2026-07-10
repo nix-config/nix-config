@@ -143,9 +143,9 @@ in
     };
   };
   # 桌面环境
-  desktop = {
+  display = {
     # 桌面类型
-    type = enum [
+    desktopType = enum [
       "wsl"
       "none"
       "hyprland"

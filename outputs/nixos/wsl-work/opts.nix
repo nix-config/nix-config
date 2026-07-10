@@ -19,7 +19,7 @@ vars: {
         };
       };
       i18n.locale = "zh-cn";
-      desktop.type = "wsl";
+      display.desktopType = "wsl";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;

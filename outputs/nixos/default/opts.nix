@@ -31,7 +31,7 @@ vars: {
         };
       };
       i18n.locale = "en-us";
-      desktop.type = "none";
+      display.desktopType = "none";
       service.openssh.enable = true;
       hardware = {
         zram.enable = true;

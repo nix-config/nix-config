@@ -20,6 +20,7 @@ in
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
+      i18n.locale = "zh-cn";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
@@ -28,7 +29,7 @@ in
           extraSettings = {
             model = "/mnt/data/huggingface/Qwen3.6-35B-A3B-IQ4_XS.gguf";
             mmproj = "/mnt/data/huggingface/mmproj-Qwen3.6-35B-A3B-f16.gguf";
-            tensor-split = "8,16";
+            tensor-split = "1,3";
             temp = 1.0;
             top-k = 20;
             top-p = 0.95;

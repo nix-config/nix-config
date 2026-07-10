@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.desktop or { };
-  finallyEnable = (cfg.type or "none") == "hyprland";
+  finallyEnable = (opts.display.desktopType or "none") == "hyprland";
   btopEnable = opts.cli.btop.enable or false;
   yaziEnable = opts.cli.yazi.enable or false;
-  dmsEnable = opts.desktop.dms.enable or false;
+  dmsEnable = opts.display.dms.enable or false;
   footEnable = opts.terminal.foot.enable or false;
   fcitx5Enable = opts.tool.fcitx5.enable or false;
   kittyEnable = opts.terminal.kitty.enable or false;

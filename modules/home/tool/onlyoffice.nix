@@ -5,7 +5,8 @@
 }:
 let
   cfg = opts.tool.onlyoffice or { };
-  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
+  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
+  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
 in
 {
   config = lib.mkIf finallyEnable {

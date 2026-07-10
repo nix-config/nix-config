@@ -5,8 +5,10 @@
   ...
 }:
 let
-  cfg = opts.desktop.dms or { };
-  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
+  cfg = opts.display.dms or { };
+  desktopTypeIsWsl = (opts.display.desktopType or "none") == "wsl";
+  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
+  finallyEnable = (cfg.enable or false) && (!desktopTypeIsWsl) && (!desktopTypeIsNone);
 in
 {
   imports = [

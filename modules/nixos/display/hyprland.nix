@@ -4,8 +4,8 @@
   ...
 }:
 let
-  cfg = opts.desktop or { };
-  finallyEnable = (cfg.type or "none") == "hyprland";
+  cfg = opts.display or { };
+  finallyEnable = (opts.display.desktopType or "none") == "hyprland";
 in
 {
   config = lib.mkIf finallyEnable {

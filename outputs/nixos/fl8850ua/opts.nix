@@ -20,8 +20,8 @@ vars: {
       };
       tool.clash-verge.enable = true;
       i18n.locale = "zh-cn";
-      desktop = {
-        type = "hyprland";
+      display = {
+        desktopType = "hyprland";
         dms.enable = true;
       };
       service = {

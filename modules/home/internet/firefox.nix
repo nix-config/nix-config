@@ -9,7 +9,8 @@
 let
   cfg = opts.internet.firefox or { };
   locale = opts.i18n.locale or "en-us";
-  finallyEnable = (cfg.enable or false) && ((opts.desktop.type or "none") != "none");
+  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
+  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
   nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   inherit (nur.repos.rycee.firefox-addons) kiss-translator;
 in

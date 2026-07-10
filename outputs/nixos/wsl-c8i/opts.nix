@@ -20,7 +20,8 @@ vars: {
           ];
         };
       };
-      desktop.type = "wsl";
+      i18n.locale = "zh-cn";
+      display.desktopType = "wsl";
       service = {
         comfyui.enable = true;
         openssh.enable = true;

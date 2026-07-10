@@ -14,8 +14,7 @@ vars: {
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
-      tool.clash-verge.enable = true;
-      i18n.locale = "en-us";
+      i18n.locale = "zh-cn";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
