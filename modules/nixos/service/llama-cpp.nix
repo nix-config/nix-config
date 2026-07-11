@@ -6,10 +6,9 @@
   ...
 }:
 let
-  cfg = opts.service.llama-cpp;
-  enableModule = cfg.enable && (opts.hardware.graphics.type == "nvidia");
+  enableModule = (opts.hardware.graphics.type == "nvidia");
+  extraSettings = opts.service.llama-cpp.extraSettings;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
-  extraSettings = cfg.extraSettings;
 in
 {
   config = lib.mkIf enableModule (

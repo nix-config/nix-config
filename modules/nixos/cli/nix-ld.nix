@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.nix-ld.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs.nix-ld.enable = true;
   };
 }

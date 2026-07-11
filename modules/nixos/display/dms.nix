@@ -5,9 +5,7 @@
   ...
 }:
 let
-  desktopTypeIsWsl = (opts.display.desktopType == "wsl");
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = opts.display.dms.enable && (!desktopTypeIsWsl) && (!desktopTypeIsNone);
+  enableModule = opts.display.desktop.enable;
 in
 {
   imports = [

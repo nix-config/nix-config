@@ -33,7 +33,7 @@ lib.mergeAttrsList (
       pkgSets = functions.mk.pkgSets system inputs;
       stateVersion = hostCustomOptSets.stateVersion or "26.05";
       hostPredefinedOptSetsList = opts.host.predefinedOptSetsList or [ ];
-      nixosOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
+      hostOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList hostPredefinedOptSetsList) hostCustomOptSets;
       # 根据 count 生成主机名称列表
       hostNames = functions.mk.numberedStrings baseName count;
       # 展开后的用户属性集
@@ -54,8 +54,19 @@ lib.mergeAttrsList (
       map (
         hostName:
         let
-          # 深度合并特定的 hostName 到原有 nixosOpts 中
-          nixosOpts' = functions.recursive.mergeAttrs nixosOpts { hardware.networking.hostName = hostName; };
+          # 深度合并特定的 hostName 到原有 hostOpts 中
+          hostOpts' = functions.recursive.mergeAttrs hostOpts { hardware.networking.hostName = hostName; };
+          hostOptsNormalized = functions.normalizeAttrs "${hostName}.opts" vars.schema hostOpts';
+          nixosModules = functions.recursive.importFilesToModules ../../modules/nixos (
+            path:
+            let
+              rel = lib.removeSuffix ".nix" (
+                lib.removePrefix (toString ../../modules/nixos + "/") (toString path)
+              );
+              parts = lib.take 2 (lib.splitString "/" rel);
+            in
+            lib.attrByPath (parts ++ [ "enable" ]) false hostOptsNormalized
+          );
         in
         {
           name = hostName;
@@ -70,11 +81,9 @@ lib.mergeAttrsList (
                 pkgSets
                 functions
                 ;
-              opts = functions.normalizeAttrs "${hostName}.opts" vars.schema nixosOpts';
+              opts = hostOptsNormalized;
             };
-            modules = [
-              # nixos 模块
-              ../../modules/nixos
+            modules = nixosModules ++ [
               # 自动生成的硬件配置
               (./. + "/${baseName}/hardware-configuration.nix")
               # Home Manager 模块
@@ -96,21 +105,32 @@ lib.mergeAttrsList (
                     username: attrs:
                     let
                       # 合并用户级别的预定义选项列表和自定义选项
-                      homePredefined = attrs.predefinedOptSetsList or [ ];
-                      homeCustom = attrs.customOptSets or { };
-                      homeOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList homePredefined) homeCustom;
+                      userPredefined = attrs.predefinedOptSetsList or [ ];
+                      userCustom = attrs.customOptSets or { };
+                      userOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList userPredefined) userCustom;
                       # 再与全局主机选项合并, 作为最终传递给 home 模块的 opts
-                      homeOpts' = functions.recursive.mergeAttrs nixosOpts' homeOpts;
+                      userOpts' = functions.recursive.mergeAttrs hostOpts' userOpts;
+                      userOptsNormalized = functions.normalizeAttrs "${hostName}.${username}.opts" vars.schema userOpts';
+                      homeModules = functions.recursive.importFilesToModules ../../modules/home (
+                        path:
+                        let
+                          rel = lib.removeSuffix ".nix" (
+                            lib.removePrefix (toString ../../modules/home + "/") (toString path)
+                          );
+                          parts = lib.take 2 (lib.splitString "/" rel);
+                        in
+                        lib.attrByPath (parts ++ [ "enable" ]) false userOptsNormalized
+                      );
                     in
                     {
-                      imports = [ ../../modules/home ];
+                      imports = homeModules;
                       home = {
                         inherit username stateVersion;
                         homeDirectory = lib.mkDefault "/home/${username}";
                       };
                       # 通过 _module.args 将用户专属的 opts 传入 home 模块
                       _module.args = {
-                        opts = functions.normalizeAttrs "${hostName}.${username}.opts" vars.schema homeOpts';
+                        opts = userOptsNormalized;
                       };
                     }
                   ) nonRootUsers;

@@ -1,15 +1,12 @@
 {
-  lib,
   opts,
   ...
 }:
 let
-  cfg = opts.service.rustdesk-server;
-  enableModule = cfg.enable;
-  relayHosts = cfg.relayHosts;
+  relayHosts = opts.service.rustdesk-server.relayHosts;
 in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services.rustdesk-server = {
       enable = true;
       openFirewall = true;

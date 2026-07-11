@@ -4,13 +4,12 @@
   ...
 }:
 let
-  enableModule = opts.shell.fish.enable;
-  batEnable = opts.cli.bat.enable;
-  btopEnable = opts.cli.btop.enable;
-  nixvimEnable = opts.editor.nixvim.enable;
+  batIsEnabled = opts.cli.bat.enable;
+  btopIsEnabled = opts.cli.btop.enable;
+  nixvimIsEnabled = opts.editor.nixvim.enable;
 in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs = {
       fish = {
         enable = true;
@@ -24,13 +23,13 @@ in
           {
             rm = "rm -i";
           }
-          (lib.optionalAttrs batEnable {
+          (lib.optionalAttrs batIsEnabled {
             cat = "bat";
           })
-          (lib.optionalAttrs btopEnable {
+          (lib.optionalAttrs btopIsEnabled {
             top = "btop";
           })
-          (lib.optionalAttrs nixvimEnable {
+          (lib.optionalAttrs nixvimIsEnabled {
             vi = "nvim";
             vim = "nvim";
           })

@@ -1,16 +1,14 @@
 {
-  lib,
   opts,
   ...
 }:
 let
   cfg = opts.cli.git;
-  enableModule = cfg.enable;
   user = cfg.user;
   nvimIsEnabled = opts.editor.nixvim.enable;
 in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs.git = {
       enable = true;
       settings = {

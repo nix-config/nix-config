@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.service.sing-box.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services.sing-box = {
       enable = true;
     };

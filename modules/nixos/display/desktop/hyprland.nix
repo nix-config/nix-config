@@ -4,7 +4,7 @@
   ...
 }:
 let
-  enableModule = (opts.display.desktopType == "hyprland");
+  enableModule = (opts.display.desktop.type == "hyprland");
 in
 {
   config = lib.mkIf enableModule {

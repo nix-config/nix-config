@@ -1,11 +1,9 @@
 {
-  lib,
   opts,
   ...
 }:
 let
   cfg = opts.hardware.networking;
-  enableModule = cfg.enable;
   hostName = cfg.hostName;
   proxy = cfg.proxy;
   firewall = cfg.firewall;
@@ -13,7 +11,7 @@ let
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {
-  config = lib.mkIf enableModule {
+  config = {
     networking = {
       inherit hostName;
       inherit proxy;

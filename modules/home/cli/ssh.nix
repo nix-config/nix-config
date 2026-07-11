@@ -5,9 +5,8 @@
   ...
 }:
 let
-  cfg = opts.cli.ssh;
-  enableModule = cfg.enable && opts.service.sops-nix.enable;
-  enableSshSecrets = cfg.enableSshSecrets;
+  enableModule = opts.service.sops-nix.enable;
+  enableSshSecrets = opts.cli.ssh.enableSshSecrets;
 in
 {
   config = lib.mkIf enableModule {

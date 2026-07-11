@@ -7,8 +7,8 @@
   ...
 }:
 let
-  enableModule = opts.service.comfyui.enable && (opts.hardware.graphics.type == "nvidia");
-  isWsl = opts.hardware.boot-loader.type == "wsl";
+  enableModule = (opts.hardware.graphics.type == "nvidia");
+  isWsl = (opts.hardware.boot-loader.type == "wsl");
   # 定义模型
   realesrgan-x4plus-anime-6b = pkgs.fetchResource {
     name = "RealESRGAN_x4plus_anime_6B.pth";

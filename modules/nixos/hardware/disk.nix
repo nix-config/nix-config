@@ -1,15 +1,16 @@
 {
-  lib,
   opts,
   inputs,
   ...
 }:
 let
-  cfg = opts.hardware.disk;
+  devices = opts.hardware.disk.devices;
 in
 {
   imports = [
     inputs.disko.nixosModules.disko
   ];
-  disko.devices.disk = cfg;
+  config = {
+    disko.devices.disk = devices;
+  };
 }

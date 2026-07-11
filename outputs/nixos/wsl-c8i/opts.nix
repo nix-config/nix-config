@@ -9,6 +9,7 @@ vars: {
         nix-ld.enable = true;
         sudo-rs.enable = true;
         nix = {
+          enable = true;
           substituters = [
             "https://ai.cachix.org"
             "https://cache.garnix.io"
@@ -20,8 +21,12 @@ vars: {
           ];
         };
       };
-      i18n.locale = "zh-cn";
-      display.desktopType = "wsl";
+      display = {
+        desktop = {
+          enable = true;
+          type = "wsl";
+        };
+      };
       service = {
         comfyui.enable = true;
         openssh.enable = true;
@@ -44,7 +49,15 @@ vars: {
       };
       hardware = {
         graphics.type = "nvidia";
-        boot-loader.type = "wsl";
+        networking.enable = true;
+        boot-loader = {
+          enable = true;
+          type = "wsl";
+        };
+      };
+      environment.i18n = {
+        enable = true;
+        type = "zh-cn";
       };
     };
   };

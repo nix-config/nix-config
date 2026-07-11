@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.direnv.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;

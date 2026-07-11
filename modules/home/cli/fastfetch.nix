@@ -5,9 +5,7 @@
   ...
 }:
 let
-  enableModule = opts.cli.fastfetch.enable;
-  desktopTypeIsWsl = (opts.display.desktopType == "wsl");
-  desktopTypeIsNone = (opts.display.desktopType == "none");
+  desktopIsEnabled = opts.display.desktop.enable;
   # 配置中使用的变量和函数
   width = 64; # 第二列的宽度, 可自由调整
   esc = builtins.fromJSON ''"\u001b"'';
@@ -29,11 +27,11 @@ let
   };
 in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs = {
       fastfetch = {
         enable = true;
-        package = lib.mkIf (desktopTypeIsNone || desktopTypeIsWsl) pkgs.fastfetch-unwrapped;
+        package = lib.mkIf (!desktopIsEnabled) pkgs.fastfetch-unwrapped;
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
           logo = {

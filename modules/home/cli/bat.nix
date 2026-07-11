@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.bat.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs.bat = {
       enable = true;
     };

@@ -1,18 +1,13 @@
 {
-  lib,
   pkgs,
-  opts,
   inputs,
   ...
 }:
-let
-  enableModule = opts.service.daed.enable;
-in
 {
   imports = [
     inputs.daeuniverse.nixosModules.daed
   ];
-  config = lib.mkIf enableModule {
+  config = {
     services.daed = {
       enable = true;
       package = inputs.daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed;

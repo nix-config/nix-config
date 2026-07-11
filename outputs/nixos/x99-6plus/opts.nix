@@ -10,6 +10,7 @@ in
       stateVersion = "26.05";
       inherit nixConfigPath;
       cli.nix = {
+        enable = true;
         substituters = [
           "https://ai.cachix.org"
           "https://cache.garnix.io"
@@ -20,7 +21,6 @@ in
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
-      i18n.locale = "zh-cn";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
@@ -55,13 +55,17 @@ in
         zram.enable = true;
         graphics.type = "nvidia";
         disk = {
-          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
-          data = vars.diskPartitionTypes.xfs {
-            device = "/dev/sda";
-            mountpoint = "/mnt/data";
+          enable = true;
+          devices = {
+            main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
+            data = vars.diskPartitionTypes.xfs {
+              device = "/dev/sda";
+              mountpoint = "/mnt/data";
+            };
           };
         };
         kernel = {
+          enable = true;
           types = [ "kernel-cachyos-server-lto" ];
           configs = {
             DRM_XE = "no";
@@ -71,12 +75,15 @@ in
             DRM_NOUVEAU = "no";
           };
         };
-        boot-loader.type = "systemd-boot";
+        networking.enable = true;
+        boot-loader = {
+          enable = true;
+          type = "systemd-boot";
+        };
       };
-      container = {
-        # enable = true;
-        type = "podman";
-        dev-arch.enable = true;
+      environment.i18n = {
+        enable = true;
+        type = "zh-cn";
       };
     };
   };

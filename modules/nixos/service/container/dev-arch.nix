@@ -4,7 +4,7 @@
   ...
 }:
 let
-  enableModule = opts.container.dev-arch.enable && opts.container.enable;
+  enableModule = opts.service.container.dev-arch.enable;
 in
 {
   config = lib.mkIf enableModule {

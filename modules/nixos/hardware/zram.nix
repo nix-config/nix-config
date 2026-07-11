@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.hardware.zram.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     zramSwap = {
       # 启用内存压缩设备和由 zram 内核模块提供的交换空间
       enable = true;

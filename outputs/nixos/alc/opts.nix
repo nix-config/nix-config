@@ -6,6 +6,7 @@ vars: {
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli.nix = {
+        enable = true;
         substituters = [
           "https://cache.garnix.io"
         ];
@@ -14,7 +15,6 @@ vars: {
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
-      i18n.locale = "zh-cn";
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
@@ -30,11 +30,17 @@ vars: {
       hardware = {
         zram.enable = true;
         graphics.type = "none";
-        disk.main = vars.diskPartitionTypes.efi-ext4 {
-          device = "/dev/vda";
-          espSize = "100M";
+        disk = {
+          enable = true;
+          devices = {
+            main = vars.diskPartitionTypes.efi-ext4 {
+              device = "/dev/vda";
+              espSize = "100M";
+            };
+          };
         };
         kernel = {
+          enable = true;
           types = [ "kernel-cachyos-server-lto" ];
           configs = {
             DRM_XE = "no";
@@ -44,7 +50,14 @@ vars: {
             DRM_NOUVEAU = "no";
           };
         };
-        boot-loader.type = "systemd-boot";
+        boot-loader = {
+          enable = true;
+          type = "systemd-boot";
+        };
+      };
+      environment.i18n = {
+        enable = true;
+        type = "zh-cn";
       };
     };
   };

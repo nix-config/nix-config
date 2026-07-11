@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.shell.bash.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs = {
       # 不添加任何额外功能保证鲁棒性
       bash.enable = true;

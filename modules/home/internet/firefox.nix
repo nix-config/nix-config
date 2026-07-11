@@ -7,9 +7,8 @@
   ...
 }:
 let
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = opts.internet.firefox.enable && (!desktopTypeIsNone);
-  locale = opts.i18n.locale;
+  enableModule = opts.display.desktop.enable;
+  locale = opts.environment.i18n.type;
   nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   inherit (nur.repos.rycee.firefox-addons) kiss-translator;
 in

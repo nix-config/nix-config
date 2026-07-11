@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.zellij.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs.zellij = {
       enable = true;
       # 是否在自动启动后附加到默认会话

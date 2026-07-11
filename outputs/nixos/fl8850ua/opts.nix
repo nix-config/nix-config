@@ -9,6 +9,7 @@ vars: {
         nix-ld.enable = true;
         sudo-rs.enable = true;
         nix = {
+          enable = true;
           substituters = [
             "https://cache.garnix.io"
           ];
@@ -19,10 +20,14 @@ vars: {
         };
       };
       tool.clash-verge.enable = true;
-      i18n.locale = "zh-cn";
       display = {
-        desktopType = "hyprland";
+        desktop = {
+          enable = true;
+          type = "hyprland";
+        };
         dms.enable = true;
+        gtk.enable = true;
+        font.enable = true;
       };
       service = {
         greetd.enable = true;
@@ -59,8 +64,14 @@ vars: {
         zram.enable = true;
         bluetooth.enable = true;
         graphics.type = "amd";
-        disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+        disk = {
+          enable = true;
+          devices = {
+            main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+          };
+        };
         kernel = {
+          enable = true;
           types = [ "kernel-cachyos-bore-lto-v3" ];
           configs = {
             DRM_XE = "no";
@@ -69,8 +80,18 @@ vars: {
             DRM_NOUVEAU = "no";
           };
         };
-        networking.networkmanager.enable = true;
-        boot-loader.type = "systemd-boot";
+        networking = {
+          enable = true;
+          networkmanager.enable = true;
+        };
+        boot-loader = {
+          enable = true;
+          type = "systemd-boot";
+        };
+      };
+      environment.i18n = {
+        enable = true;
+        type = "zh-cn";
       };
     };
   };

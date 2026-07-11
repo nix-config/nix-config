@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.nh.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     # NH 程序配置
     programs.nh = {
       # 启用 NH 程序

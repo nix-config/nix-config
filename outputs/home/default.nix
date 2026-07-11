@@ -31,36 +31,50 @@ lib.mergeAttrsList (
       pkgSets = functions.mk.pkgSets system inputs;
       stateVersion = userCustomOptSets.stateVersion or "26.05";
       userPredefinedOptSetsList = opts.user.predefinedOptSetsList or [ ];
-      homeOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
+      userOpts = functions.recursive.mergeAttrs (functions.recursive.mergeAttrsList userPredefinedOptSetsList) userCustomOptSets;
       # 根据 count 生成用户名称列表
       userNames = functions.mk.numberedStrings baseName count;
     in
     builtins.listToAttrs (
-      map (username: {
-        name = username;
-        value = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgSets.pkgs;
-          modules = [
-            # home 模块
-            ../../modules/home
-            {
-              home = {
-                inherit username stateVersion;
-                homeDirectory = "/home/${username}";
-              };
-            }
-          ];
-          extraSpecialArgs = {
-            inherit
-              vars
-              inputs
-              pkgSets
-              functions
-              ;
-            opts = functions.normalizeAttrs "${username}.opts" vars.schema homeOpts;
+      map (
+        username:
+        let
+          userOptsNormalized = functions.normalizeAttrs "${username}.opts" vars.schema userOpts;
+          homeModules = functions.recursive.importFilesToModules ../../modules/home (
+            path:
+            let
+              rel = lib.removeSuffix ".nix" (
+                lib.removePrefix (toString ../../modules/home + "/") (toString path)
+              );
+              parts = lib.take 2 (lib.splitString "/" rel);
+            in
+            lib.attrByPath (parts ++ [ "enable" ]) false userOptsNormalized
+          );
+        in
+        {
+          name = username;
+          value = inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = pkgSets.pkgs;
+            modules = homeModules ++ [
+              {
+                home = {
+                  inherit username stateVersion;
+                  homeDirectory = "/home/${username}";
+                };
+              }
+            ];
+            extraSpecialArgs = {
+              inherit
+                vars
+                inputs
+                pkgSets
+                functions
+                ;
+              opts = userOptsNormalized;
+            };
           };
-        };
-      }) userNames
+        }
+      ) userNames
     )
   ) userDirs
 )

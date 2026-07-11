@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.starship.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     programs.starship = {
       enable = true;
       settings = {

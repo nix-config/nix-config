@@ -5,8 +5,7 @@
   ...
 }:
 let
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = opts.editor.vscode.enable && (!desktopTypeIsNone);
+  enableModule = opts.display.desktop.enable;
   configPath = "${opts.nixConfigPath}/modules/home/editor/vscode/config";
 in
 {

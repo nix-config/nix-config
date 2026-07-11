@@ -5,10 +5,8 @@
   ...
 }:
 let
-  cfg = opts.service.searxng;
-  sopsNixIsEnabled = opts.service.sops-nix.enable;
-  enableModule = cfg.enable && sopsNixIsEnabled;
-  firewall = cfg.firewall;
+  enableModule = opts.service.sops-nix.enable;
+  firewall = opts.service.searxng.firewall;
 in
 {
   config = lib.mkIf enableModule {

@@ -12,6 +12,7 @@ vars: {
       cli = {
         nix-ld.enable = true;
         nix = {
+          enable = true;
           substituters = [
             # 上海交大镜像源
             # "https://mirror.sjtu.edu.cn/nix-channels/store"
@@ -30,14 +31,19 @@ vars: {
           ];
         };
       };
-      i18n.locale = "en-us";
-      display.desktopType = "none";
+      display.desktop.enable = false;
       service.openssh.enable = true;
       hardware = {
         zram.enable = true;
-        disk.main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+        disk = {
+          enable = true;
+          devices = {
+            main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+          };
+        };
         graphics.type = "none";
         networking = {
+          enable = true;
           # 网络连接管理
           networkmanager.enable = false;
           # 网络代理
@@ -53,6 +59,7 @@ vars: {
           };
         };
         boot-loader = {
+          enable = true;
           type = "systemd-boot";
           efiSysMountPoint = "/boot";
         };

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  enableModule = (opts.display.desktopType == "hyprland");
+  enableModule = (opts.display.desktop.type == "hyprland");
   btopIsEnabled = opts.cli.btop.enable;
   yaziIsEnabled = opts.cli.yazi.enable;
   dmsIsEnabled = opts.display.dms.enable;

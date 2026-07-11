@@ -4,7 +4,7 @@
   ...
 }:
 let
-  enableModule = opts.container.portainer-agent.enable && opts.container.enable;
+  enableModule = opts.service.container.portainer-agent.enable;
 in
 {
   config = lib.mkIf enableModule {

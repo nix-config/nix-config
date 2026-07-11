@@ -1,18 +1,13 @@
 {
-  lib,
   pkgs,
-  opts,
   inputs,
   ...
 }:
-let
-  enableModule = opts.editor.nixvim.enable;
-in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
   ];
-  config = lib.mkIf enableModule {
+  config = {
     programs.nixvim = {
       enable = true;
       nixpkgs.source = pkgs.path;

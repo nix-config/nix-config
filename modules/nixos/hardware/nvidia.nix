@@ -6,7 +6,7 @@
 }:
 let
   enableModule = (opts.hardware.graphics.type == "nvidia");
-  containerEnable = opts.container.enable;
+  containerEnable = opts.service.container.enable;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {

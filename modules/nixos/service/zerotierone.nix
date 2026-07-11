@@ -1,15 +1,12 @@
 {
-  lib,
   opts,
   ...
 }:
 let
-  cfg = opts.service.zerotierone;
-  enableModule = cfg.enable;
-  joinNetworks = cfg.joinNetworks;
+  joinNetworks = opts.service.zerotierone.joinNetworks;
 in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services.zerotierone = {
       enable = true;
       inherit joinNetworks;

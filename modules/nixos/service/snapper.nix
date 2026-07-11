@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.service.snapper.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services.snapper.configs = {
       root = {
         # 文件系统类型

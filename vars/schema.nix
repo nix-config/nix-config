@@ -222,14 +222,6 @@ in
       default = false;
     };
   };
-  # 本地化和语言
-  i18n.locale = {
-    type = enum [
-      "en-us"
-      "zh-cn"
-    ];
-    default = "en-us";
-  };
   # 媒体应用
   media = {
     # 轻量级视频播放器
@@ -321,14 +313,30 @@ in
   };
   # 桌面环境
   display = {
-    # 桌面类型
-    desktopType = {
-      type = enum [
-        "wsl"
-        "none"
-        "hyprland"
-      ];
-      default = "none";
+    # 桌面环境
+    desktop = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      type = {
+        type = enum [
+          "wsl"
+          "none"
+          "hyprland"
+        ];
+        default = "none";
+      };
+    };
+    # 字体配置
+    font.enable = {
+      type = bool;
+      default = false;
+    };
+    # GTK 配置
+    gtk.enable = {
+      type = bool;
+      default = false;
     };
     # DankMaterialShell
     dms.enable = {
@@ -476,6 +484,31 @@ in
         default = [ ];
       };
     };
+    # 容器管理
+    container = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 容器运行时类型
+      type = {
+        type = enum [
+          "podman"
+          "docker"
+        ];
+        default = "podman";
+      };
+      # Arch 开发容器
+      dev-arch.enable = {
+        type = bool;
+        default = false;
+      };
+      # Portainer 代理
+      portainer-agent.enable = {
+        type = bool;
+        default = false;
+      };
+    };
   };
   # 硬件配置
   hardware = {
@@ -502,7 +535,11 @@ in
     };
     # 内核配置
     kernel = {
-      # 类型
+      enable = {
+        # 类型
+        type = bool;
+        default = false;
+      };
       types = {
         type = listOfStr;
         default = [ ];
@@ -518,7 +555,7 @@ in
       # 是否启用网络配置
       enable = {
         type = bool;
-        default = true;
+        default = false;
       };
       # 主机名
       hostName = {
@@ -547,11 +584,20 @@ in
     };
     # 磁盘配置, 具体定义查看: vars/diskPartitionTypes/
     disk = {
-      type = attrs;
-      default = { };
+      enable = {
+        type = bool;
+        default = false;
+      };
+      devices = {
+        type = attrs;
+        default = { };
+      };
     };
     boot-loader = {
-      # 启动加载器
+      enable = {
+        type = bool;
+        default = false;
+      };
       type = {
         type = enum [
           "wsl"
@@ -608,29 +654,17 @@ in
       default = false;
     };
   };
-  # 容器管理
-  container = {
-    enable = {
-      type = bool;
-      default = false;
-    };
-    # 容器运行时类型
-    type = {
-      type = enum [
-        "podman"
-        "docker"
-      ];
-      default = "podman";
-    };
-    # Arch 开发容器
-    dev-arch.enable = {
-      type = bool;
-      default = false;
-    };
-    # Portainer 代理
-    portainer-agent.enable = {
-      type = bool;
-      default = false;
+  # 环境配置
+  environment = {
+    i18n = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      type = {
+        type = str;
+        default = "en-us";
+      };
     };
   };
 }

@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   config,
   inputs,
   ...
 }:
-let
-  enableModule = opts.service.openlist.enable;
-in
 {
   # 首次启动执行:
   # sudo journalctl -u openlist --no-pager | grep -i "initial password"
@@ -15,7 +10,7 @@ in
   imports = [
     inputs.nur-knightfemale.nixosModules.openlist
   ];
-  config = lib.mkIf enableModule {
+  config = {
     sops.secrets."openlist/jwt-secret" = {
       sopsFile = ../../../secrets/openlist/jwt-secret.enc;
       format = "binary";

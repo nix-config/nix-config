@@ -1,14 +1,9 @@
 {
-  lib,
   pkgs,
-  opts,
   ...
 }:
-let
-  enableModule = opts.cli.nixd.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     home.packages = with pkgs; [
       nixd
     ];

@@ -4,8 +4,7 @@
   ...
 }:
 let
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = opts.terminal.kitty.enable && (!desktopTypeIsNone);
+  enableModule = opts.display.desktop.enable;
   fishEnable = opts.shell.fish.enable;
 in
 {

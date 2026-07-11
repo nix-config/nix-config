@@ -4,7 +4,7 @@
   ...
 }:
 let
-  enableModule = (opts.i18n.locale == "zh-cn");
+  enableModule = (opts.environment.i18n.type == "zh-cn");
 in
 {
   config = lib.mkIf enableModule {

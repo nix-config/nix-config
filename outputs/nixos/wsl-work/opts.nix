@@ -9,6 +9,7 @@ vars: {
         nix-ld.enable = true;
         sudo-rs.enable = true;
         nix = {
+          enable = true;
           substituters = [
             "https://cache.garnix.io"
           ];
@@ -18,8 +19,12 @@ vars: {
           ];
         };
       };
-      i18n.locale = "zh-cn";
-      display.desktopType = "wsl";
+      display = {
+        desktop = {
+          enable = true;
+          type = "wsl";
+        };
+      };
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
@@ -36,14 +41,19 @@ vars: {
             }
           ];
         };
+        container = {
+          enable = true;
+          type = "podman";
+        };
       };
       hardware = {
         graphics.type = "none";
+        networking.enable = true;
         boot-loader.type = "wsl";
       };
-      container = {
+      environment.i18n = {
         enable = true;
-        type = "podman";
+        type = "zh-cn";
       };
     };
   };

@@ -1,15 +1,11 @@
 {
   lib,
   pkgs,
-  opts,
   config,
   ...
 }:
-let
-  enableModule = opts.service.greetd.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services.greetd = {
       enable = true;
       settings = {

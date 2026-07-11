@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.service.nginx.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services.nginx = {
       enable = true;
     };

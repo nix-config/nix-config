@@ -5,9 +5,7 @@
   ...
 }:
 let
-  desktopTypeIsWsl = (opts.display.desktopType == "wsl");
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = (!desktopTypeIsNone) && (!desktopTypeIsWsl);
+  enableModule = opts.display.desktop.enable;
 in
 {
   config = lib.mkIf enableModule {

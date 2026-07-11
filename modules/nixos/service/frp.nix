@@ -5,9 +5,8 @@
   ...
 }:
 let
+  enableModule = opts.service.sops-nix.enable;
   cfg = opts.service.frp;
-  sopsNixIsEnabled = opts.service.sops-nix.enable;
-  enableModule = cfg.enable && sopsNixIsEnabled;
   role = cfg.role;
   proxies = cfg.proxies;
 in

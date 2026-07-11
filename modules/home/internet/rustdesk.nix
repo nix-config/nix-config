@@ -5,8 +5,7 @@
   ...
 }:
 let
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = opts.internet.rustdesk.enable && (!desktopTypeIsNone);
+  enableModule = opts.display.desktop.enable;
 in
 {
   config = lib.mkIf enableModule {

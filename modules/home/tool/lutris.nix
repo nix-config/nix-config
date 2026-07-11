@@ -5,8 +5,7 @@
   ...
 }:
 let
-  desktopTypeIsNone = (opts.display.desktopType == "none");
-  enableModule = opts.tool.lutris.enable && (!desktopTypeIsNone);
+  enableModule = opts.display.desktop.enable;
 in
 {
   config = lib.mkIf enableModule {

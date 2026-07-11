@@ -1,14 +1,9 @@
 {
-  lib,
   pkgs,
-  opts,
   ...
 }:
-let
-  enableModule = opts.service.udiskie.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     # 自动挂载 U 盘
     environment.systemPackages = with pkgs; [
       udiskie

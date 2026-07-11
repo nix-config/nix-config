@@ -1,13 +1,8 @@
 {
-  lib,
-  opts,
   ...
 }:
-let
-  enableModule = opts.service.logind.enable;
-in
 {
-  config = lib.mkIf enableModule {
+  config = {
     services = {
       # 合盖管理
       # ignore: 忽略合盖事件
