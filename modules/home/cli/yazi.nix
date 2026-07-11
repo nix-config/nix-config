@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.yazi or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.yazi.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.yazi = {
       enable = true;
     };

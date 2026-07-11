@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.fzf or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.fzf.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.fzf = {
       enable = true;
     };

@@ -4,19 +4,19 @@
   ...
 }:
 let
-  cfg = opts.cli.git or { };
-  finallyEnable = cfg.enable or false;
-  user = cfg.user or { };
-  nvimEnable = opts.editor.nixvim.enable or false;
+  cfg = opts.cli.git;
+  enableModule = cfg.enable;
+  user = cfg.user;
+  nvimIsEnabled = opts.editor.nixvim.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.git = {
       enable = true;
       settings = {
         inherit user;
         init.defaultBranch = "master";
-        core.editor = if nvimEnable then "nvim" else "nano";
+        core.editor = if nvimIsEnabled then "nvim" else "nano";
       };
     };
   };

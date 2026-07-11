@@ -4,14 +4,13 @@
   ...
 }:
 let
-  cfg = opts.shell.fish or { };
-  finallyEnable = cfg.enable or false;
-  batEnable = opts.cli.bat.enable or false;
-  btopEnable = opts.cli.btop.enable or false;
-  nixvimEnable = opts.editor.nixvim.enable or false;
+  enableModule = opts.shell.fish.enable;
+  batEnable = opts.cli.bat.enable;
+  btopEnable = opts.cli.btop.enable;
+  nixvimEnable = opts.editor.nixvim.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs = {
       fish = {
         enable = true;

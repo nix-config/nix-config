@@ -6,16 +6,15 @@
   ...
 }:
 let
-  cfg = opts.service.hermes-agent or { };
-  enableSopsNix = opts.service.sops-nix.enable or false;
-  finallyEnable = (cfg.enable or false) && enableSopsNix;
+  sopsNixIsEnabled = opts.service.sops-nix.enable;
+  enableModule = opts.service.hermes-agent.enable && sopsNixIsEnabled;
 in
 {
   imports = [
     inputs.hermes-agent.nixosModules.default
   ];
-  config = lib.mkIf finallyEnable {
-    sops.secrets."hermes.env" = lib.mkIf enableSopsNix {
+  config = lib.mkIf enableModule {
+    sops.secrets."hermes.env" = lib.mkIf sopsNixIsEnabled {
       sopsFile = ../../../secrets/hermes.env;
       format = "dotenv";
       owner = "hermes";

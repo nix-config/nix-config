@@ -5,15 +5,15 @@
   ...
 }:
 let
-  finallyEnable = (opts.display.desktopType or "none") == "hyprland";
-  btopEnable = opts.cli.btop.enable or false;
-  yaziEnable = opts.cli.yazi.enable or false;
-  dmsEnable = opts.display.dms.enable or false;
-  footEnable = opts.terminal.foot.enable or false;
-  fcitx5Enable = opts.tool.fcitx5.enable or false;
-  kittyEnable = opts.terminal.kitty.enable or false;
-  udiskieEnable = opts.service.udiskie.enable or false;
-  missionCenterEnable = opts.tool.mission-center.enable or false;
+  enableModule = (opts.display.desktopType == "hyprland");
+  btopIsEnabled = opts.cli.btop.enable;
+  yaziIsEnabled = opts.cli.yazi.enable;
+  dmsIsEnabled = opts.display.dms.enable;
+  footIsEnabled = opts.terminal.foot.enable;
+  fcitx5IsEnabled = opts.tool.fcitx5.enable;
+  kittyIsEnabled = opts.terminal.kitty.enable;
+  udiskieIsEnabled = opts.service.udiskie.enable;
+  missionCenterIsEnabled = opts.tool.mission-center.enable;
   toggle-monitor = pkgs.writeShellApplication {
     name = "toggle-monitor";
     runtimeInputs = [ pkgs.jq ]; # 依赖 jq 解析 JSON
@@ -55,7 +55,7 @@ let
   ) 10;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -69,24 +69,24 @@ in
         # ========== 变量 ==========
         # 终端模拟器
         "$terminal" =
-          if kittyEnable then
+          if kittyIsEnabled then
             "kitty"
-          else if footEnable then
+          else if footIsEnabled then
             "foot"
           else
             "";
         # 系统活动监控器
         "$top" =
-          if missionCenterEnable then
+          if missionCenterIsEnabled then
             "missioncenter"
-          else if btopEnable then
+          else if btopIsEnabled then
             "$terminal -e btop"
           else
             "$terminal -e top";
         # 文件管理器
-        "$fileManager" = if yaziEnable then "$terminal -e yazi" else "";
+        "$fileManager" = if yaziIsEnabled then "$terminal -e yazi" else "";
         # 程序启动菜单
-        "$menu" = if dmsEnable then "dms ipc call spotlight toggle" else "";
+        "$menu" = if dmsIsEnabled then "dms ipc call spotlight toggle" else "";
         # 屏幕截图
         "$screenshot" = "dms screenshot";
         # 主修饰键
@@ -94,11 +94,11 @@ in
         # ========== 自启动 ==========
         exec-once =
           # DankMaterialShell
-          lib.optional dmsEnable "bash -lc 'exec dms run'"
+          lib.optional dmsIsEnabled "bash -lc 'exec dms run'"
           # 输入法
-          ++ lib.optional fcitx5Enable "fcitx5"
+          ++ lib.optional fcitx5IsEnabled "fcitx5"
           # 自动挂载 U 盘
-          ++ lib.optional udiskieEnable "udiskie";
+          ++ lib.optional udiskieIsEnabled "udiskie";
         # ========== 环境变量 ==========
         env = [
           "XCURSOR_SIZE,24"

@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.cli.nixd or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.nixd.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       nixd
     ];

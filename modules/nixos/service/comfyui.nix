@@ -7,10 +7,8 @@
   ...
 }:
 let
-  cfg = opts.service.comfyui or { };
-  gpuType = (opts.hardware.graphics.type or "none");
-  finallyEnable = (cfg.enable or false) && gpuType == "nvidia";
-  isWsl = (opts.hardware.boot-loader.type or "none") == "wsl";
+  enableModule = opts.service.comfyui.enable && (opts.hardware.graphics.type == "nvidia");
+  isWsl = opts.hardware.boot-loader.type == "wsl";
   # 定义模型
   realesrgan-x4plus-anime-6b = pkgs.fetchResource {
     name = "RealESRGAN_x4plus_anime_6B.pth";
@@ -29,7 +27,7 @@ in
   imports = [
     inputs.nixified-ai.nixosModules.comfyui
   ];
-  config = lib.mkIf finallyEnable (
+  config = lib.mkIf enableModule (
     lib.mkMerge [
       {
         services.comfyui = {

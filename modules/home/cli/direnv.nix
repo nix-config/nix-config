@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.direnv or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.direnv.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;

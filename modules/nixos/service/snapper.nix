@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.service.snapper or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.snapper.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.snapper.configs = {
       root = {
         # 文件系统类型

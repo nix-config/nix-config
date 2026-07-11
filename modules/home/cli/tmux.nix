@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.tmux or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.tmux.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.tmux = {
       enable = true;
     };

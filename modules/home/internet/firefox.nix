@@ -7,15 +7,14 @@
   ...
 }:
 let
-  cfg = opts.internet.firefox or { };
-  locale = opts.i18n.locale or "en-us";
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.internet.firefox.enable && (!desktopTypeIsNone);
+  locale = opts.i18n.locale;
   nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   inherit (nur.repos.rycee.firefox-addons) kiss-translator;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs = {
       firefox = {
         # 启用 Firefox 浏览器

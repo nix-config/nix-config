@@ -5,16 +5,15 @@
   ...
 }:
 let
-  cfg = opts.display.dms or { };
-  desktopTypeIsWsl = (opts.display.desktopType or "none") == "wsl";
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsWsl) && (!desktopTypeIsNone);
+  desktopTypeIsWsl = (opts.display.desktopType == "wsl");
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.display.dms.enable && (!desktopTypeIsWsl) && (!desktopTypeIsNone);
 in
 {
   imports = [
     inputs.dms.nixosModules.dank-material-shell
   ];
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs = {
       dank-material-shell = {
         enable = true;

@@ -5,13 +5,12 @@
   ...
 }:
 let
-  cfg = opts.hardware.graphics or { };
-  finallyEnable = (cfg.type or "none") == "nvidia";
-  containerEnable = (opts.container.enable or false);
-  isWsl = (opts.hardware.boot-loader.type or "none") == "wsl";
+  enableModule = (opts.hardware.graphics.type == "nvidia");
+  containerEnable = opts.container.enable;
+  isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {
-  config = lib.mkIf finallyEnable (
+  config = lib.mkIf enableModule (
     lib.mkMerge [
       (lib.optionalAttrs (!isWsl) {
         # 为 Xorg 和 Wayland 加载 NVIDIA 驱动

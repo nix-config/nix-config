@@ -4,12 +4,11 @@
   ...
 }:
 let
-  cfg = opts.service.ollama or { };
-  finallyEnable = cfg.enable or false;
-  gpuType = opts.hardware.graphics.type or "none";
+  enableModule = opts.service.ollama.enable;
+  gpuType = opts.hardware.graphics.type;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.ollama = lib.mkMerge [
       {
         enable = true;

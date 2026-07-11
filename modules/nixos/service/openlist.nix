@@ -6,8 +6,7 @@
   ...
 }:
 let
-  cfg = opts.service.openlist or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.openlist.enable;
 in
 {
   # 首次启动执行:
@@ -16,7 +15,7 @@ in
   imports = [
     inputs.nur-knightfemale.nixosModules.openlist
   ];
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     sops.secrets."openlist/jwt-secret" = {
       sopsFile = ../../../secrets/openlist/jwt-secret.enc;
       format = "binary";

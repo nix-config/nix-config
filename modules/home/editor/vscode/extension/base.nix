@@ -6,13 +6,13 @@
   ...
 }:
 let
+  cfg = opts.editor.vscode.extensions;
+  enableModule = cfg.base.enable || cfg.all.enable;
   vscode-marketplace =
     (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
-  cfg = opts.editor.vscode.extensions.base or { };
-  finallyEnable = cfg.enable or false || opts.editor.vscode.extensions.all.enable or false;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
       # 中文界面语言包
       ms-ceintl.vscode-language-pack-zh-hans

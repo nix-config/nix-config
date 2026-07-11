@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.nix-ld or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.nix-ld.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.nix-ld.enable = true;
   };
 }

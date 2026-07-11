@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.service.openssh or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.openssh.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services = {
       openssh.enable = true;
     };

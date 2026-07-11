@@ -5,12 +5,11 @@
   ...
 }:
 let
-  cfg = opts.internet.rustdesk or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.internet.rustdesk.enable && (!desktopTypeIsNone);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       # 新版客户端
       rustdesk-flutter

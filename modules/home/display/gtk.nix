@@ -5,12 +5,12 @@
   ...
 }:
 let
-  desktopTypeIsWsl = (opts.display.desktopType or "none") == "wsl";
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (!desktopTypeIsNone) && (!desktopTypeIsWsl);
+  desktopTypeIsWsl = (opts.display.desktopType == "wsl");
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = (!desktopTypeIsNone) && (!desktopTypeIsWsl);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     gtk = {
       enable = true;
       iconTheme = {

@@ -6,14 +6,13 @@
   ...
 }:
 let
-  cfg = opts.service.llama-cpp or { };
-  gpuType = (opts.hardware.graphics.type or "none");
-  finallyEnable = (cfg.enable or false) && gpuType == "nvidia";
-  isWsl = (opts.hardware.boot-loader.type or "none") == "wsl";
-  extraSettings = cfg.extraSettings or { };
+  cfg = opts.service.llama-cpp;
+  enableModule = cfg.enable && (opts.hardware.graphics.type == "nvidia");
+  isWsl = (opts.hardware.boot-loader.type == "wsl");
+  extraSettings = cfg.extraSettings;
 in
 {
-  config = lib.mkIf finallyEnable (
+  config = lib.mkIf enableModule (
     lib.mkMerge [
       {
         services.llama-cpp = {

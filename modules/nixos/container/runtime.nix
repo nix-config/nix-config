@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = opts.container or { };
-  finallyEnable = cfg.enable or false;
-  runtimeType = cfg.type or "podman";
+  cfg = opts.container;
+  enableModule = cfg.enable;
+  runtimeType = cfg.type;
 in
 {
-  config = lib.mkIf finallyEnable (
+  config = lib.mkIf enableModule (
     lib.mkMerge [
       (lib.optionalAttrs (runtimeType == "podman") {
         environment.systemPackages = with pkgs; [

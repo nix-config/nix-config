@@ -5,13 +5,13 @@
   ...
 }:
 let
-  cfg = opts.service.searxng or { };
-  enableSopsNix = opts.service.sops-nix.enable or false;
-  finallyEnable = (cfg.enable or false) && enableSopsNix;
-  firewall = cfg.firewall or { enable = false; };
+  cfg = opts.service.searxng;
+  sopsNixIsEnabled = opts.service.sops-nix.enable;
+  enableModule = cfg.enable && sopsNixIsEnabled;
+  firewall = cfg.firewall;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     sops.secrets."searxng.env" = {
       sopsFile = ../../../secrets/searxng.env;
       format = "dotenv";

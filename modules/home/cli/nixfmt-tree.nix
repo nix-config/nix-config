@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.cli.nixfmt-tree or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.nixfmt-tree.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       nixfmt
       nixfmt-tree

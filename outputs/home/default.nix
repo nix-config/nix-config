@@ -57,7 +57,7 @@ lib.mergeAttrsList (
               pkgSets
               functions
               ;
-            opts = functions.checkAttrs "${username}.opts." vars.schema homeOpts;
+            opts = functions.normalizeAttrs "${username}.opts" vars.schema homeOpts;
           };
         };
       }) userNames

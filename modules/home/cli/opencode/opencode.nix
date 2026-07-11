@@ -6,12 +6,11 @@
   ...
 }:
 let
-  cfg = opts.cli.opencode or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.opencode.enable;
   configPath = "${opts.nixConfigPath}/modules/home/cli/opencode/config";
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.opencode = {
       enable = true;
       extraPackages = with pkgs; [

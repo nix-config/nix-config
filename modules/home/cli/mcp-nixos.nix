@@ -6,12 +6,11 @@
   ...
 }:
 let
-  cfg = opts.cli.mcp-nixos or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.mcp-nixos.enable;
   mcp-nixos = inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = [
       mcp-nixos
     ];

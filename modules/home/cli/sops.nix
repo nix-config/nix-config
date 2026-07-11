@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.cli.sops or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.sops.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       sops
     ];

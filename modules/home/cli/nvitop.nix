@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.cli.nvitop or { };
-  finallyEnable = (cfg.enable or false) && ((opts.hardware.graphics.type or "none") == "nvidia");
+  enableModule = opts.cli.nvitop.enable && (opts.hardware.graphics.type == "nvidia");
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       nvitop
     ];

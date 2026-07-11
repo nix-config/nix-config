@@ -5,12 +5,11 @@
   ...
 }:
 let
-  cfg = opts.internet.telegram-desktop or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.internet.telegram-desktop.enable && (!desktopTypeIsNone);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       telegram-desktop
     ];

@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.service.pipewire or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.pipewire.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services = {
       # 禁用 PulseAudio(使用 PipeWire 替代)
       pulseaudio.enable = false;

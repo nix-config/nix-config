@@ -4,12 +4,11 @@
   ...
 }:
 let
-  cfg = opts.media.obs-studio or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.media.obs-studio.enable && (!desktopTypeIsNone);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.obs-studio = {
       enable = true;
     };

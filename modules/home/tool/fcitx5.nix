@@ -5,12 +5,11 @@
   ...
 }:
 let
-  cfg = opts.tool.fcitx5 or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.tool.fcitx5.enable && (!desktopTypeIsNone);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";

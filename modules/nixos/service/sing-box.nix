@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.service.sing-box or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.sing-box.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.sing-box = {
       enable = true;
     };

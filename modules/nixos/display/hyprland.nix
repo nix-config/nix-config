@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.display or { };
-  finallyEnable = (opts.display.desktopType or "none") == "hyprland";
+  enableModule = (opts.display.desktopType == "hyprland");
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs = {
       # Wayland 合成器/桌面环境
       hyprland = {

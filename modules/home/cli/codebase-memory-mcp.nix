@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.cli.codebase-memory-mcp or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.codebase-memory-mcp.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       codebase-memory-mcp
     ];

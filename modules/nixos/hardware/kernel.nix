@@ -7,9 +7,9 @@
 }:
 let
   # 获取用户配置的内核列表, 若未定义则默认为空列表
-  cfg = opts.hardware.kernel or { };
-  types = cfg.types or [ ];
-  configs = cfg.configs or { };
+  cfg = opts.hardware.kernel;
+  types = cfg.types;
+  configs = cfg.configs;
   kernels = inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system};
   # 遍历每个内核配置, 构建出 { name, kernel } 属性的条目列表
   entries = map (name: {

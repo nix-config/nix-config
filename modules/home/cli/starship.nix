@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.starship or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.starship.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.starship = {
       enable = true;
       settings = {

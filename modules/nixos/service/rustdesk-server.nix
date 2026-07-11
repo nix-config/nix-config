@@ -4,12 +4,12 @@
   ...
 }:
 let
-  cfg = opts.service.rustdesk-server or { };
-  finallyEnable = cfg.enable or false;
-  relayHosts = cfg.relayHosts or [ ];
+  cfg = opts.service.rustdesk-server;
+  enableModule = cfg.enable;
+  relayHosts = cfg.relayHosts;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.rustdesk-server = {
       enable = true;
       openFirewall = true;

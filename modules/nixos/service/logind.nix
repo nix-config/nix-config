@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.service.logind or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.logind.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services = {
       # 合盖管理
       # ignore: 忽略合盖事件

@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.cli.just or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.just.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     home.packages = with pkgs; [
       just
     ];

@@ -5,13 +5,12 @@
   ...
 }:
 let
-  cfg = opts.display or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  desktopTypeIsWsl = (opts.display.desktopType or "none") == "wsl";
-  finallyEnable = (!desktopTypeIsNone) && (!desktopTypeIsWsl);
+  desktopTypeIsWsl = (opts.display.desktopType == "wsl");
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = (!desktopTypeIsNone) && (!desktopTypeIsWsl);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     # 字体配置
     fonts = {
       # 默认字体集(禁用)

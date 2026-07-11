@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.shell.bash or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.shell.bash.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs = {
       # 不添加任何额外功能保证鲁棒性
       bash.enable = true;

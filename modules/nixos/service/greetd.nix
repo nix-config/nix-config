@@ -6,11 +6,10 @@
   ...
 }:
 let
-  cfg = opts.service.greetd or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.greetd.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.greetd = {
       enable = true;
       settings = {

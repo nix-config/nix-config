@@ -5,13 +5,12 @@
   ...
 }:
 let
-  cfg = opts.editor.vscode or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.editor.vscode.enable && (!desktopTypeIsNone);
   configPath = "${opts.nixConfigPath}/modules/home/editor/vscode/config";
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.vscode.enable = true;
     home.file = {
       ".vscode/argv.json" = {

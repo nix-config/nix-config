@@ -5,14 +5,11 @@
   ...
 }:
 let
-  cfg = opts.hardware.disk or { };
-  finallyEnable = cfg.enable or true;
+  cfg = opts.hardware.disk;
 in
 {
   imports = [
     inputs.disko.nixosModules.disko
   ];
-  config = lib.mkIf finallyEnable {
-    disko.devices.disk = cfg;
-  };
+  disko.devices.disk = cfg;
 }

@@ -4,12 +4,12 @@
   ...
 }:
 let
-  cfg = opts.hardware.boot-loader or { };
-  finallyEnable = (cfg.type or "systemd-boot") == "systemd-boot";
-  efiSysMountPoint = cfg.efiSysMountPoint or "/boot";
+  cfg = opts.hardware.boot-loader;
+  enableModule = (cfg.type == "systemd-boot");
+  efiSysMountPoint = cfg.efiSysMountPoint;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     boot.loader = {
       # EFI系统分区挂载点
       efi.efiSysMountPoint = efiSysMountPoint;

@@ -4,13 +4,12 @@
   ...
 }:
 let
-  cfg = opts.terminal.kitty or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
-  fishEnable = opts.shell.fish.enable or false;
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.terminal.kitty.enable && (!desktopTypeIsNone);
+  fishEnable = opts.shell.fish.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs = {
       kitty = {
         enable = true;

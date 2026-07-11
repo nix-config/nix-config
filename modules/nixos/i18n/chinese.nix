@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.i18n or { };
-  finallyEnable = (cfg.locale or "en-us") == "zh-cn";
+  enableModule = (opts.i18n.locale == "zh-cn");
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     # 时区配置
     time.timeZone = "Asia/Shanghai";
     # 语言配置

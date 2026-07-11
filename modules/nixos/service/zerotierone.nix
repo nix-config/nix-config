@@ -4,12 +4,12 @@
   ...
 }:
 let
-  cfg = opts.service.zerotierone or { };
-  finallyEnable = cfg.enable or false;
-  joinNetworks = cfg.joinNetworks or [ ];
+  cfg = opts.service.zerotierone;
+  enableModule = cfg.enable;
+  joinNetworks = cfg.joinNetworks;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.zerotierone = {
       enable = true;
       inherit joinNetworks;

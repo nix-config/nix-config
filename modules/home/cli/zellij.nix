@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.zellij or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.zellij.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.zellij = {
       enable = true;
       # 是否在自动启动后附加到默认会话

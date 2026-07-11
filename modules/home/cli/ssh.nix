@@ -5,13 +5,12 @@
   ...
 }:
 let
-  cfg = opts.cli.ssh or { };
-  enableSopsNix = opts.service.sops-nix.enable or false;
-  finallyEnable = (cfg.enable or false) && enableSopsNix;
-  enableSshSecrets = cfg.enableSshSecrets or [ ];
+  cfg = opts.cli.ssh;
+  enableModule = cfg.enable && opts.service.sops-nix.enable;
+  enableSshSecrets = cfg.enableSshSecrets;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     sops.secrets = lib.mkMerge [
       (lib.genAttrs (map (n: "ssh/${n}") enableSshSecrets) (name: {
         sopsFile = ../../../secrets/ssh/${baseNameOf name}.enc;

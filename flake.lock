@@ -725,11 +725,11 @@
         "systems-default-linux": "systems-default-linux"
       },
       "locked": {
-        "lastModified": 1783693782,
-        "narHash": "sha256-rmEtKbjNsdHy3QdrCXdp9ojVIcxoXd52hYRX/xJqenY=",
+        "lastModified": 1783753877,
+        "narHash": "sha256-2v8ZTOMQqgGBfF34ov024U5anxgV8RD88riRb9XTezE=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "aa4e2ecf7d6148caff8741a0cc3dd3772465f08b",
+        "rev": "57423ddcca3798647fe32d0bec5ca3793a700a33",
         "type": "github"
       },
       "original": {

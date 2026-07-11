@@ -5,14 +5,14 @@
   ...
 }:
 let
-  cfg = opts.service.frp or { };
-  enableSopsNix = opts.service.sops-nix.enable or false;
-  finallyEnable = (cfg.enable or false) && enableSopsNix;
-  role = cfg.role or "server";
-  proxies = cfg.proxies or [ ];
+  cfg = opts.service.frp;
+  sopsNixIsEnabled = opts.service.sops-nix.enable;
+  enableModule = cfg.enable && sopsNixIsEnabled;
+  role = cfg.role;
+  proxies = cfg.proxies;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     sops.secrets."frp.env" = {
       sopsFile = ../../../secrets/frp.env;
       format = "dotenv";

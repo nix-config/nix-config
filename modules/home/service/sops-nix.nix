@@ -6,14 +6,13 @@
   ...
 }:
 let
-  cfg = opts.service.sops-nix or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.sops-nix.enable;
 in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     # 将 SSH 密钥自动导入为 age 密钥
     sops.age.sshKeyPaths = [
       "${config.home.homeDirectory}/.ssh/id_ed25519"

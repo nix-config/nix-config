@@ -6,14 +6,13 @@
   ...
 }:
 let
-  cfg = opts.service.daed or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.daed.enable;
 in
 {
   imports = [
     inputs.daeuniverse.nixosModules.daed
   ];
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.daed = {
       enable = true;
       package = inputs.daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.daed;

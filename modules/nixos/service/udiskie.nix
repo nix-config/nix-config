@@ -5,11 +5,10 @@
   ...
 }:
 let
-  cfg = opts.service.udiskie or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.udiskie.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     # 自动挂载 U 盘
     environment.systemPackages = with pkgs; [
       udiskie

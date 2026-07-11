@@ -70,7 +70,7 @@ lib.mergeAttrsList (
                 pkgSets
                 functions
                 ;
-              opts = functions.checkAttrs "${hostName}.opts." vars.schema nixosOpts';
+              opts = functions.normalizeAttrs "${hostName}.opts" vars.schema nixosOpts';
             };
             modules = [
               # nixos 模块
@@ -110,7 +110,7 @@ lib.mergeAttrsList (
                       };
                       # 通过 _module.args 将用户专属的 opts 传入 home 模块
                       _module.args = {
-                        opts = functions.checkAttrs "${hostName}.${username}.opts." vars.schema homeOpts';
+                        opts = functions.normalizeAttrs "${hostName}.${username}.opts" vars.schema homeOpts';
                       };
                     }
                   ) nonRootUsers;

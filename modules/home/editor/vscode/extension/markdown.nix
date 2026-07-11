@@ -6,13 +6,13 @@
   ...
 }:
 let
+  cfg = opts.editor.vscode.extensions;
+  enableModule = cfg.markdown.enable || cfg.all.enable;
   vscode-marketplace =
     (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
-  cfg = opts.editor.vscode.extensions.markdown or { };
-  finallyEnable = cfg.enable or false || opts.editor.vscode.extensions.all.enable or false;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
       # Markdown 预览
       shd101wyy.markdown-preview-enhanced

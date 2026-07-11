@@ -4,12 +4,11 @@
   ...
 }:
 let
-  cfg = opts.tool.clash-verge or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.tool.clash-verge.enable && (!desktopTypeIsNone);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.clash-verge = {
       enable = true;
       # 开机自动启动

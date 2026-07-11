@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.container.portainer-agent or { };
-  finallyEnable = (cfg.enable or false) && opts.container.enable or false;
+  enableModule = opts.container.portainer-agent.enable && opts.container.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     virtualisation.oci-containers.containers = {
       portainer-agent = {
         image = "portainer/agent:latest";

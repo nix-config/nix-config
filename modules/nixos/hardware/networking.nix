@@ -4,16 +4,16 @@
   ...
 }:
 let
-  cfg = opts.hardware.networking or { };
-  hostName = cfg.hostName or "nixos";
-  proxy = cfg.proxy or { };
-  firewall = cfg.firewall or { enable = false; };
-  networkmanager = cfg.networkmanager or { enable = false; };
-  isWsl = opts.hardware.boot-loader.type == "wsl";
-  finallyEnable = cfg.enable or true;
+  cfg = opts.hardware.networking;
+  enableModule = cfg.enable;
+  hostName = cfg.hostName;
+  proxy = cfg.proxy;
+  firewall = cfg.firewall;
+  networkmanager = cfg.networkmanager;
+  isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     networking = {
       inherit hostName;
       inherit proxy;

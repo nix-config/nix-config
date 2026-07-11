@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.sudo-rs or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.sudo-rs.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     security.sudo-rs = {
       enable = true;
       # 只允许 wheel 组成员可执行 sudo

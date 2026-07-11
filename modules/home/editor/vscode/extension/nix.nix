@@ -6,13 +6,13 @@
   ...
 }:
 let
+  cfg = opts.editor.vscode.extensions;
+  enableModule = cfg.nix.enable || cfg.all.enable;
   vscode-marketplace =
     (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
-  cfg = opts.editor.vscode.extensions.nix or { };
-  finallyEnable = cfg.enable or false || opts.editor.vscode.extensions.all.enable or false;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
       # Nix 语法支持
       jnoortheen.nix-ide

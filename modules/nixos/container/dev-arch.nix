@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.container.dev-arch or { };
-  finallyEnable = (cfg.enable or false) && opts.container.enable or false;
+  enableModule = opts.container.dev-arch.enable && opts.container.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     virtualisation.oci-containers.containers = {
       dev-arch = {
         image = "docker.io/library/archlinux:latest";

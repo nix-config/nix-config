@@ -5,12 +5,11 @@
   ...
 }:
 let
-  cfg = opts.cli.btop or { };
-  finallyEnable = cfg.enable or false;
-  gpuType = opts.hardware.graphics.type or "none";
+  enableModule = opts.cli.btop.enable;
+  gpuType = opts.hardware.graphics.type;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.btop = lib.mkMerge [
       {
         enable = true;

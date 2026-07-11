@@ -4,12 +4,11 @@
   ...
 }:
 let
-  cfg = opts.tool.onlyoffice or { };
-  desktopTypeIsNone = (opts.display.desktopType or "none") == "none";
-  finallyEnable = (cfg.enable or false) && (!desktopTypeIsNone);
+  desktopTypeIsNone = (opts.display.desktopType == "none");
+  enableModule = opts.tool.onlyoffice.enable && (!desktopTypeIsNone);
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.onlyoffice = {
       enable = true;
       settings = {

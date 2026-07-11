@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.bat or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.bat.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.bat = {
       enable = true;
     };

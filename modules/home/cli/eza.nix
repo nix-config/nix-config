@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.cli.eza or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.cli.eza.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.eza = {
       enable = true;
     };

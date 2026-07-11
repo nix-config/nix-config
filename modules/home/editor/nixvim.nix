@@ -6,14 +6,13 @@
   ...
 }:
 let
-  cfg = opts.editor.nixvim or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.editor.nixvim.enable;
 in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
   ];
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     programs.nixvim = {
       enable = true;
       nixpkgs.source = pkgs.path;

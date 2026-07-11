@@ -5,22 +5,22 @@
   ...
 }:
 let
-  cfg = opts.cli.nix or { };
-  substituters = cfg.substituters or [ ];
-  trusted-substituters = cfg.trusted-substituters or [ ];
-  trusted-public-keys = cfg.trusted-public-keys or [ ];
-  enableSopsNix = opts.service.sops-nix.enable or false;
+  cfg = opts.cli.nix;
+  sopsNixIsEnabled = opts.service.sops-nix.enable;
+  substituters = cfg.substituters;
+  trusted-substituters = cfg.trusted-substituters;
+  trusted-public-keys = cfg.trusted-public-keys;
 in
 {
   sops.secrets = {
-    "nix/secret-key" = lib.mkIf enableSopsNix {
+    "nix/secret-key" = lib.mkIf sopsNixIsEnabled {
       sopsFile = ../../../secrets/nix/secret-key.enc;
       format = "binary";
       owner = "root";
       group = "root";
       mode = "0600";
     };
-    "nix/extra-options.conf" = lib.mkIf enableSopsNix {
+    "nix/extra-options.conf" = lib.mkIf sopsNixIsEnabled {
       sopsFile = ../../../secrets/nix/extra-options.ini;
       format = "ini";
       # 只有 root 和 sudo 用户可读
@@ -46,12 +46,12 @@ in
         # 默认已开启 "root"
         "@wheel"
       ];
-      secret-key-files = lib.mkIf enableSopsNix [
+      secret-key-files = lib.mkIf sopsNixIsEnabled [
         config.sops.secrets."nix/secret-key".path
       ];
     };
     # 通过 !include 包含运行时生成的配置文件(宽容模式, 如果指定的文件不存在 Nix 会忽略该指令)
-    extraOptions = lib.mkIf enableSopsNix "!include ${
+    extraOptions = lib.mkIf sopsNixIsEnabled "!include ${
       config.sops.secrets."nix/extra-options.conf".path
     }";
   };

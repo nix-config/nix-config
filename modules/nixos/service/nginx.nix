@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = opts.service.nginx or { };
-  finallyEnable = cfg.enable or false;
+  enableModule = opts.service.nginx.enable;
 in
 {
-  config = lib.mkIf finallyEnable {
+  config = lib.mkIf enableModule {
     services.nginx = {
       enable = true;
     };
