@@ -3,7 +3,6 @@
     # self.submodules = true;
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-knightfemale-byterover-cli.url = "github:knightfemale/nixpkgs/byterover-cli";
     nur = {
       url = "github:nix-community/NUR/main";
       inputs.nixpkgs.follows = "nixpkgs";

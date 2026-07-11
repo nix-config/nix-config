@@ -3,14 +3,12 @@
   opts,
   config,
   inputs,
-  pkgSets,
   ...
 }:
 let
   cfg = opts.service.hermes-agent or { };
   enableSopsNix = opts.service.sops-nix.enable or false;
   finallyEnable = (cfg.enable or false) && enableSopsNix;
-  byterover-cli = pkgSets.pkgs-knightfemale-byterover-cli.byterover-cli;
 in
 {
   imports = [
@@ -29,9 +27,6 @@ in
       extraDependencyGroups = [
         "feishu"
       ];
-      extraPackages = [
-        byterover-cli
-      ];
       settings = {
         model = {
           provider = "opencode-go";
@@ -39,8 +34,10 @@ in
         };
         auxiliary = {
           vision = {
-            provider = "opencode-go";
-            model = "mimo-v2.5";
+            provider = "llama.cpp";
+            model = "qwen3.6-35b-a3b";
+            base_url = "http://192.168.1.100:8080";
+            api_key = "1";
           };
           title_generation = {
             provider = "opencode-go";
@@ -48,7 +45,6 @@ in
           };
         };
         web.search_backend = "searxng";
-        memory.provider = "byterover";
         gateway.platforms = {
           feishu.enabled = true;
         };

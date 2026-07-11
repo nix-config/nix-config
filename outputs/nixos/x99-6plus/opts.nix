@@ -27,6 +27,7 @@ in
         llama-cpp = {
           enable = true;
           extraSettings = {
+            alias = "qwen3.6-35b-a3b";
             model = "/mnt/data/huggingface/Qwen3.6-35B-A3B-IQ4_XS.gguf";
             mmproj = "/mnt/data/huggingface/mmproj-Qwen3.6-35B-A3B-f16.gguf";
             tensor-split = "1,3";
