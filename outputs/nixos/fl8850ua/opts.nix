@@ -148,6 +148,7 @@ vars: {
           lutris.enable = true;
         };
         media = {
+          biu.enable = true;
           mpv.enable = true;
           spotify.enable = true;
           obs-studio.enable = true;

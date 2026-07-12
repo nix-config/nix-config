@@ -239,6 +239,11 @@ in
       type = bool;
       default = false;
     };
+    # Bilibili 音乐播放器
+    biu.enable = {
+      type = bool;
+      default = false;
+    };
   };
   # 命令解释器
   shell = {
