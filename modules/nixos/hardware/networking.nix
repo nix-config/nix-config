@@ -1,23 +1,26 @@
 {
+  lib,
   opts,
   ...
 }:
 let
   cfg = opts.hardware.networking;
-  hostName = cfg.hostName;
-  proxy = cfg.proxy;
-  firewall = cfg.firewall;
-  networkmanager = cfg.networkmanager;
-  isWsl = (opts.hardware.boot-loader.type == "wsl");
+  inherit (cfg) proxy;
+  inherit (cfg) hostName;
+  inherit (cfg) firewall;
+  inherit (cfg) networkmanager;
+  inherit (cfg) extraSettings;
 in
 {
   config = {
-    networking = {
-      inherit hostName;
-      inherit proxy;
-      inherit firewall;
-      inherit networkmanager;
-      resolvconf.enable = !isWsl;
-    };
+    networking = lib.mkMerge [
+      {
+        inherit proxy;
+        inherit hostName;
+        inherit firewall;
+        inherit networkmanager;
+      }
+      extraSettings
+    ];
   };
 }

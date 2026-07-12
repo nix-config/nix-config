@@ -53,7 +53,10 @@ in
       };
       hardware = {
         zram.enable = true;
-        graphics.type = "nvidia";
+        graphics = {
+          enable = true;
+          type = "nvidia";
+        };
         disk = {
           enable = true;
           devices = {

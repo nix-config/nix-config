@@ -6,7 +6,7 @@
 }:
 let
   enableModule = (opts.hardware.graphics.type == "nvidia");
-  containerEnable = opts.service.container.enable;
+  containerIsEnabled = opts.service.container.enable;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {
@@ -34,7 +34,7 @@ in
             package = config.boot.kernelPackages.nvidiaPackages.latest;
           };
           # 启动时运行 nvidia-container-toolkit, 启用Nvidia设备的动态CDI配置
-          nvidia-container-toolkit.enable = containerEnable;
+          nvidia-container-toolkit.enable = containerIsEnabled;
         };
         environment.sessionVariables.LD_LIBRARY_PATH = [
           "${config.hardware.nvidia.package.out}/lib"

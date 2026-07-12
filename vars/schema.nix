@@ -321,7 +321,6 @@ in
       };
       type = {
         type = enum [
-          "wsl"
           "none"
           "hyprland"
         ];
@@ -442,15 +441,9 @@ in
       };
     };
     # 搜索服务
-    searxng = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      firewall = {
-        type = attrs;
-        default = { };
-      };
+    searxng.enable = {
+      type = bool;
+      default = false;
     };
     # 通用代理工具
     sing-box.enable = {
@@ -524,6 +517,10 @@ in
     };
     # 图形驱动配置
     graphics = {
+      enable = {
+        type = bool;
+        default = false;
+      };
       type = {
         type = enum [
           "none"
@@ -580,6 +577,11 @@ in
         default = {
           enable = false;
         };
+      };
+      # 额外设置
+      extraSettings = {
+        type = attrs;
+        default = { };
       };
     };
     # 磁盘配置, 具体定义查看: vars/diskPartitionTypes/

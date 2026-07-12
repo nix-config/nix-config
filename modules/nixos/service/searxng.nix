@@ -6,7 +6,7 @@
 }:
 let
   enableModule = opts.service.sops-nix.enable;
-  firewall = opts.service.searxng.firewall;
+  firewall = opts.hardware.networking.firewall;
 in
 {
   config = lib.mkIf enableModule {

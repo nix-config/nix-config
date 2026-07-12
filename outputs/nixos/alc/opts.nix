@@ -29,7 +29,6 @@ vars: {
       };
       hardware = {
         zram.enable = true;
-        graphics.type = "none";
         disk = {
           enable = true;
           devices = {

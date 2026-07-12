@@ -19,12 +19,7 @@ vars: {
           ];
         };
       };
-      display = {
-        desktop = {
-          enable = true;
-          type = "wsl";
-        };
-      };
+      display.desktop.enable = true;
       service = {
         openssh.enable = true;
         sops-nix.enable = true;
@@ -47,9 +42,14 @@ vars: {
         };
       };
       hardware = {
-        graphics.type = "none";
-        networking.enable = true;
-        boot-loader.type = "wsl";
+        networking = {
+          enable = true;
+          extraSettings.resolvconf.enable = false;
+        };
+        boot-loader = {
+          enable = true;
+          type = "wsl";
+        };
       };
       environment.i18n = {
         enable = true;

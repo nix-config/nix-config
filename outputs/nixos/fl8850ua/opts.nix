@@ -63,7 +63,10 @@ vars: {
       hardware = {
         zram.enable = true;
         bluetooth.enable = true;
-        graphics.type = "amd";
+        graphics = {
+          enable = true;
+          type = "amd";
+        };
         disk = {
           enable = true;
           devices = {

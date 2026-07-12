@@ -21,12 +21,7 @@ vars: {
           ];
         };
       };
-      display = {
-        desktop = {
-          enable = true;
-          type = "wsl";
-        };
-      };
+      display.desktop.enable = true;
       service = {
         comfyui.enable = true;
         openssh.enable = true;
@@ -48,8 +43,14 @@ vars: {
         };
       };
       hardware = {
-        graphics.type = "nvidia";
-        networking.enable = true;
+        graphics = {
+          enable = true;
+          type = "nvidia";
+        };
+        networking = {
+          enable = true;
+          extraSettings.resolvconf.enable = false;
+        };
         boot-loader = {
           enable = true;
           type = "wsl";

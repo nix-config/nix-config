@@ -8,9 +8,8 @@
 }:
 let
   enableModule = opts.display.desktop.enable;
-  locale = opts.environment.i18n.type;
-  nur = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  inherit (nur.repos.rycee.firefox-addons) kiss-translator;
+  i18nType = opts.environment.i18n.type;
+  pkgs-nur = pkgs.extend inputs.nur.overlays.default;
 in
 {
   config = lib.mkIf enableModule {
@@ -81,7 +80,7 @@ in
             id = 0;
             settings = {
               # 强制使用操作系统语言
-              "intl.locale.requested" = locale;
+              "intl.locale.requested" = i18nType;
               # 1: 手动配置代理
               # 2: 自动代理配置的 URL
               # 3: 不使用代理服务器
@@ -104,7 +103,7 @@ in
               };
             };
             # 安装扩展
-            extensions.packages = [
+            extensions.packages = with pkgs-nur.nur.repos.rycee.firefox-addons; [
               # 详情: https://nur.nix-community.org/repos/rycee/
               # 简约翻译
               kiss-translator

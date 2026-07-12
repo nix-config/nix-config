@@ -31,7 +31,10 @@ vars: {
           ];
         };
       };
-      display.desktop.enable = false;
+      # display.desktop = {
+      #   enable = true;
+      #   type = "hyprland";
+      # };
       service.openssh.enable = true;
       hardware = {
         zram.enable = true;
@@ -41,7 +44,10 @@ vars: {
             main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
           };
         };
-        graphics.type = "none";
+        # graphics = {
+        #   enable = true;
+        #   type = "none";
+        # };
         networking = {
           enable = true;
           # 网络连接管理
