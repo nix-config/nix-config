@@ -7,9 +7,11 @@ let
   inherit (types) bool;
   inherit (types) enum;
   inherit (types) attrs;
-  listOfStr = types.listOf str;
-  attrsOfStr = types.attrsOf str;
-  listOfAttrs = types.listOf attrs;
+  inherit (types) listOf;
+  inherit (types) attrsOf;
+  listOfStr = listOf str;
+  attrsOfStr = attrsOf str;
+  listOfAttrs = listOf attrs;
   systems = lib.systems.flakeExposed;
 in
 {
@@ -271,48 +273,21 @@ in
         type = bool;
         default = false;
       };
-      # 扩展开关, 其中 all 为全部开启
+      # 扩展开关列表, 含 "all" 为全部开启
       extensions = {
-        all.enable = {
-          type = bool;
-          default = false;
-        };
-        base.enable = {
-          type = bool;
-          default = false;
-        };
-        go.enable = {
-          type = bool;
-          default = false;
-        };
-        javascript.enable = {
-          type = bool;
-          default = false;
-        };
-        markdown.enable = {
-          type = bool;
-          default = false;
-        };
-        nix.enable = {
-          type = bool;
-          default = false;
-        };
-        python.enable = {
-          type = bool;
-          default = false;
-        };
-        reader.enable = {
-          type = bool;
-          default = false;
-        };
-        remote.enable = {
-          type = bool;
-          default = false;
-        };
-        rust.enable = {
-          type = bool;
-          default = false;
-        };
+        type = listOf (enum [
+          "all"
+          "base"
+          "go"
+          "javascript"
+          "markdown"
+          "nix"
+          "python"
+          "reader"
+          "remote"
+          "rust"
+        ]);
+        default = [ ];
       };
     };
   };

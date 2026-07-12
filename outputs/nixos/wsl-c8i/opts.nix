@@ -1,5 +1,8 @@
 vars: {
   host = {
+    predefinedOptSetsList = with vars.optSets; [
+      baseNixos
+    ];
     customOptSets = {
       count = 1;
       system = "x86_64-linux";
@@ -9,7 +12,6 @@ vars: {
         nix-ld.enable = true;
         sudo-rs.enable = true;
         nix = {
-          enable = true;
           substituters = [
             "https://ai.cachix.org"
             "https://cache.garnix.io"
@@ -43,23 +45,11 @@ vars: {
         };
       };
       hardware = {
-        graphics = {
-          enable = true;
-          type = "nvidia";
-        };
-        networking = {
-          enable = true;
-          extraSettings.resolvconf.enable = false;
-        };
-        boot-loader = {
-          enable = true;
-          type = "wsl";
-        };
+        graphics.type = "nvidia";
+        networking.extraSettings.resolvconf.enable = false;
+        boot-loader.type = "wsl";
       };
-      environment.i18n = {
-        enable = true;
-        type = "zh-cn";
-      };
+      environment.i18n.type = "zh-cn";
     };
   };
   users = {

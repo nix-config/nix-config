@@ -2,7 +2,9 @@ vars: {
   # 主机配置
   host = {
     # 预定义选项集列表
-    # predefinedOptSetsList = with optSets; [ ];
+    predefinedOptSetsList = with vars.optSets; [
+      baseNixos
+    ];
     # 自定义选项集
     customOptSets = {
       count = 1;
@@ -12,7 +14,6 @@ vars: {
       cli = {
         nix-ld.enable = true;
         nix = {
-          enable = true;
           substituters = [
             # 上海交大镜像源
             # "https://mirror.sjtu.edu.cn/nix-channels/store"
@@ -38,20 +39,13 @@ vars: {
       service.openssh.enable = true;
       hardware = {
         zram.enable = true;
-        disk = {
-          enable = true;
-          devices = {
-            main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
-          };
+        disk.devices = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
-        # graphics = {
-        #   enable = true;
-        #   type = "none";
-        # };
+        # graphics.type = "none";
         networking = {
-          enable = true;
           # 网络连接管理
-          networkmanager.enable = false;
+          # networkmanager.enable = true;
           # 网络代理
           proxy = {
             # default = "http://user:password@proxy:port/";
@@ -65,10 +59,10 @@ vars: {
           };
         };
         boot-loader = {
-          enable = true;
           type = "systemd-boot";
           efiSysMountPoint = "/boot";
         };
+        # environment.i18n.type = "zh-cn";
       };
     };
   };

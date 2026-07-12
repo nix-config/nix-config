@@ -1,5 +1,8 @@
 vars: {
   host = {
+    predefinedOptSetsList = with vars.optSets; [
+      baseNixos
+    ];
     customOptSets = {
       count = 1;
       system = "x86_64-linux";
@@ -9,7 +12,6 @@ vars: {
         nix-ld.enable = true;
         sudo-rs.enable = true;
         nix = {
-          enable = true;
           substituters = [
             "https://cache.garnix.io"
           ];
@@ -63,18 +65,11 @@ vars: {
       hardware = {
         zram.enable = true;
         bluetooth.enable = true;
-        graphics = {
-          enable = true;
-          type = "amd";
-        };
-        disk = {
-          enable = true;
-          devices = {
-            main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
-          };
+        graphics.type = "amd";
+        disk.devices = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
         kernel = {
-          enable = true;
           types = [ "kernel-cachyos-bore-lto-v3" ];
           configs = {
             DRM_XE = "no";
@@ -83,19 +78,10 @@ vars: {
             DRM_NOUVEAU = "no";
           };
         };
-        networking = {
-          enable = true;
-          networkmanager.enable = true;
-        };
-        boot-loader = {
-          enable = true;
-          type = "systemd-boot";
-        };
+        networking.networkmanager.enable = true;
+        boot-loader.type = "systemd-boot";
       };
-      environment.i18n = {
-        enable = true;
-        type = "zh-cn";
-      };
+      environment.i18n.type = "zh-cn";
     };
   };
   users = {
@@ -158,7 +144,7 @@ vars: {
           nixvim.enable = true;
           vscode = {
             enable = true;
-            extensions.all.enable = true;
+            extensions = [ "all" ];
           };
         };
         terminal.kitty.enable = true;

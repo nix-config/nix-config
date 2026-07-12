@@ -6,8 +6,8 @@
   ...
 }:
 let
-  cfg = opts.editor.vscode.extensions;
-  enableModule = cfg.javascript.enable || cfg.all.enable;
+  extensions = opts.editor.vscode.extensions;
+  enableModule = lib.elem "javascript" extensions || lib.elem "all" extensions;
   vscode-marketplace =
     (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
 in

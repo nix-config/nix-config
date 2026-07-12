@@ -1,12 +1,14 @@
 vars: {
   host = {
+    predefinedOptSetsList = with vars.optSets; [
+      baseNixos
+    ];
     customOptSets = {
       count = 1;
       system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli.nix = {
-        enable = true;
         substituters = [
           "https://cache.garnix.io"
         ];
@@ -29,17 +31,13 @@ vars: {
       };
       hardware = {
         zram.enable = true;
-        disk = {
-          enable = true;
-          devices = {
-            main = vars.diskPartitionTypes.efi-ext4 {
-              device = "/dev/vda";
-              espSize = "100M";
-            };
+        disk.devices = {
+          main = vars.diskPartitionTypes.efi-ext4 {
+            device = "/dev/vda";
+            espSize = "100M";
           };
         };
         kernel = {
-          enable = true;
           types = [ "kernel-cachyos-server-lto" ];
           configs = {
             DRM_XE = "no";
@@ -49,15 +47,9 @@ vars: {
             DRM_NOUVEAU = "no";
           };
         };
-        boot-loader = {
-          enable = true;
-          type = "systemd-boot";
-        };
+        boot-loader.type = "systemd-boot";
       };
-      environment.i18n = {
-        enable = true;
-        type = "zh-cn";
-      };
+      environment.i18n.type = "zh-cn";
     };
   };
   users = {

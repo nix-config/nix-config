@@ -4,13 +4,15 @@ let
 in
 {
   host = {
+    predefinedOptSetsList = with vars.optSets; [
+      baseNixos
+    ];
     customOptSets = {
       count = 1;
       system = "x86_64-linux";
       stateVersion = "26.05";
       inherit nixConfigPath;
       cli.nix = {
-        enable = true;
         substituters = [
           "https://ai.cachix.org"
           "https://cache.garnix.io"
@@ -53,22 +55,15 @@ in
       };
       hardware = {
         zram.enable = true;
-        graphics = {
-          enable = true;
-          type = "nvidia";
-        };
-        disk = {
-          enable = true;
-          devices = {
-            main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
-            data = vars.diskPartitionTypes.xfs {
-              device = "/dev/sda";
-              mountpoint = "/mnt/data";
-            };
+        graphics.type = "nvidia";
+        disk.devices = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
+          data = vars.diskPartitionTypes.xfs {
+            device = "/dev/sda";
+            mountpoint = "/mnt/data";
           };
         };
         kernel = {
-          enable = true;
           types = [ "kernel-cachyos-server-lto" ];
           configs = {
             DRM_XE = "no";
@@ -78,16 +73,9 @@ in
             DRM_NOUVEAU = "no";
           };
         };
-        networking.enable = true;
-        boot-loader = {
-          enable = true;
-          type = "systemd-boot";
-        };
+        boot-loader.type = "systemd-boot";
       };
-      environment.i18n = {
-        enable = true;
-        type = "zh-cn";
-      };
+      environment.type = "zh-cn";
     };
   };
   users = {
