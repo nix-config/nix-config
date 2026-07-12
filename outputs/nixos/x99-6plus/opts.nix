@@ -23,22 +23,30 @@ in
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
-      service = {
-        openssh.enable = true;
-        sops-nix.enable = true;
-        llama-cpp = {
-          enable = true;
-          extraSettings = {
-            alias = "qwen3.6-35b-a3b";
-            model = "/mnt/data/huggingface/Qwen3.6-35B-A3B-IQ4_XS.gguf";
-            mmproj = "/mnt/data/huggingface/mmproj-Qwen3.6-35B-A3B-f16.gguf";
-            tensor-split = "1,3";
-            temp = 1.0;
-            top-k = 20;
-            top-p = 0.95;
-            presence-penalty = 1.5;
+      environment.type = "zh-cn";
+      hardware = {
+        boot-loader.type = "systemd-boot";
+        disk.devices = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
+          data = vars.diskPartitionTypes.xfs {
+            device = "/dev/sda";
+            mountpoint = "/mnt/data";
           };
         };
+        graphics.type = "nvidia";
+        kernel = {
+          configs = {
+            DRM_XE = "no";
+            DRM_I915 = "no";
+            DRM_AMDGPU = "no";
+            DRM_RADEON = "no";
+            DRM_NOUVEAU = "no";
+          };
+          types = [ "kernel-cachyos-server-lto" ];
+        };
+        zram.enable = true;
+      };
+      service = {
         frp = {
           enable = true;
           role = "client";
@@ -52,30 +60,22 @@ in
             }
           ];
         };
-      };
-      hardware = {
-        zram.enable = true;
-        graphics.type = "nvidia";
-        disk.devices = {
-          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/nvme0n1"; };
-          data = vars.diskPartitionTypes.xfs {
-            device = "/dev/sda";
-            mountpoint = "/mnt/data";
+        llama-cpp = {
+          enable = true;
+          extraSettings = {
+            alias = "qwen3.6-35b-a3b";
+            model = "/mnt/data/huggingface/Qwen3.6-35B-A3B-IQ4_XS.gguf";
+            mmproj = "/mnt/data/huggingface/mmproj-Qwen3.6-35B-A3B-f16.gguf";
+            tensor-split = "1,3";
+            temp = 1.0;
+            top-k = 20;
+            top-p = 0.95;
+            presence-penalty = 1.5;
           };
         };
-        kernel = {
-          types = [ "kernel-cachyos-server-lto" ];
-          configs = {
-            DRM_XE = "no";
-            DRM_I915 = "no";
-            DRM_AMDGPU = "no";
-            DRM_RADEON = "no";
-            DRM_NOUVEAU = "no";
-          };
-        };
-        boot-loader.type = "systemd-boot";
+        openssh.enable = true;
+        sops-nix.enable = true;
       };
-      environment.type = "zh-cn";
     };
   };
   users = {
@@ -109,12 +109,12 @@ in
         count = 1;
         cli = {
           direnv.enable = true;
-          zellij.enable = true;
           nvitop.enable = true;
           ssh = {
             enable = true;
             enableSshSecrets = [ "id_ed25519_ssh" ];
           };
+          zellij.enable = true;
         };
         shell.bash.enable = true;
       };

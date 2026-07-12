@@ -9,15 +9,9 @@ vars: {
       system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/ubuntu/workspace/mochen/nix-config";
-      cli = {
-        nvitop.enable = true;
-      };
-      i18n = {
-        locale = "zh-cn";
-      };
-      hardware = {
-        graphics.type = "nvidia";
-      };
+      cli.nvitop.enable = true;
+      # environment.i18n.type = "zh-cn";
+      hardware.graphics.type = "nvidia";
     };
   };
 }

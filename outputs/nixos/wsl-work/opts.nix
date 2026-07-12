@@ -9,8 +9,6 @@ vars: {
       stateVersion = "25.11";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
-        nix-ld.enable = true;
-        sudo-rs.enable = true;
         nix = {
           substituters = [
             "https://cache.garnix.io"
@@ -20,11 +18,20 @@ vars: {
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };
+        nix-ld.enable = true;
+        sudo-rs.enable = true;
       };
       display.desktop.enable = true;
+      hardware = {
+        boot-loader.type = "wsl";
+        environment.i18n.type = "zh-cn";
+        networking.extraSettings.resolvconf.enable = false;
+      };
       service = {
-        openssh.enable = true;
-        sops-nix.enable = true;
+        container = {
+          enable = true;
+          type = "podman";
+        };
         frp = {
           enable = true;
           role = "client";
@@ -38,15 +45,8 @@ vars: {
             }
           ];
         };
-        container = {
-          enable = true;
-          type = "podman";
-        };
-      };
-      hardware = {
-        networking.extraSettings.resolvconf.enable = false;
-        boot-loader.type = "wsl";
-        environment.i18n.type = "zh-cn";
+        openssh.enable = true;
+        sops-nix.enable = true;
       };
     };
   };
@@ -93,8 +93,8 @@ vars: {
             ];
           };
         };
-        shell.bash.enable = true;
         editor.nixvim.enable = true;
+        shell.bash.enable = true;
       };
     };
   };

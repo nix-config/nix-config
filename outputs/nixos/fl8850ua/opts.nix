@@ -9,8 +9,6 @@ vars: {
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
-        nix-ld.enable = true;
-        sudo-rs.enable = true;
         nix = {
           substituters = [
             "https://cache.garnix.io"
@@ -20,27 +18,39 @@ vars: {
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };
+        nix-ld.enable = true;
+        sudo-rs.enable = true;
       };
-      tool.clash-verge.enable = true;
       display = {
         desktop = {
           enable = true;
           type = "hyprland";
         };
         dms.enable = true;
-        gtk.enable = true;
         font.enable = true;
+        gtk.enable = true;
+      };
+      environment.i18n.type = "zh-cn";
+      hardware = {
+        bluetooth.enable = true;
+        boot-loader.type = "systemd-boot";
+        disk.devices = {
+          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
+        };
+        graphics.type = "amd";
+        kernel = {
+          configs = {
+            DRM_XE = "no";
+            DRM_I915 = "no";
+            DRM_RADEON = "no";
+            DRM_NOUVEAU = "no";
+          };
+          types = [ "kernel-cachyos-bore-lto-v3" ];
+        };
+        networking.networkmanager.enable = true;
+        zram.enable = true;
       };
       service = {
-        greetd.enable = true;
-        logind.enable = true;
-        openssh.enable = true;
-        snapper.enable = true;
-        udiskie.enable = true;
-        openlist.enable = true;
-        pipewire.enable = true;
-        libinput.enable = true;
-        sops-nix.enable = true;
         frp = {
           enable = true;
           role = "client";
@@ -61,27 +71,17 @@ vars: {
             }
           ];
         };
+        greetd.enable = true;
+        libinput.enable = true;
+        logind.enable = true;
+        openlist.enable = true;
+        openssh.enable = true;
+        pipewire.enable = true;
+        snapper.enable = true;
+        sops-nix.enable = true;
+        udiskie.enable = true;
       };
-      hardware = {
-        zram.enable = true;
-        bluetooth.enable = true;
-        graphics.type = "amd";
-        disk.devices = {
-          main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
-        };
-        kernel = {
-          types = [ "kernel-cachyos-bore-lto-v3" ];
-          configs = {
-            DRM_XE = "no";
-            DRM_I915 = "no";
-            DRM_RADEON = "no";
-            DRM_NOUVEAU = "no";
-          };
-        };
-        networking.networkmanager.enable = true;
-        boot-loader.type = "systemd-boot";
-      };
-      environment.i18n.type = "zh-cn";
+      tool.clash-verge.enable = true;
     };
   };
   users = {
@@ -116,7 +116,6 @@ vars: {
         count = 1;
         cli = {
           direnv.enable = true;
-          zellij.enable = true;
           git.user = {
             name = "骑士姬";
             email = "2067834160@qq.com";
@@ -128,18 +127,8 @@ vars: {
               "id_ed25519_git"
             ];
           };
+          zellij.enable = true;
         };
-        tool = {
-          fcitx5.enable = true;
-          lutris.enable = true;
-        };
-        media = {
-          biu.enable = true;
-          mpv.enable = true;
-          spotify.enable = true;
-          obs-studio.enable = true;
-        };
-        shell.bash.enable = true;
         editor = {
           nixvim.enable = true;
           vscode = {
@@ -147,13 +136,24 @@ vars: {
             extensions = [ "all" ];
           };
         };
-        terminal.kitty.enable = true;
         internet = {
-          qq.enable = true;
-          wechat.enable = true;
           firefox.enable = true;
+          qq.enable = true;
           rustdesk.enable = true;
           telegram-desktop.enable = true;
+          wechat.enable = true;
+        };
+        media = {
+          biu.enable = true;
+          mpv.enable = true;
+          obs-studio.enable = true;
+          spotify.enable = true;
+        };
+        shell.bash.enable = true;
+        terminal.kitty.enable = true;
+        tool = {
+          fcitx5.enable = true;
+          lutris.enable = true;
         };
       };
     };

@@ -17,20 +17,9 @@ vars: {
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
-      service = {
-        openssh.enable = true;
-        sops-nix.enable = true;
-        frp = {
-          enable = true;
-          role = "server";
-        };
-        rustdesk-server = {
-          enable = true;
-          relayHosts = [ "knightfemale.com:21117" ];
-        };
-      };
+      environment.i18n.type = "zh-cn";
       hardware = {
-        zram.enable = true;
+        boot-loader.type = "systemd-boot";
         disk.devices = {
           main = vars.diskPartitionTypes.efi-ext4 {
             device = "/dev/vda";
@@ -38,7 +27,6 @@ vars: {
           };
         };
         kernel = {
-          types = [ "kernel-cachyos-server-lto" ];
           configs = {
             DRM_XE = "no";
             DRM_I915 = "no";
@@ -46,10 +34,22 @@ vars: {
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
           };
+          types = [ "kernel-cachyos-server-lto" ];
         };
-        boot-loader.type = "systemd-boot";
+        zram.enable = true;
       };
-      environment.i18n.type = "zh-cn";
+      service = {
+        frp = {
+          enable = true;
+          role = "server";
+        };
+        openssh.enable = true;
+        rustdesk-server = {
+          enable = true;
+          relayHosts = [ "knightfemale.com:21117" ];
+        };
+        sops-nix.enable = true;
+      };
     };
   };
   users = {

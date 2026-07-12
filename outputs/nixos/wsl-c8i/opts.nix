@@ -9,8 +9,6 @@ vars: {
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
-        nix-ld.enable = true;
-        sudo-rs.enable = true;
         nix = {
           substituters = [
             "https://ai.cachix.org"
@@ -22,14 +20,18 @@ vars: {
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };
+        nix-ld.enable = true;
+        sudo-rs.enable = true;
       };
       display.desktop.enable = true;
+      environment.i18n.type = "zh-cn";
+      hardware = {
+        boot-loader.type = "wsl";
+        graphics.type = "nvidia";
+        networking.extraSettings.resolvconf.enable = false;
+      };
       service = {
         comfyui.enable = true;
-        openssh.enable = true;
-        searxng.enable = true;
-        sops-nix.enable = true;
-        hermes-agent.enable = true;
         frp = {
           enable = true;
           role = "client";
@@ -43,13 +45,11 @@ vars: {
             }
           ];
         };
+        hermes-agent.enable = true;
+        openssh.enable = true;
+        searxng.enable = true;
+        sops-nix.enable = true;
       };
-      hardware = {
-        graphics.type = "nvidia";
-        networking.extraSettings.resolvconf.enable = false;
-        boot-loader.type = "wsl";
-      };
-      environment.i18n.type = "zh-cn";
     };
   };
   users = {
@@ -84,12 +84,11 @@ vars: {
         count = 1;
         cli = {
           direnv.enable = true;
-          nvitop.enable = true;
-          zellij.enable = true;
           git.user = {
             name = "骑士姬";
             email = "2067834160@qq.com";
           };
+          nvitop.enable = true;
           ssh = {
             enable = true;
             enableSshSecrets = [
@@ -97,6 +96,7 @@ vars: {
               "id_ed25519_git"
             ];
           };
+          zellij.enable = true;
         };
         shell.bash.enable = true;
       };
@@ -122,11 +122,11 @@ vars: {
         count = 1;
         cli = {
           direnv.enable = true;
-          zellij.enable = true;
           git.user = {
             name = "小鲮鱼";
             email = "1835165361@qq.com";
           };
+          zellij.enable = true;
         };
         shell.bash.enable = true;
       };

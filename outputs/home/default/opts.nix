@@ -12,7 +12,7 @@ vars: {
       stateVersion = "26.05";
       system = "x86_64-linux";
       nixConfigPath = "path/to/nix-config";
-      i18n.locale = "en-us";
+      # environment.i18n.type = "zh-cn";
       hardware.graphics.type = "none";
     };
   };

@@ -37,35 +37,6 @@ in
   };
   # 命令行工具
   cli = {
-    # 在 NixOS 上运行未打补丁的动态二进制文件
-    nix-ld.enable = {
-      type = bool;
-      default = false;
-    };
-    # Nix 包管理器配置
-    nix = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      substituters = {
-        type = listOfStr;
-        default = [ ];
-      };
-      trusted-public-keys = {
-        type = listOfStr;
-        default = [ ];
-      };
-      trusted-substituters = {
-        type = listOfStr;
-        default = [ ];
-      };
-    };
-    # 基于 Rust 的更安全的 sudo
-    sudo-rs.enable = {
-      type = bool;
-      default = false;
-    };
     # cat 替代品, 带语法高亮和行号
     bat.enable = {
       type = bool;
@@ -73,6 +44,11 @@ in
     };
     # 系统资源监控器
     btop.enable = {
+      type = bool;
+      default = false;
+    };
+    # 代码库记忆 MCP 服务
+    codebase-memory-mcp.enable = {
       type = bool;
       default = false;
     };
@@ -128,6 +104,30 @@ in
       type = bool;
       default = false;
     };
+    # Nix 包管理器配置
+    nix = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      substituters = {
+        type = listOfStr;
+        default = [ ];
+      };
+      trusted-public-keys = {
+        type = listOfStr;
+        default = [ ];
+      };
+      trusted-substituters = {
+        type = listOfStr;
+        default = [ ];
+      };
+    };
+    # 在 NixOS 上运行未打补丁的动态二进制文件
+    nix-ld.enable = {
+      type = bool;
+      default = false;
+    };
     # nix LSP 程序
     nixd.enable = {
       type = bool;
@@ -170,6 +170,11 @@ in
       type = bool;
       default = false;
     };
+    # 基于 Rust 的更安全的 sudo
+    sudo-rs.enable = {
+      type = bool;
+      default = false;
+    };
     # 终端复用器, 可在一个终端中运行多个会话
     tmux.enable = {
       type = bool;
@@ -185,77 +190,35 @@ in
       type = bool;
       default = false;
     };
-    # 代码库记忆 MCP 服务
-    codebase-memory-mcp.enable = {
-      type = bool;
-      default = false;
-    };
   };
-  # 实用工具
-  tool = {
-    # Clash 代理客户端
-    clash-verge.enable = {
+  # 桌面环境
+  display = {
+    # 桌面环境
+    desktop = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      type = {
+        type = enum [
+          "hyprland"
+          "none"
+        ];
+        default = "none";
+      };
+    };
+    # DankMaterialShell
+    dms.enable = {
       type = bool;
       default = false;
     };
-    # 模块化输入法框架, 支持多种输入法
-    fcitx5.enable = {
+    # 字体配置
+    font.enable = {
       type = bool;
       default = false;
     };
-    # Linux 游戏平台管理工具
-    lutris.enable = {
-      type = bool;
-      default = false;
-    };
-    # GUI 系统活动监控器
-    mission-center.enable = {
-      type = bool;
-      default = false;
-    };
-    # 办公套件
-    onlyoffice.enable = {
-      type = bool;
-      default = false;
-    };
-    # 游戏逆向工程工具 (Linux 版 Cheat Engine)
-    pince.enable = {
-      type = bool;
-      default = false;
-    };
-  };
-  # 媒体应用
-  media = {
-    # 轻量级视频播放器
-    mpv.enable = {
-      type = bool;
-      default = false;
-    };
-    # 录屏和直播软件
-    obs-studio.enable = {
-      type = bool;
-      default = false;
-    };
-    # Spotify 音乐播放器
-    spotify.enable = {
-      type = bool;
-      default = false;
-    };
-    # Bilibili 音乐播放器
-    biu.enable = {
-      type = bool;
-      default = false;
-    };
-  };
-  # 命令解释器
-  shell = {
-    # 通用的命令解释器
-    bash.enable = {
-      type = bool;
-      default = false;
-    };
-    # 用户友好的命令解释器
-    fish.enable = {
+    # GTK 配置
+    gtk.enable = {
       type = bool;
       default = false;
     };
@@ -291,34 +254,178 @@ in
       };
     };
   };
-  # 桌面环境
-  display = {
-    # 桌面环境
-    desktop = {
+  # 环境配置
+  environment = {
+    i18n = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      type = {
+        type = str;
+        default = "en-us";
+      };
+    };
+  };
+  # 硬件配置
+  hardware = {
+    # 蓝牙配置
+    bluetooth.enable = {
+      type = bool;
+      default = false;
+    };
+    boot-loader = {
       enable = {
         type = bool;
         default = false;
       };
       type = {
         type = enum [
+          "grub"
+          "systemd-boot"
+          "wsl"
+        ];
+        default = "systemd-boot";
+      };
+      # EFI 系统分区挂载点
+      efiSysMountPoint = {
+        type = str;
+        default = "/boot";
+      };
+    };
+    # 磁盘配置, 具体定义查看: vars/diskPartitionTypes/
+    disk = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      devices = {
+        type = attrs;
+        default = { };
+      };
+    };
+    # 图形驱动配置
+    graphics = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      type = {
+        type = enum [
+          "amd"
           "none"
-          "hyprland"
+          "nvidia"
         ];
         default = "none";
       };
     };
-    # 字体配置
-    font.enable = {
+    # 内核配置
+    kernel = {
+      enable = {
+        # 类型
+        type = bool;
+        default = false;
+      };
+      types = {
+        type = listOfStr;
+        default = [ ];
+      };
+      # 额外参数
+      configs = {
+        type = attrsOfStr;
+        default = { };
+      };
+    };
+    # 网络配置
+    networking = {
+      # 是否启用网络配置
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 主机名
+      hostName = {
+        type = str;
+        default = "nixos";
+      };
+      # 代理配置
+      proxy = {
+        type = attrs;
+        default = { };
+      };
+      # 防火墙配置
+      firewall = {
+        type = attrs;
+        default = {
+          enable = false;
+        };
+      };
+      # 网络管理器配置
+      networkmanager = {
+        type = attrs;
+        default = {
+          enable = false;
+        };
+      };
+      # 额外设置
+      extraSettings = {
+        type = attrs;
+        default = { };
+      };
+    };
+    # 内存压缩配置
+    zram.enable = {
       type = bool;
       default = false;
     };
-    # GTK 配置
-    gtk.enable = {
+  };
+  # 网络应用
+  internet = {
+    # 火狐浏览器
+    firefox.enable = {
       type = bool;
       default = false;
     };
-    # DankMaterialShell
-    dms.enable = {
+    # 腾讯 QQ
+    qq.enable = {
+      type = bool;
+      default = false;
+    };
+    # 远程桌面客户端
+    rustdesk.enable = {
+      type = bool;
+      default = false;
+    };
+    # 即时通讯应用
+    telegram-desktop.enable = {
+      type = bool;
+      default = false;
+    };
+    # 微信
+    wechat.enable = {
+      type = bool;
+      default = false;
+    };
+  };
+  # 媒体应用
+  media = {
+    # Bilibili 音乐播放器
+    biu.enable = {
+      type = bool;
+      default = false;
+    };
+    # 轻量级视频播放器
+    mpv.enable = {
+      type = bool;
+      default = false;
+    };
+    # 录屏和直播软件
+    obs-studio.enable = {
+      type = bool;
+      default = false;
+    };
+    # Spotify 音乐播放器
+    spotify.enable = {
       type = bool;
       default = false;
     };
@@ -329,6 +436,31 @@ in
     comfyui.enable = {
       type = bool;
       default = false;
+    };
+    # 容器管理
+    container = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 容器运行时类型
+      type = {
+        type = enum [
+          "docker"
+          "podman"
+        ];
+        default = "podman";
+      };
+      # Arch 开发容器
+      dev-arch.enable = {
+        type = bool;
+        default = false;
+      };
+      # Portainer 代理
+      portainer-agent.enable = {
+        type = bool;
+        default = false;
+      };
     };
     # 内核级透明代理
     daed.enable = {
@@ -343,8 +475,8 @@ in
       };
       role = {
         type = enum [
-          "server"
           "client"
+          "server"
         ];
         default = "server";
       };
@@ -367,6 +499,18 @@ in
       type = bool;
       default = false;
     };
+    # llama.cpp 推理服务
+    llama-cpp = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 额外设置
+      extraSettings = {
+        type = attrs;
+        default = { };
+      };
+    };
     # 系统登录和电源管理
     logind.enable = {
       type = bool;
@@ -380,18 +524,6 @@ in
     ollama.enable = {
       type = bool;
       default = false;
-    };
-    # llama.cpp 推理服务
-    llama-cpp = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      # 额外设置
-      extraSettings = {
-        type = attrs;
-        default = { };
-      };
     };
     # 支持多种存储的文件列表程序
     openlist.enable = {
@@ -457,168 +589,16 @@ in
         default = [ ];
       };
     };
-    # 容器管理
-    container = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      # 容器运行时类型
-      type = {
-        type = enum [
-          "podman"
-          "docker"
-        ];
-        default = "podman";
-      };
-      # Arch 开发容器
-      dev-arch.enable = {
-        type = bool;
-        default = false;
-      };
-      # Portainer 代理
-      portainer-agent.enable = {
-        type = bool;
-        default = false;
-      };
-    };
   };
-  # 硬件配置
-  hardware = {
-    # 内存压缩配置
-    zram.enable = {
+  # 命令解释器
+  shell = {
+    # 通用的命令解释器
+    bash.enable = {
       type = bool;
       default = false;
     };
-    # 蓝牙配置
-    bluetooth.enable = {
-      type = bool;
-      default = false;
-    };
-    # 图形驱动配置
-    graphics = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      type = {
-        type = enum [
-          "none"
-          "amd"
-          "nvidia"
-        ];
-        default = "none";
-      };
-    };
-    # 内核配置
-    kernel = {
-      enable = {
-        # 类型
-        type = bool;
-        default = false;
-      };
-      types = {
-        type = listOfStr;
-        default = [ ];
-      };
-      # 额外参数
-      configs = {
-        type = attrsOfStr;
-        default = { };
-      };
-    };
-    # 网络配置
-    networking = {
-      # 是否启用网络配置
-      enable = {
-        type = bool;
-        default = false;
-      };
-      # 主机名
-      hostName = {
-        type = str;
-        default = "nixos";
-      };
-      # 代理配置
-      proxy = {
-        type = attrs;
-        default = { };
-      };
-      # 防火墙配置
-      firewall = {
-        type = attrs;
-        default = {
-          enable = false;
-        };
-      };
-      # 网络管理器配置
-      networkmanager = {
-        type = attrs;
-        default = {
-          enable = false;
-        };
-      };
-      # 额外设置
-      extraSettings = {
-        type = attrs;
-        default = { };
-      };
-    };
-    # 磁盘配置, 具体定义查看: vars/diskPartitionTypes/
-    disk = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      devices = {
-        type = attrs;
-        default = { };
-      };
-    };
-    boot-loader = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      type = {
-        type = enum [
-          "wsl"
-          "grub"
-          "systemd-boot"
-        ];
-        default = "systemd-boot";
-      };
-      # EFI 系统分区挂载点
-      efiSysMountPoint = {
-        type = str;
-        default = "/boot";
-      };
-    };
-  };
-  # 网络应用
-  internet = {
-    # 火狐浏览器
-    firefox.enable = {
-      type = bool;
-      default = false;
-    };
-    # 腾讯 QQ
-    qq.enable = {
-      type = bool;
-      default = false;
-    };
-    # 远程桌面客户端
-    rustdesk.enable = {
-      type = bool;
-      default = false;
-    };
-    # 即时通讯应用
-    telegram-desktop.enable = {
-      type = bool;
-      default = false;
-    };
-    # 微信
-    wechat.enable = {
+    # 用户友好的命令解释器
+    fish.enable = {
       type = bool;
       default = false;
     };
@@ -636,17 +616,37 @@ in
       default = false;
     };
   };
-  # 环境配置
-  environment = {
-    i18n = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      type = {
-        type = str;
-        default = "en-us";
-      };
+  # 实用工具
+  tool = {
+    # Clash 代理客户端
+    clash-verge.enable = {
+      type = bool;
+      default = false;
+    };
+    # 模块化输入法框架, 支持多种输入法
+    fcitx5.enable = {
+      type = bool;
+      default = false;
+    };
+    # Linux 游戏平台管理工具
+    lutris.enable = {
+      type = bool;
+      default = false;
+    };
+    # GUI 系统活动监控器
+    mission-center.enable = {
+      type = bool;
+      default = false;
+    };
+    # 办公套件
+    onlyoffice.enable = {
+      type = bool;
+      default = false;
+    };
+    # 游戏逆向工程工具 (Linux 版 Cheat Engine)
+    pince.enable = {
+      type = bool;
+      default = false;
     };
   };
 }

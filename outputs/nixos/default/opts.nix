@@ -12,7 +12,6 @@ vars: {
       stateVersion = "26.05";
       nixConfigPath = "path/to/nix-config";
       cli = {
-        nix-ld.enable = true;
         nix = {
           substituters = [
             # 上海交大镜像源
@@ -31,19 +30,29 @@ vars: {
             # "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
         };
+        nix-ld.enable = true;
       };
       # display.desktop = {
       #   enable = true;
       #   type = "hyprland";
       # };
-      service.openssh.enable = true;
+      # environment.i18n.type = "zh-cn";
       hardware = {
-        zram.enable = true;
+        boot-loader = {
+          efiSysMountPoint = "/boot";
+          type = "systemd-boot";
+        };
         disk.devices = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
         # graphics.type = "none";
         networking = {
+          # 防火墙
+          firewall = {
+            # 在防火墙中打开的端口
+            # allowedTCPPorts = [ ... ];
+            # allowedUDPPorts = [ ... ];
+          };
           # 网络连接管理
           # networkmanager.enable = true;
           # 网络代理
@@ -51,19 +60,10 @@ vars: {
             # default = "http://user:password@proxy:port/";
             # noProxy = "127.0.0.1,localhost,internal.domain";
           };
-          # 防火墙
-          firewall = {
-            # 在防火墙中打开的端口
-            # allowedTCPPorts = [ ... ];
-            # allowedUDPPorts = [ ... ];
-          };
         };
-        boot-loader = {
-          type = "systemd-boot";
-          efiSysMountPoint = "/boot";
-        };
-        # environment.i18n.type = "zh-cn";
+        zram.enable = true;
       };
+      service.openssh.enable = true;
     };
   };
   # 用户配置
