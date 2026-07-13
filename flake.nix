@@ -3,6 +3,7 @@
     # self.submodules = true;
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-rustdesk-flutter.url = "github:knightfemale/nixpkgs/rustdesk-flutter";
     nur = {
       url = "github:nix-community/NUR/main";
       inputs.nixpkgs.follows = "nixpkgs";

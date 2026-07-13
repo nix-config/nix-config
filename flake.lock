@@ -490,6 +490,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-rustdesk-flutter": {
+      "locked": {
+        "lastModified": 1783950350,
+        "narHash": "sha256-pOF/Zo0h62ufR/I61UU6mQd8+eyT7Kg3QMkWDWQwN1M=",
+        "owner": "knightfemale",
+        "repo": "nixpkgs",
+        "rev": "81b3bb826ce820ab7353bf8142b435da0c103281",
+        "type": "github"
+      },
+      "original": {
+        "owner": "knightfemale",
+        "ref": "rustdesk-flutter",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1783791668,
@@ -671,6 +687,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
+        "nixpkgs-rustdesk-flutter": "nixpkgs-rustdesk-flutter",
         "nixvim": "nixvim",
         "nur": "nur",
         "nur-knightfemale": "nur-knightfemale",
