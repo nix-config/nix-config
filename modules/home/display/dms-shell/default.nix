@@ -6,7 +6,7 @@
 }:
 let
   enableModule = opts.display.desktop.enable;
-  configPath = "${opts.nixConfigPath}/modules/home/display/dms/config";
+  configPath = "${opts.nixConfigPath}/modules/home/display/dms-shell/config";
 in
 {
   config = lib.mkIf enableModule {

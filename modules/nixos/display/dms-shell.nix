@@ -8,12 +8,9 @@ let
   enableModule = opts.display.desktop.enable;
 in
 {
-  imports = [
-    inputs.dms.nixosModules.dank-material-shell
-  ];
   config = lib.mkIf enableModule {
     programs = {
-      dank-material-shell = {
+      dms-shell = {
         enable = true;
         systemd = {
           # 创建 systemd 服务单元

@@ -8,7 +8,7 @@ let
   enableModule = (opts.display.desktop.type == "hyprland");
   btopIsEnabled = opts.cli.btop.enable;
   yaziIsEnabled = opts.cli.yazi.enable;
-  dmsIsEnabled = opts.display.dms.enable;
+  dmsShellIsEnabled = opts.display.dms-shell.enable;
   footIsEnabled = opts.terminal.foot.enable;
   fcitx5IsEnabled = opts.tool.fcitx5.enable;
   kittyIsEnabled = opts.terminal.kitty.enable;
@@ -86,7 +86,7 @@ in
         # 文件管理器
         "$fileManager" = if yaziIsEnabled then "$terminal -e yazi" else "";
         # 程序启动菜单
-        "$menu" = if dmsIsEnabled then "dms ipc call spotlight toggle" else "";
+        "$menu" = if dmsShellIsEnabled then "dms ipc call spotlight toggle" else "";
         # 屏幕截图
         "$screenshot" = "dms screenshot";
         # 主修饰键
@@ -94,7 +94,7 @@ in
         # ========== 自启动 ==========
         exec-once =
           # DankMaterialShell
-          lib.optional dmsIsEnabled "bash -lc 'exec dms run'"
+          lib.optional dmsShellIsEnabled "bash -lc 'exec dms run'"
           # 输入法
           ++ lib.optional fcitx5IsEnabled "fcitx5"
           # 自动挂载 U 盘

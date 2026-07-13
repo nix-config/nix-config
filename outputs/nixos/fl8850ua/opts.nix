@@ -26,7 +26,7 @@ vars: {
           enable = true;
           type = "hyprland";
         };
-        dms.enable = true;
+        dms-shell.enable = true;
         font.enable = true;
         gtk.enable = true;
       };

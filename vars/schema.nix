@@ -208,7 +208,7 @@ in
       };
     };
     # DankMaterialShell
-    dms.enable = {
+    dms-shell.enable = {
       type = bool;
       default = false;
     };
