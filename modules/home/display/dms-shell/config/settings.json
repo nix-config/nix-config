@@ -33,7 +33,7 @@
   "showWeekNumber": false,
   "calendarBackend": "auto",
   "use24HourClock": true,
-  "showSeconds": false,
+  "showSeconds": true,
   "padHours12Hour": false,
   "useFahrenheit": false,
   "windSpeedUnit": "kmh",
@@ -62,7 +62,7 @@
   "blurLayerOutlineOpacity": 0.12,
   "blurBorderColor": "outline",
   "blurBorderCustomColor": "#ffffff",
-  "blurBorderOpacity": 1,
+  "blurBorderOpacity": 0.35,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": false,
@@ -200,7 +200,6 @@
   "scrollTitleEnabled": true,
   "mediaAdaptiveWidthEnabled": true,
   "audioVisualizerEnabled": true,
-  "mediaUseAlbumArtAccent": false,
   "audioScrollMode": "volume",
   "audioWheelScrollAmount": 5,
   "audioDeviceScrollVolumeEnabled": false,
@@ -208,7 +207,7 @@
   "clockCompactMode": false,
   "focusedWindowCompactMode": false,
   "focusedWindowSize": 1,
-  "focusedWindowShowIcon": false,
+  "focusedWindowShowIcon": true,
   "runningAppsCompactMode": true,
   "barMaxVisibleApps": 0,
   "barMaxVisibleRunningApps": 0,
@@ -297,7 +296,7 @@
       "enabled": true
     }
   ],
-  "networkPreference": "wifi",
+  "networkPreference": "auto",
   "iconThemeDark": "System Default",
   "iconThemeLight": "System Default",
   "iconThemePerMode": false,
@@ -314,7 +313,7 @@
       "hideOnTouch": false,
       "inactiveTimeout": 0
     },
-    "dwl": {
+    "mango": {
       "cursorHideTimeout": 0
     }
   },
@@ -329,7 +328,7 @@
   "monoFontFamily": "Fira Code",
   "fontWeight": 400,
   "fontScale": 1,
-  "textRenderType": 1,
+  "textRenderType": 0,
   "textRenderQuality": 0,
   "notepadUseMonospace": true,
   "notepadFontFamily": "",
@@ -371,7 +370,7 @@
   "batteryNotifyLow": false,
   "batteryChargeLimitNotificationType": 0,
   "batteryLowNotificationType": 0,
-  "batteryCriticalNotificationType": 0,
+  "batteryCriticalNotificationType": 1,
   "batteryAutoPowerSaver": false,
   "lockBeforeSuspend": false,
   "loginctlLockIntegration": true,
@@ -457,7 +456,7 @@
   "dockMaxVisibleRunningApps": 0,
   "dockShowOverflowBadge": true,
   "dockShowTrash": false,
-  "dockTrashFileManager": "nautilus",
+  "dockTrashFileManager": "default",
   "dockTrashCustomCommand": "",
   "notificationOverlayEnabled": false,
   "notificationPopupShadowEnabled": true,
@@ -543,11 +542,7 @@
   "screenPreferences": {},
   "showOnLastDisplay": {},
   "niriOutputSettings": {},
-  "hyprlandOutputSettings": {
-    "HDMI-A-1": {
-      "bitdepth": 10
-    }
-  },
+  "hyprlandOutputSettings": {},
   "displayProfiles": {},
   "activeDisplayProfile": {},
   "displayProfileAutoSelect": false,
@@ -585,11 +580,12 @@
       ],
       "spacing": 10,
       "innerPadding": 5,
+      "barInsetPadding": 5,
       "bottomGap": 0,
       "transparency": 1,
       "widgetTransparency": 1,
       "squareCorners": false,
-      "noBackground": false,
+      "noBackground": true,
       "maximizeWidgetIcons": false,
       "maximizeWidgetText": false,
       "removeWidgetPadding": false,
@@ -608,6 +604,7 @@
       "fontScale": 1,
       "iconScale": 1,
       "autoHide": false,
+      "autoHideStrict": false,
       "autoHideDelay": 250,
       "showOnWindowsOpen": false,
       "openOnOverview": false,
@@ -615,6 +612,7 @@
       "popupGapsAuto": true,
       "popupGapsManual": 4,
       "maximizeDetection": true,
+      "useOverlayLayer": false,
       "scrollEnabled": true,
       "scrollXBehavior": "column",
       "scrollYBehavior": "workspace",
@@ -622,7 +620,9 @@
       "shadowOpacity": 60,
       "shadowColorMode": "default",
       "shadowCustomColor": "#000000",
-      "clickThrough": false
+      "clickThrough": false,
+      "hoverPopouts": false,
+      "hoverPopoutDelay": 150
     }
   ],
   "desktopClockEnabled": false,
@@ -696,14 +696,7 @@
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
   "desktopWidgetGroups": [],
-  "builtInPluginSettings": {
-    "dms_settings_search": {
-      "trigger": "?"
-    },
-    "dms_clipboard_search": {
-      "trigger": "cb"
-    }
-  },
+  "builtInPluginSettings": {},
   "clipboardClickToPaste": false,
   "clipboardEnterToPaste": false,
   "clipboardRememberTypeFilter": false,
@@ -730,7 +723,7 @@
   "frameLauncherEmergeSide": "bottom",
   "frameLauncherArcExtender": false,
   "frameLauncherEdgeHover": false,
-  "frameMode": "separate",
+  "frameMode": "connected",
   "barInsetPaddingShared": -1,
   "barInsetPaddingSyncAll": false,
   "frameBarInsetPadding": -1,
