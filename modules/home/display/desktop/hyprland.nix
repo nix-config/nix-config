@@ -9,6 +9,7 @@ let
   btopIsEnabled = opts.cli.btop.enable;
   yaziIsEnabled = opts.cli.yazi.enable;
   dmsShellIsEnabled = (lib.elem "dms-shell" opts.display.widget.enabledWidgets);
+  noctaliaIsEnabled = (lib.elem "noctalia" opts.display.widget.enabledWidgets);
   footIsEnabled = opts.terminal.foot.enable;
   fcitx5IsEnabled = opts.tool.fcitx5.enable;
   kittyIsEnabled = opts.terminal.kitty.enable;
@@ -86,15 +87,23 @@ in
         # 文件管理器
         "$fileManager" = if yaziIsEnabled then "$terminal -e yazi" else "";
         # 程序启动菜单
-        "$menu" = if dmsShellIsEnabled then "dms ipc call spotlight toggle" else "";
+        "$menu" =
+          if dmsShellIsEnabled then
+            "dms ipc call spotlight toggle"
+          else if noctaliaIsEnabled then
+            "noctalia msg panel-toggle launcher"
+          else
+            "";
         # 屏幕截图
         "$screenshot" = "dms screenshot";
         # 主修饰键
         "$mainMod" = "SUPER";
         # ========== 自启动 ==========
         exec-once =
+          # Noctalia
+          lib.optional noctaliaIsEnabled "bash -lc 'exec noctalia'"
           # DankMaterialShell
-          lib.optional dmsShellIsEnabled "bash -lc 'exec dms run'"
+          ++ lib.optional dmsShellIsEnabled "bash -lc 'exec dms run'"
           # 输入法
           ++ lib.optional fcitx5IsEnabled "fcitx5"
           # 自动挂载 U 盘

@@ -12,9 +12,11 @@ vars: {
         nix = {
           substituters = [
             "https://cache.garnix.io"
+            "https://noctalia.cachix.org"
           ];
           trusted-public-keys = [
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };
@@ -30,7 +32,7 @@ vars: {
         gtk.enable = true;
         widget = {
           enable = true;
-          enabledWidgets = [ "dms-shell" ];
+          enabledWidgets = [ "noctalia" ];
         };
       };
       environment.i18n.type = "zh-cn";

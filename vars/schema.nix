@@ -227,6 +227,7 @@ in
       enabledWidgets = {
         type = listOf (enum [
           "dms-shell"
+          "noctalia"
         ]);
         default = [ ];
       };
