@@ -5,8 +5,9 @@
   ...
 }:
 let
-  enableModule = opts.display.desktop.enable;
-  configPath = "${opts.nixConfigPath}/modules/home/display/dms-shell/config";
+  enableModule =
+    (lib.elem "dms-shell" opts.display.widget.enabledWidgets) && opts.display.desktop.enable;
+  configPath = "${opts.nixConfigPath}/modules/home/display/widget/dms-shell/config";
 in
 {
   config = lib.mkIf enableModule {

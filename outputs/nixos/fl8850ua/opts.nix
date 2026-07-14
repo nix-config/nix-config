@@ -26,9 +26,12 @@ vars: {
           enable = true;
           type = "hyprland";
         };
-        dms-shell.enable = true;
         font.enable = true;
         gtk.enable = true;
+        widget = {
+          enable = true;
+          enabledWidgets = [ "dms-shell" ];
+        };
       };
       environment.i18n.type = "zh-cn";
       hardware = {
@@ -133,7 +136,7 @@ vars: {
           nixvim.enable = true;
           vscode = {
             enable = true;
-            extensions = [ "all" ];
+            enableExtensions = [ "all" ];
           };
         };
         internet = {

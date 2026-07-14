@@ -207,11 +207,6 @@ in
         default = "none";
       };
     };
-    # DankMaterialShell
-    dms-shell.enable = {
-      type = bool;
-      default = false;
-    };
     # 字体配置
     font.enable = {
       type = bool;
@@ -221,6 +216,20 @@ in
     gtk.enable = {
       type = bool;
       default = false;
+    };
+    # 窗口小部件
+    widget = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 启用的小部件列表
+      enabledWidgets = {
+        type = listOf (enum [
+          "dms-shell"
+        ]);
+        default = [ ];
+      };
     };
   };
   # 编辑器
@@ -237,7 +246,7 @@ in
         default = false;
       };
       # 扩展开关列表, 含 "all" 为全部开启
-      extensions = {
+      enableExtensions = {
         type = listOf (enum [
           "all"
           "base"

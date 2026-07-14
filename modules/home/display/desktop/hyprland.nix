@@ -8,7 +8,7 @@ let
   enableModule = (opts.display.desktop.type == "hyprland");
   btopIsEnabled = opts.cli.btop.enable;
   yaziIsEnabled = opts.cli.yazi.enable;
-  dmsShellIsEnabled = opts.display.dms-shell.enable;
+  dmsShellIsEnabled = (lib.elem "dms-shell" opts.display.widget.enabledWidgets);
   footIsEnabled = opts.terminal.foot.enable;
   fcitx5IsEnabled = opts.tool.fcitx5.enable;
   kittyIsEnabled = opts.terminal.kitty.enable;
