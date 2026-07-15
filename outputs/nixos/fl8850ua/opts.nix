@@ -50,7 +50,7 @@ vars: {
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
           };
-          types = [ "kernel-cachyos-bore-lto-v3" ];
+          name = "kernel-cachyos-bore-lto-v3";
         };
         networking.networkmanager.enable = true;
         zram.enable = true;

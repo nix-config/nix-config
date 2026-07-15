@@ -1,14 +1,16 @@
 inputs:
 let
   inherit (inputs.nixpkgs) lib;
-  inherit (lib) types;
-  inherit (types) int;
-  inherit (types) str;
-  inherit (types) bool;
-  inherit (types) enum;
-  inherit (types) attrs;
-  inherit (types) listOf;
-  inherit (types) attrsOf;
+  inherit (lib.types)
+    int
+    str
+    bool
+    enum
+    attrs
+    listOf
+    nullOr
+    attrsOf
+    ;
   listOfStr = listOf str;
   attrsOfStr = attrsOf str;
   listOfAttrs = listOf attrs;
@@ -336,14 +338,15 @@ in
         type = bool;
         default = false;
       };
-      types = {
-        type = listOfStr;
-        default = [ ];
-      };
       # 额外参数
       configs = {
         type = attrsOfStr;
         default = { };
+      };
+      # 内核名称, null 表示使用默认内核
+      name = {
+        type = nullOr str;
+        default = null;
       };
     };
     # 网络配置
