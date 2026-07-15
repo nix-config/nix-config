@@ -6,7 +6,7 @@
 }:
 let
   enableModule = opts.service.sops-nix.enable;
-  enableSshSecrets = opts.cli.ssh.enableSshSecrets;
+  inherit (opts.cli.ssh) enableSshSecrets;
 in
 {
   config = lib.mkIf enableModule {
