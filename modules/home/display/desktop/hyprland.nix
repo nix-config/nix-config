@@ -95,7 +95,13 @@ in
           else
             "";
         # 屏幕截图
-        "$screenshot" = "dms screenshot";
+        "$screenshot" =
+          if noctaliaIsEnabled then
+            "noctalia msg"
+          else if dmsShellIsEnabled then
+            "dms screenshot"
+          else
+            "";
         # 主修饰键
         "$mainMod" = "SUPER";
         # ========== 自启动 ==========
@@ -254,10 +260,6 @@ in
           "$mainMod, E, exec, $fileManager"
           # 打开程序启动菜单 (Super + R)
           "$mainMod, R, exec, $menu"
-          # 区域截图保存到剪贴板 (PrintScreen)
-          ", Print, exec,  $screenshot region --no-file"
-          # 区域截图保存到文件 (CTRL + PrintScreen)
-          "CTRL, Print, exec, $screenshot region --dir ~/Pictures/Screenshots"
           # 关闭窗口 (Super + C)
           "$mainMod, C, killactive,"
           # 退出 Hyprland (Super + M)
@@ -295,6 +297,17 @@ in
           "$mainMod CTRL, left, layoutmsg, swapcol l"
           # 将当前列与右侧邻居交换 (Super + CTRL + →)
           "$mainMod CTRL, right, layoutmsg, swapcol r"
+        ]
+        # 截图快捷键 — 按 shell 分支
+        ++ lib.optionals noctaliaIsEnabled [
+          # 区域截图到剪贴板 (PrintScreen)
+          ", Print, exec, $screenshot screenshot-region"
+        ]
+        ++ lib.optionals dmsShellIsEnabled [
+          # 区域截图到剪贴板 (PrintScreen)
+          ", Print, exec, $screenshot region --no-file"
+          # 区域截图保存到文件 (CTRL + PrintScreen)
+          "CTRL, Print, exec, $screenshot region --dir ~/Pictures/Screenshots"
         ];
         bindm = [
           # 鼠标拖拽移动/调整窗口大小: Super + 左键/右键拖拽
