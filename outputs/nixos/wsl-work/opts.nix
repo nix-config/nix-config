@@ -75,7 +75,6 @@ vars: {
         devEnv
         baseEnv
         fishShell
-        opencodeEnv
       ];
       customOptSets = {
         count = 1;
@@ -85,6 +84,11 @@ vars: {
             name = "Knight";
             email = "2067834160@qq.com";
           };
+          mcp = {
+            enable = true;
+            enabledMcps = [ "all" ];
+          };
+          opencode.enable = true;
           ssh = {
             enable = true;
             enableSshSecrets = [

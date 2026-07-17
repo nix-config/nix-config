@@ -78,7 +78,6 @@ vars: {
         devEnv
         baseEnv
         fishShell
-        opencodeEnv
       ];
       customOptSets = {
         count = 1;
@@ -88,7 +87,12 @@ vars: {
             name = "骑士姬";
             email = "2067834160@qq.com";
           };
+          mcp = {
+            enable = true;
+            enabledMcps = [ "all" ];
+          };
           nvitop.enable = true;
+          opencode.enable = true;
           ssh = {
             enable = true;
             enableSshSecrets = [
@@ -116,7 +120,6 @@ vars: {
         devEnv
         baseEnv
         fishShell
-        opencodeEnv
       ];
       customOptSets = {
         count = 1;
@@ -126,6 +129,7 @@ vars: {
             name = "小鲮鱼";
             email = "1835165361@qq.com";
           };
+          opencode.enable = true;
           zellij.enable = true;
         };
         shell.bash.enable = true;

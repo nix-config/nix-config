@@ -12,14 +12,27 @@ in
     programs.opencode = {
       enable = true;
       extraPackages = with pkgs; [
+        bun
         gh
         jq
-        bun
       ];
+      enableMcpIntegration = true;
+      settings = {
+        lsp = true;
+        plugin = [
+          "npm:oh-my-opencode-slim@latest"
+        ];
+      };
+      tui = {
+        plugin = [
+          "npm:opencode-visual-cache@latest"
+          "npm:opencode-subagent-magazine@latest"
+        ];
+      };
     };
     home.file = {
-      ".config/opencode" = {
-        source = config.lib.file.mkOutOfStoreSymlink configPath;
+      ".config/opencode/oh-my-opencode-slim.jsonc" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/oh-my-opencode-slim.jsonc";
         force = true;
       };
     };

@@ -6,8 +6,8 @@
   ...
 }:
 let
-  inherit (opts.editor.vscode) enableExtensions;
-  enableModule = (lib.elem "go" enableExtensions) || (lib.elem "all" enableExtensions);
+  inherit (opts.editor.vscode) enabledExtensions;
+  enableModule = (lib.elem "go" enabledExtensions) || (lib.elem "all" enabledExtensions);
   vscode-marketplace =
     (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
 in

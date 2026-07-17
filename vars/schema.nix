@@ -49,11 +49,6 @@ in
       type = bool;
       default = false;
     };
-    # 代码库记忆 MCP 服务
-    codebase-memory-mcp.enable = {
-      type = bool;
-      default = false;
-    };
     # 环境变量管理工具
     direnv.enable = {
       type = bool;
@@ -96,10 +91,21 @@ in
       type = bool;
       default = false;
     };
-    # NixOS MCP
-    mcp-nixos.enable = {
-      type = bool;
-      default = false;
+    # MCP 服务器
+    mcp = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 启用的 MCP, 含 "all" 为全部开启
+      enabledMcps = {
+        type = listOf (enum [
+          "all"
+          "codebase-memory-mcp"
+          "mcp-nixos"
+        ]);
+        default = [ ];
+      };
     };
     # Nix CLI 助手, 自动清理旧一代系统配置
     nh.enable = {
@@ -225,7 +231,7 @@ in
         type = bool;
         default = false;
       };
-      # 启用的小部件列表
+      # 启用的桌面部件
       enabledWidgets = {
         type = listOf (enum [
           "dms-shell"
@@ -248,8 +254,8 @@ in
         type = bool;
         default = false;
       };
-      # 扩展开关列表, 含 "all" 为全部开启
-      enableExtensions = {
+      # 启用的扩展, 含 "all" 为全部开启
+      enabledExtensions = {
         type = listOf (enum [
           "all"
           "base"

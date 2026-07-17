@@ -6,7 +6,6 @@
   cli = {
     sops.enable = true;
     nixd.enable = true;
-    mcp-nixos.enable = true;
     nixfmt-tree.enable = true;
   };
 }
