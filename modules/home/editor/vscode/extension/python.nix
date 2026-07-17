@@ -23,7 +23,7 @@ in
       # Black 代码格式化工具
       ms-python.black-formatter
       # Jinja 语法支持
-      wholroyd.jinja
+      samuelcolvin.jinjahtml
       # Python 环境管理
       ms-python.vscode-python-envs
       # Manim 动画侧边实时预览

@@ -16,6 +16,7 @@ in
         dwproton-bin
       ];
       extraPackages = with pkgs; [
+        mangohud
         umu-launcher
       ];
     };
