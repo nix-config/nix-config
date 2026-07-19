@@ -2,6 +2,7 @@
   lib,
   opts,
   config,
+  inputs,
   ...
 }:
 let
@@ -9,6 +10,9 @@ let
   inherit (opts.cli.ssh) enableSshSecrets;
 in
 {
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
   config = lib.mkIf enableModule {
     sops.secrets = lib.mkMerge [
       (lib.genAttrs (map (n: "ssh/${n}") enableSshSecrets) (name: {

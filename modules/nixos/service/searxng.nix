@@ -2,6 +2,7 @@
   lib,
   opts,
   config,
+  inputs,
   ...
 }:
 let
@@ -9,6 +10,9 @@ let
   firewall = opts.hardware.networking.firewall;
 in
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
   config = lib.mkIf enableModule {
     sops.secrets."searxng.env" = {
       sopsFile = ../../../secrets/searxng.env;

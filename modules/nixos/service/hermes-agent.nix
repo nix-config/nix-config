@@ -11,6 +11,7 @@ in
 {
   imports = [
     inputs.hermes-agent.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
   ];
   config = lib.mkIf enableModule {
     sops.secrets."hermes.env" = {

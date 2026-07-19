@@ -1,16 +1,22 @@
 {
+  lib,
+  opts,
   config,
   inputs,
   ...
 }:
+let
+  enableModule = opts.service.sops-nix.enable;
+in
 {
   # 首次启动执行:
   # sudo journalctl -u openlist --no-pager | grep -i "initial password"
   # 获取初始随机密码后登陆, 在 Web 界面设置密码
   imports = [
     inputs.nur-knightfemale.nixosModules.openlist
+    inputs.sops-nix.nixosModules.sops
   ];
-  config = {
+  config = lib.mkIf enableModule {
     sops.secrets."openlist/jwt-secret" = {
       sopsFile = ../../../secrets/openlist/jwt-secret.enc;
       format = "binary";

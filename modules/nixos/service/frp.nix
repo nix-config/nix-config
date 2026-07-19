@@ -2,6 +2,7 @@
   lib,
   opts,
   config,
+  inputs,
   ...
 }:
 let
@@ -11,6 +12,9 @@ let
   proxies = cfg.proxies;
 in
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
   config = lib.mkIf enableModule {
     sops.secrets."frp.env" = {
       sopsFile = ../../../secrets/frp.env;
