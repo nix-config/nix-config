@@ -15,18 +15,13 @@ in
         bun
         gh
         jq
+        python3
       ];
       enableMcpIntegration = true;
       settings = {
         lsp = true;
         plugin = [
           "npm:oh-my-opencode-slim@latest"
-        ];
-      };
-      tui = {
-        plugin = [
-          "npm:opencode-visual-cache@latest"
-          "npm:opencode-subagent-magazine@latest"
         ];
       };
     };
