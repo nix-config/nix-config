@@ -42,7 +42,7 @@ in
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
           };
-          name = "kernel-cachyos-server-lto";
+          name = "linux-cachyos-server-lto";
         };
         zram.enable = true;
       };

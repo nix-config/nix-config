@@ -344,11 +344,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1784313561,
-        "narHash": "sha256-+JPqIcfB/2NX7N0UjhmI5upAIgiGQ5kcugxAU8tff7M=",
+        "lastModified": 1784399663,
+        "narHash": "sha256-iy8esxP2PqoQ77w/g7GXDgnKyDotwY6HSvawS91CDHw=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "4a011f725d1ae2f67b8da8b6e66bcf9856176e03",
+        "rev": "cc5bc99baf27245f2644c1fe13f7bac5d3d47865",
         "type": "github"
       },
       "original": {
@@ -547,11 +547,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1784293129,
-        "narHash": "sha256-oT4sZ9BMbbi6PwgValMQCCkgZmFtUdBV0LkGicrqpGg=",
+        "lastModified": 1784376972,
+        "narHash": "sha256-RV+5/2MexV9xfNcm9rhYr5FE250sHPnH1coGz/pKTqM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "09233832ac9676c8a4105a82a0204283362b0e84",
+        "rev": "8d704def0fc91d80d2ffcf23ae4b08cb055308f0",
         "type": "github"
       },
       "original": {
@@ -563,11 +563,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1784382215,
-        "narHash": "sha256-KROLI9/3b+MGtQ9l3fBMZ7VNLWEKlg44CjravPNlAeo=",
+        "lastModified": 1784451509,
+        "narHash": "sha256-COo3x8xtniOCnKo2X3u/0JTEreY+nFNipTh5v9c1DoQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d3269582575d678db3639d9735cee72e8b7c6aea",
+        "rev": "7414ba7d376402418cdf8705a17c618a924232e5",
         "type": "github"
       },
       "original": {
@@ -686,19 +686,14 @@
         "systems-default-linux": "systems-default-linux"
       },
       "locked": {
-        "lastModified": 1784389413,
-        "narHash": "sha256-BrsGN1u9O3KV3vM8FdcVMXYvUHctuTYZEFx/3JfCkGs=",
-        "owner": "knightfemale",
-        "repo": "nur-packages",
-        "rev": "21ca6cdbcfb9ff25294eb9bc75493a574d0c94f8",
-        "type": "github"
+        "path": "repositories/knightfemale/nur-packages",
+        "type": "path"
       },
       "original": {
-        "owner": "knightfemale",
-        "ref": "master",
-        "repo": "nur-packages",
-        "type": "github"
-      }
+        "path": "repositories/knightfemale/nur-packages",
+        "type": "path"
+      },
+      "parent": []
     },
     "pyproject-build-systems": {
       "inputs": {
