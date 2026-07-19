@@ -36,6 +36,7 @@
     noctalia.url = "github:noctalia-dev/noctalia/main";
     sops-nix.url = "github:Mic92/sops-nix/master";
     # ==================== self ====================
+    nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
     nixpkgs-rustdesk-flutter.url = "github:knightfemale/nixpkgs/rustdesk-flutter";
     nur-knightfemale.url = "github:knightfemale/nur-packages/master";
     # nur-knightfemale.url = ./repositories/knightfemale/nur-packages;
