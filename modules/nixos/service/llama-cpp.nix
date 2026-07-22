@@ -2,7 +2,6 @@
   lib,
   pkgs,
   opts,
-  config,
   ...
 }:
 let
@@ -60,15 +59,10 @@ in
           openFirewall = true;
         };
       }
-      (lib.optionalAttrs (!isWsl) {
-        systemd.services.llama-cpp = {
-          environment.LD_LIBRARY_PATH = "${config.hardware.nvidia.package.out}/lib";
-        };
-      })
       (lib.optionalAttrs isWsl {
         systemd.services.llama-cpp = {
+          environment.LD_LIBRARY_PATH = "/run/opengl-driver/lib";
           serviceConfig.DeviceAllow = [ "/dev/dxg rwm" ];
-          environment.LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
         };
       })
     ]

@@ -42,7 +42,10 @@ vars: {
         disk.devices = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
-        graphics.type = "amd";
+        graphics = {
+          enable = true;
+          type = "amd";
+        };
         kernel = {
           configs = {
             DRM_XE = "no";

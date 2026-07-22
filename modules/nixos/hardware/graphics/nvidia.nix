@@ -36,14 +36,9 @@ in
           # 启动时运行 nvidia-container-toolkit, 启用Nvidia设备的动态CDI配置
           nvidia-container-toolkit.enable = containerIsEnabled;
         };
-        environment.sessionVariables.LD_LIBRARY_PATH = [
-          "${config.hardware.nvidia.package.out}/lib"
-        ];
       })
       (lib.optionalAttrs isWsl {
-        environment.sessionVariables.LD_LIBRARY_PATH = [
-          "/usr/lib/wsl/lib"
-        ];
+        environment.sessionVariables.LD_LIBRARY_PATH = [ "/run/opengl-driver/lib/" ];
       })
     ]
   );

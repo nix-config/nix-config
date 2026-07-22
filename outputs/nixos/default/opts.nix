@@ -45,7 +45,10 @@ vars: {
         disk.devices = {
           main = vars.diskPartitionTypes.efi-btrfs-subvolumes { device = "/dev/sda"; };
         };
-        # graphics.type = "none";
+        # graphics = {
+        #   enable = true;
+        #   type = "none";
+        # };
         networking = {
           # 防火墙
           firewall = {

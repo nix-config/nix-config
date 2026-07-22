@@ -33,7 +33,10 @@ in
             mountpoint = "/mnt/data";
           };
         };
-        graphics.type = "nvidia";
+        graphics = {
+          enable = true;
+          type = "nvidia";
+        };
         kernel = {
           configs = {
             DRM_XE = "no";

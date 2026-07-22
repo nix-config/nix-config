@@ -7,7 +7,6 @@
   hardware = {
     disk.enable = true;
     kernel.enable = true;
-    graphics.enable = true;
     networking.enable = true;
     boot-loader.enable = true;
   };

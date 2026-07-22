@@ -27,7 +27,10 @@ vars: {
       environment.i18n.type = "zh-cn";
       hardware = {
         boot-loader.type = "wsl";
-        graphics.type = "nvidia";
+        graphics = {
+          enable = true;
+          type = "nvidia";
+        };
         networking.extraSettings.resolvconf.enable = false;
       };
       service = {
