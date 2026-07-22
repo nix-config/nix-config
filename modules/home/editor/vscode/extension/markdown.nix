@@ -14,10 +14,10 @@ in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
-      # Markdown 预览
-      shd101wyy.markdown-preview-enhanced
-      # Markdown 语法规范检查
+      # 语法检查
       davidanson.vscode-markdownlint
+      # 预览
+      shd101wyy.markdown-preview-enhanced
     ];
   };
 }

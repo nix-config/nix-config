@@ -24,8 +24,6 @@ in
       ms-vscode-remote.remote-ssh-edit
       # 远程资源管理器视图
       ms-vscode.remote-explorer
-      # YAML 语法支持
-      redhat.vscode-yaml
     ];
   };
 }

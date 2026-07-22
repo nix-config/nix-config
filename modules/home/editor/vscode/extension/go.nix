@@ -14,7 +14,7 @@ in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
-      # Go 语法支持
+      # 语法支持
       golang.go
     ];
   };

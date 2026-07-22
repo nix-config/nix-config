@@ -14,10 +14,10 @@ in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
+      # EPUB 阅读器
+      cweijan.epub-reader
       # PDF 阅读器
       tomoki1207.pdf
-      # EPUB 电子书阅读器
-      cweijan.epub-reader
     ];
   };
 }

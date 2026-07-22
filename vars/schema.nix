@@ -258,15 +258,18 @@ in
       enabledExtensions = {
         type = listOf (enum [
           "all"
-          "base"
           "go"
           "javascript"
+          "jinja"
+          "just"
           "markdown"
           "nix"
           "python"
           "reader"
           "remote"
           "rust"
+          "toml"
+          "yaml"
         ]);
         default = [ ];
       };

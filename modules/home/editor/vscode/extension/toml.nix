@@ -7,21 +7,15 @@
 }:
 let
   inherit (opts.editor.vscode) enabledExtensions;
-  enableModule = (lib.elem "javascript" enabledExtensions) || (lib.elem "all" enabledExtensions);
+  enableModule = (lib.elem "toml" enabledExtensions) || (lib.elem "all" enabledExtensions);
   vscode-marketplace =
     (pkgs.extend inputs.nix-vscode-extensions.overlays.default).vscode-marketplace-release;
 in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
-      # ESLint 支持
-      dbaeumer.vscode-eslint
-      # Tailwind CSS 支持
-      bradlc.vscode-tailwindcss
-      # Svelte 支持
-      svelte.svelte-vscode
-      # Ripple 支持
-      ripple-ts.ripple-ts-vscode-plugin
+      # 语法支持
+      tamasfe.even-better-toml
     ];
   };
 }

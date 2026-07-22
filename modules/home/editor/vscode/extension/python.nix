@@ -14,20 +14,16 @@ in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
-      # Python 语法支持
-      ms-python.python
-      # Python 调试器
+      # 语言服务器
+      astral-sh.ty
+      # 代码格式化
+      charliermarsh.ruff
+      # 调试器
       ms-python.debugpy
-      # Python 高性能语言服务器
-      ms-python.vscode-pylance
-      # Black 代码格式化工具
-      ms-python.black-formatter
-      # Jinja 语法支持
-      samuelcolvin.jinjahtml
-      # Python 环境管理
+      # 语法支持
+      ms-python.python
+      # 环境检测
       ms-python.vscode-python-envs
-      # Manim 动画侧边实时预览
-      rickaym.manim-sideview
     ];
   };
 }

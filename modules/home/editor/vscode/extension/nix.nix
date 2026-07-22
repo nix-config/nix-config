@@ -14,10 +14,8 @@ in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
-      # Nix 语法支持
+      # 语法支持
       jnoortheen.nix-ide
-      # direnv 支持
-      mkhl.direnv
     ];
   };
 }
