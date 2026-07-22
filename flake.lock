@@ -468,6 +468,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-nixos-unstable": {
+      "locked": {
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-openlist": {
       "locked": {
         "lastModified": 1784550225,
@@ -776,6 +792,7 @@
         "nixified-ai": "nixified-ai",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
         "nixpkgs-openlist": "nixpkgs-openlist",
         "nixpkgs-rustdesk-flutter": "nixpkgs-rustdesk-flutter",
         "nixvim": "nixvim",

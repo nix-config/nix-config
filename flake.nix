@@ -3,7 +3,7 @@
     # self.submodules = true;
     # ==================== nixpkgs ====================
     nixpkgs.url = "github:NixOS/nixpkgs/master";
-    # nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # ==================== nix-community ====================
     disko = {
       url = "github:nix-community/disko/master";
