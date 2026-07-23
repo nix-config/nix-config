@@ -5,6 +5,8 @@
 }:
 let
   gpuType = opts.hardware.graphics.type;
+  isAmd = (gpuType == "amd");
+  isNvidia = (gpuType == "nvidia") || (gpuType == "nvidia-open");
 in
 {
   config = {
@@ -14,10 +16,10 @@ in
         host = "0.0.0.0";
         port = 11434;
       }
-      (lib.optionalAttrs (gpuType == "amd") {
+      (lib.optionalAttrs isAmd {
         acceleration = "rocm";
       })
-      (lib.optionalAttrs (gpuType == "nvidia") {
+      (lib.optionalAttrs isNvidia {
         acceleration = "cuda";
       })
     ];

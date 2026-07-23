@@ -5,7 +5,8 @@
   ...
 }:
 let
-  enableModule = (opts.hardware.graphics.type == "nvidia");
+  gpuType = opts.hardware.graphics.type;
+  enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
   extraSettings = opts.service.llama-cpp.extraSettings;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in

@@ -6,6 +6,8 @@
 }:
 let
   gpuType = opts.hardware.graphics.type;
+  isAmd = (gpuType == "amd");
+  isNvidia = (gpuType == "nvidia") || (gpuType == "nvidia-open");
 in
 {
   config = {
@@ -21,10 +23,10 @@ in
           proc_sorting = "cpu direct";
         };
       }
-      (lib.optionalAttrs (gpuType == "amd") {
+      (lib.optionalAttrs isAmd {
         package = pkgs.btop-rocm;
       })
-      (lib.optionalAttrs (gpuType == "nvidia") {
+      (lib.optionalAttrs isNvidia {
         package = pkgs.btop-cuda;
       })
     ];

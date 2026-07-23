@@ -6,7 +6,8 @@
   ...
 }:
 let
-  enableModule = (opts.hardware.graphics.type == "nvidia");
+  gpuType = opts.hardware.graphics.type;
+  enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
   isWsl = (opts.hardware.boot-loader.type == "wsl");
   # 定义模型
   realesrgan-x4plus-anime-6b = pkgs.fetchResource {
