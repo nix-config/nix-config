@@ -35,7 +35,7 @@ in
         };
         graphics = {
           enable = true;
-          type = "nvidia";
+          type = "nvidia-open";
         };
         kernel = {
           configs = {

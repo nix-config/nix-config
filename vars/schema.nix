@@ -336,6 +336,7 @@ in
           "amd"
           "none"
           "nvidia"
+          "nvidia-open"
         ];
         default = "none";
       };

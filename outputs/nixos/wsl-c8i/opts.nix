@@ -29,7 +29,7 @@ vars: {
         boot-loader.type = "wsl";
         graphics = {
           enable = true;
-          type = "nvidia";
+          type = "nvidia-open";
         };
         networking.extraSettings.resolvconf.enable = false;
       };

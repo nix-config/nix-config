@@ -5,7 +5,9 @@
   ...
 }:
 let
-  enableModule = (opts.hardware.graphics.type == "nvidia");
+  cfg = opts.hardware.graphics.type;
+  isOpen = (cfg == "nvidia-open");
+  enableModule = (cfg == "nvidia") || isOpen;
   containerIsEnabled = opts.service.container.enable;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
@@ -27,7 +29,7 @@ in
             # 使用 NVIDIA 开源内核模块 (并非 nouveau 驱动)
             # 仅支持 20 系及更新的架构, 需要驱动版本 515.43.04+
             # 兼容 GPU 列表: https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-            open = true;
+            open = isOpen;
             # 是否启用 NVIDIA 设置界面 (可通过 nvidia-settings 访问)
             nvidiaSettings = false;
             # 按需选择适合你 GPU 的驱动版本, 此处为最新版
