@@ -34,7 +34,21 @@ vars: {
         networking.extraSettings.resolvconf.enable = false;
       };
       service = {
-        comfyui.enable = true;
+        comfyui = {
+          enable = true;
+          extraFlags = [
+            "--bf16-unet"
+            "--bf16-vae"
+            "--bf16-text-enc"
+            "--use-pytorch-cross-attention"
+            "--lowvram"
+            "--cache-lru"
+            "8"
+            "--preview-metho"
+            "taesd"
+            "--fast"
+          ];
+        };
         frp = {
           enable = true;
           role = "client";

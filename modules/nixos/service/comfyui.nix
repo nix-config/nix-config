@@ -8,6 +8,7 @@
 let
   gpuType = opts.hardware.graphics.type;
   enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
+  inherit (opts.service.comfyui) extraFlags;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
   # 定义模型
   realesrgan-x4plus-anime-6b = pkgs.fetchResource {
@@ -35,6 +36,7 @@ in
           host = "0.0.0.0";
           port = 8188;
           acceleration = "cuda";
+          inherit extraFlags;
           customNodes = with pkgs.comfyuiPackages; [
             comfyui-rgthree
             comfyui-crystools

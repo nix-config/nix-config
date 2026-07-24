@@ -2,18 +2,18 @@ inputs:
 let
   inherit (inputs.nixpkgs) lib;
   inherit (lib.types)
-    int
-    str
+    attrs
+    attrsOf
     bool
     enum
-    attrs
+    int
     listOf
     nullOr
-    attrsOf
+    str
     ;
-  listOfStr = listOf str;
   attrsOfStr = attrsOf str;
   listOfAttrs = listOf attrs;
+  listOfStr = listOf str;
   systems = lib.systems.flakeExposed;
 in
 {
@@ -456,9 +456,15 @@ in
   # 系统服务
   service = {
     # ComfyUI Web 服务
-    comfyui.enable = {
-      type = bool;
-      default = false;
+    comfyui = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      extraFlags = {
+        type = listOfStr;
+        default = [ ];
+      };
     };
     # 容器管理
     container = {
