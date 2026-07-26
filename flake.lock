@@ -718,14 +718,19 @@
         "systems-default-linux": "systems-default-linux"
       },
       "locked": {
-        "path": "repositories/knightfemale/nur-packages",
-        "type": "path"
+        "lastModified": 1785080660,
+        "narHash": "sha256-voXpg+7oKdb7ZKmpELnm00zkURcNxvbvdScbrDwTYj4=",
+        "owner": "knightfemale",
+        "repo": "nur-packages",
+        "rev": "42d18420f812349c86da24bee04c77a65c91220b",
+        "type": "github"
       },
       "original": {
-        "path": "repositories/knightfemale/nur-packages",
-        "type": "path"
-      },
-      "parent": []
+        "owner": "knightfemale",
+        "ref": "master",
+        "repo": "nur-packages",
+        "type": "github"
+      }
     },
     "pyproject-build-systems": {
       "inputs": {
