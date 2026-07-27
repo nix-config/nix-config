@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+inputs: {
   # 提供 NixOS 必选项
   cli.nix.enable = true;
   hardware = {

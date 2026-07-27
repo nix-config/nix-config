@@ -465,6 +465,10 @@ in
         type = listOfStr;
         default = [ ];
       };
+      models = {
+        type = listOfAttrs;
+        default = [ ];
+      };
     };
     # 容器管理
     container = {

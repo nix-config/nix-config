@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+inputs: {
   # 提供一个开箱即用的 fish shell
   cli = {
     bat.enable = true;

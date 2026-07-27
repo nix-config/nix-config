@@ -36,6 +36,10 @@ vars: {
       service = {
         comfyui = {
           enable = true;
+          models = with vars.comfyuiModels; [
+            diffusion-pytorch-model-promax
+            realesrgan-x4plus-anime-6b
+          ];
           extraFlags = [
             "--bf16-unet"
             "--bf16-vae"
