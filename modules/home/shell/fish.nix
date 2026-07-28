@@ -4,7 +4,6 @@
   ...
 }:
 let
-  batIsEnabled = opts.cli.bat.enable;
   btopIsEnabled = opts.cli.btop.enable;
   nixvimIsEnabled = opts.editor.nixvim.enable;
 in
@@ -23,9 +22,6 @@ in
           {
             rm = "rm -i";
           }
-          (lib.optionalAttrs batIsEnabled {
-            cat = "bat";
-          })
           (lib.optionalAttrs btopIsEnabled {
             top = "btop";
           })
