@@ -68,7 +68,15 @@ vars: {
         };
         hermes-agent.enable = true;
         openssh.enable = true;
-        searxng.enable = true;
+        searxng = {
+          enable = true;
+          instances = [
+            {
+              name = "default";
+              port = 8888;
+            }
+          ];
+        };
         sops-nix.enable = true;
       };
     };

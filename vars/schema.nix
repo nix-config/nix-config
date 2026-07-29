@@ -586,9 +586,16 @@ in
       };
     };
     # 搜索服务
-    searxng.enable = {
-      type = bool;
-      default = false;
+    searxng = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 实例列表
+      instances = {
+        type = listOfAttrs;
+        default = [ ];
+      };
     };
     # 通用代理工具
     sing-box.enable = {
