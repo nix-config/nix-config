@@ -46,6 +46,24 @@ vars: {
           ];
         };
         openssh.enable = true;
+        postgresql = {
+          enable = true;
+          instances = [
+            {
+              name = "default";
+              port = 5432;
+            }
+          ];
+        };
+        qdrant = {
+          enable = true;
+          instances = [
+            {
+              name = "default";
+              port = 6333;
+            }
+          ];
+        };
         sops-nix.enable = true;
       };
     };

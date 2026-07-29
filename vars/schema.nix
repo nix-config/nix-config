@@ -573,6 +573,30 @@ in
       type = bool;
       default = false;
     };
+    # PostgreSQL 数据库
+    postgresql = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 实例列表
+      instances = {
+        type = listOfAttrs;
+        default = [ ];
+      };
+    };
+    # Qdrant 向量库
+    qdrant = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 实例列表
+      instances = {
+        type = listOfAttrs;
+        default = [ ];
+      };
+    };
     # 远程桌面服务器
     rustdesk-server = {
       enable = {
