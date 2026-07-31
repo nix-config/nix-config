@@ -72,7 +72,7 @@ vars: {
           enable = true;
           instances = [
             {
-              name = "default";
+              name = "searxng";
               port = 8888;
             }
           ];

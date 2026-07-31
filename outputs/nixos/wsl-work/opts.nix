@@ -50,7 +50,7 @@ vars: {
           enable = true;
           instances = [
             {
-              name = "default";
+              name = "postgresql";
               port = 5432;
             }
           ];
@@ -59,7 +59,7 @@ vars: {
           enable = true;
           instances = [
             {
-              name = "default";
+              name = "qdrant";
               port = 6333;
             }
           ];
