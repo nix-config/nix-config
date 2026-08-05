@@ -265,7 +265,6 @@ in
           "markdown"
           "nix"
           "python"
-          "reader"
           "remote"
           "rust"
           "toml"

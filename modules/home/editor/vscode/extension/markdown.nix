@@ -16,8 +16,6 @@ in
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
       # 语法检查
       davidanson.vscode-markdownlint
-      # 预览
-      shd101wyy.markdown-preview-enhanced
     ];
   };
 }

@@ -14,14 +14,16 @@ in
 {
   config = lib.mkIf enableModule {
     programs.vscode.profiles.default.extensions = with vscode-marketplace; [
-      # ESLint 支持
-      dbaeumer.vscode-eslint
       # Tailwind CSS 支持
       bradlc.vscode-tailwindcss
-      # Svelte 支持
-      svelte.svelte-vscode
+      # ESLint 支持
+      dbaeumer.vscode-eslint
       # Ripple 支持
       ripple-ts.ripple-ts-vscode-plugin
+      # Svelte 支持
+      svelte.svelte-vscode
+      # Tauri 支持
+      tauri-apps.tauri-vscode
     ];
   };
 }

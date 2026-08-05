@@ -19,14 +19,14 @@ in
       profiles.default.extensions = with vscode-marketplace; [
         # 路径补全
         christian-kohler.path-intellisense
+        # 文件预览
+        cweijan.vscode-office
         # 通用格式化
         esbenp.prettier-vscode
         # 图片预览
         kisstkondoros.vscode-gutter-preview
         # 系统监控
         nexmoe.monitor-pro
-        # Git 提交可视化
-        mhutchie.git-graph
         # Direnv 支持
         mkhl.direnv
         # 中文界面
