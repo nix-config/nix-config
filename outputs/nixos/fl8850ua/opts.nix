@@ -159,6 +159,7 @@ vars: {
           rustdesk.enable = true;
           telegram-desktop.enable = true;
           wechat.enable = true;
+          wemeet.enable = true;
         };
         media = {
           biu.enable = true;

@@ -428,6 +428,11 @@ in
       type = bool;
       default = false;
     };
+    # 腾讯会议
+    wemeet.enable = {
+      type = bool;
+      default = false;
+    };
   };
   # 媒体应用
   media = {
