@@ -11,11 +11,9 @@ vars: {
       cli = {
         nix = {
           substituters = [
-            "https://cache.garnix.io"
             "https://noctalia.cachix.org"
           ];
           trusted-public-keys = [
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
             "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
@@ -76,6 +74,13 @@ vars: {
               localIP = "localhost";
               localPort = 5244;
               remotePort = 5244;
+            }
+            {
+              name = "opencode";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 4096;
+              remotePort = 4096;
             }
           ];
         };

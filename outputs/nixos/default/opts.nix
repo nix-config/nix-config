@@ -22,12 +22,9 @@ vars: {
             # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
             # nixified-ai 缓存
             # "https://ai.cachix.org"
-            # garnix 缓存
-            # "https://cache.garnix.io"
           ];
           trusted-public-keys = [
             # "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
-            # "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
         };
         nix-ld.enable = true;

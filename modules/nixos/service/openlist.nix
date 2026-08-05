@@ -8,7 +8,7 @@
 }:
 let
   enableModule = opts.service.sops-nix.enable;
-  # 模块: nixpkgs/openlist 分支 (PR #543514), 待合入上游 nixpkgs/master
+  # TODO: nixpkgs/openlist 分支 (PR #543514), 待合入上游 nixpkgs/master
   openlistModule = "${inputs.nixpkgs-openlist}/nixos/modules/services/web-apps/openlist.nix";
 in
 {

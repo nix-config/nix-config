@@ -9,11 +9,7 @@ vars: {
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli.nix = {
-        substituters = [
-          "https://cache.garnix.io"
-        ];
         trusted-public-keys = [
-          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
         ];
       };
