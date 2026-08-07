@@ -38,7 +38,7 @@ vars: {
             diffusion-pytorch-model-promax
             realesrgan-x4plus-anime-6b
           ];
-          extraFlags = [
+          extraArgs = [
             "--bf16-unet"
             "--bf16-vae"
             "--bf16-text-enc"
@@ -46,7 +46,7 @@ vars: {
             "--lowvram"
             "--cache-lru"
             "8"
-            "--preview-metho"
+            "--preview-method"
             "taesd"
             "--fast"
           ];

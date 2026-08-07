@@ -1,36 +1,40 @@
 {
   lib,
-  pkgs,
   opts,
   inputs,
+  pkgSets,
   ...
 }:
 let
   gpuType = opts.hardware.graphics.type;
   enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
-  inherit (opts.service.comfyui) extraFlags models;
+  inherit (opts.service.comfyui) extraArgs models;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {
+  disabledModules = [ "services/misc/comfyui.nix" ];
   imports = [
-    inputs.nixified-ai.nixosModules.comfyui
+    "${inputs.nixpkgs-comfyui}/nixos/modules/services/misc/comfyui.nix"
   ];
   config = lib.mkIf enableModule (
     lib.mkMerge [
       {
         services.comfyui = {
           enable = true;
-          host = "0.0.0.0";
-          port = 8188;
+          package = pkgSets.pkgs-comfyui.comfyui;
           acceleration = "cuda";
-          inherit extraFlags;
-          customNodes = with pkgs.comfyuiPackages; [
-            comfyui-crystools
-            comfyui-pythongosssss-custom-scripts
-            comfyui-rgthree
-            comfyui-ultimatesdupscale
+          listen = [ "0.0.0.0" ];
+          port = 8188;
+          inherit extraArgs;
+          inherit models;
+          customNodes = with pkgSets.pkgs-comfyui.comfyui-custom-nodes; [
+            # TODO
+            # comfyui-crystools
+            comfyui-manager
+            # comfyui-pythongosssss-custom-scripts
+            # comfyui-rgthree
+            # comfyui-ultimatesdupscale
           ];
-          models = map (model: pkgs.fetchResource model) models;
         };
       }
       (lib.optionalAttrs isWsl {

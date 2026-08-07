@@ -465,7 +465,7 @@ in
         type = bool;
         default = false;
       };
-      extraFlags = {
+      extraArgs = {
         type = listOfStr;
         default = [ ];
       };

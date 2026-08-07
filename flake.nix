@@ -32,10 +32,10 @@
     # ==================== vendor ====================
     daeuniverse.url = "github:daeuniverse/flake.nix/main";
     hermes-agent.url = "github:NousResearch/hermes-agent/main";
-    nixified-ai.url = "github:nixified-ai/flake/master";
     noctalia.url = "github:noctalia-dev/noctalia/main";
     sops-nix.url = "github:Mic92/sops-nix/master";
     # ==================== self ====================
+    nixpkgs-comfyui.url = "github:knightfemale/nixpkgs/comfyui";
     nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
     nixpkgs-rustdesk-flutter.url = "github:knightfemale/nixpkgs/rustdesk-flutter";
     nur-knightfemale.url = "github:knightfemale/nur-packages/master";
