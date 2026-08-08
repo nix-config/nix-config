@@ -691,6 +691,11 @@ in
       type = bool;
       default = false;
     };
+    # Steam 游戏平台
+    steam.enable = {
+      type = bool;
+      default = false;
+    };
     # 模块化输入法框架, 支持多种输入法
     fcitx5.enable = {
       type = bool;

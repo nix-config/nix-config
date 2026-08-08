@@ -94,7 +94,10 @@ vars: {
         sops-nix.enable = true;
         udiskie.enable = true;
       };
-      tool.clash-verge.enable = true;
+      tool = {
+        clash-verge.enable = true;
+        steam.enable = true;
+      };
     };
   };
   users = {
