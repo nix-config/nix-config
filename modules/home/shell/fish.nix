@@ -31,18 +31,6 @@ in
           })
         ];
       };
-      # 启用 fzf 集成
-      fzf.enableFishIntegration = true;
-      # 启用 eza 集成
-      eza.enableFishIntegration = true;
-      # 启用 yazi 集成
-      yazi.enableFishIntegration = true;
-      # 启用 direnv 集成
-      direnv.enableFishIntegration = true;
-      # 启用 zellij 集成 (显式不启用)
-      zellij.enableFishIntegration = false;
-      # 启用 starship 集成
-      starship.enableFishIntegration = true;
     };
   };
 }

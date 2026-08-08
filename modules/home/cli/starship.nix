@@ -5,6 +5,8 @@
   config = {
     programs.starship = {
       enable = true;
+      enableBashIntegration = false;
+      enableFishIntegration = true;
       settings = {
         "$schema" = "https://starship.rs/config-schema.json";
         format =
