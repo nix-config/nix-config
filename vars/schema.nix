@@ -706,6 +706,11 @@ in
       type = bool;
       default = false;
     };
+    # Minecraft 启动器
+    prismlauncher.enable = {
+      type = bool;
+      default = false;
+    };
     # GUI 系统活动监控器
     mission-center.enable = {
       type = bool;

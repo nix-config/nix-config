@@ -175,6 +175,7 @@ vars: {
         tool = {
           fcitx5.enable = true;
           lutris.enable = true;
+          prismlauncher.enable = true;
         };
       };
     };
