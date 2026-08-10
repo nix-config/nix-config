@@ -102,7 +102,6 @@ vars: {
         ];
       };
       predefinedOptSetsList = with vars.optSets; [
-        devEnv
         baseEnv
         fishShell
       ];
@@ -144,7 +143,6 @@ vars: {
         ];
       };
       predefinedOptSetsList = with vars.optSets; [
-        devEnv
         baseEnv
         fishShell
       ];

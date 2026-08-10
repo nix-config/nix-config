@@ -136,16 +136,6 @@ in
       type = bool;
       default = false;
     };
-    # nix LSP 程序
-    nixd.enable = {
-      type = bool;
-      default = false;
-    };
-    # nix 文件批量格式化工具
-    nixfmt-tree.enable = {
-      type = bool;
-      default = false;
-    };
     # NVIDIA GPU 监控工具
     nvitop.enable = {
       type = bool;
@@ -153,11 +143,6 @@ in
     };
     # AI 编程助手
     opencode.enable = {
-      type = bool;
-      default = false;
-    };
-    # 密钥管理工具
-    sops.enable = {
       type = bool;
       default = false;
     };
