@@ -7,9 +7,10 @@ let
   system = "x86_64-linux";
   pkgSets = functions.mk.pkgSets system inputs;
   tools = with pkgSets.pkgs; [
+    just-lsp # just lsp
     nixd # nix lsp
     nixfmt # nix 文件格式化
-    nixfmt-tree # nix 多文件格式化
+    nixfmt-tree # nix 多文件批量格式化
     nix-output-monitor # nix 日志渲染包装
     sops # 密钥管理
   ];

@@ -8,10 +8,8 @@ vars: {
       count = 1;
       system = "x86_64-linux";
       stateVersion = "26.05";
-      nixConfigPath = "/home/ubuntu/workspace/mochen/nix-config";
-      cli.nvitop.enable = true;
-      # environment.i18n.type = "zh-cn";
-      hardware.graphics.type = "nvidia";
+      nixConfigPath = "/home/ubuntu/workspace/nix-config";
+      cli.zellij.enable = true;
     };
   };
 }
