@@ -388,6 +388,11 @@ in
   };
   # 网络应用
   internet = {
+    # 飞书
+    feishu.enable = {
+      type = bool;
+      default = false;
+    };
     # 火狐浏览器
     firefox.enable = {
       type = bool;

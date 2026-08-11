@@ -156,6 +156,7 @@ vars: {
           };
         };
         internet = {
+          feishu.enable = true;
           firefox.enable = true;
           qq.enable = true;
           rustdesk.enable = true;
