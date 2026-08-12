@@ -29,7 +29,6 @@ in
   # 输出结构: { devShells = { <system> = { default = ...; }; }; }
   devShells = import ./shell {
     inherit
-      lib
       inputs
       functions
       ;
