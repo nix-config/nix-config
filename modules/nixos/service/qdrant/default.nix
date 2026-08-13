@@ -12,7 +12,7 @@ let
       ./0001-disable-avx512vnni.patch
     ];
   });
-  firewall = opts.hardware.networking.firewall;
+  inherit (opts.hardware.networking) firewall;
   inherit (opts.service.qdrant) instances;
 in
 {

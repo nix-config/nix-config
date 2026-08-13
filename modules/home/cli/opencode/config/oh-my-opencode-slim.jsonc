@@ -1,5 +1,5 @@
 {
-  "preset": "opencode-zen-free",
+  "preset": "opencode-go",
   "disabled_agents": [],
   "presets": {
     "opencode-zen-free": {

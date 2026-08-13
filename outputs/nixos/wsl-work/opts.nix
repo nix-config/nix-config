@@ -24,10 +24,6 @@ vars: {
         networking.extraSettings.resolvconf.enable = false;
       };
       service = {
-        container = {
-          enable = true;
-          type = "podman";
-        };
         frp = {
           enable = true;
           role = "client";
