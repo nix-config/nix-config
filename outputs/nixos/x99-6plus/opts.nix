@@ -60,15 +60,50 @@ vars: {
         llama-cpp = {
           enable = true;
           extraSettings = {
-            alias = "qwen3.6-35b-a3b";
-            model = "/mnt/data/huggingface/Qwen3.6-35B-A3B-IQ4_XS.gguf";
-            mmproj = "/mnt/data/huggingface/mmproj-Qwen3.6-35B-A3B-f16.gguf";
-            tensor-split = "1,3";
+            # 模型别名
+            alias = "qwen3.8-27b";
+            # 用于认证的 API 密钥 (逗号分隔列表)
+            api-key = "1";
+            # 加载模型路径
+            model = "/mnt/data/huggingface/Qwen3.8-27B-IQ4_XS.gguf";
+            # 多模态投影文件路径
+            mmproj = "/mnt/data/huggingface/mmproj-Qwen3.8-27B-BF16.gguf";
+            # 将前 N 层的 MoE 权重保留在 CPU 上
+            n-cpu-moe = 0;
+            # 卸载到每个 GPU 的模型比例 (逗号分隔)
+            tensor-split = "1,2";
+            # 大幅降低长上下文推理时的显存占用和首字延迟
+            flash-attn = "on";
+            # 加载到GPU的模型层数
+            n-gpu-layers = "all";
+            # 并发数量
+            parallel = 1;
+            # 张量分割模式
+            split-mode = "layer";
+            # 禁用内存映射
+            load-mode = "none";
+            # 逻辑最大批次大小
+            batch-size = 2048;
+            # 物理最大批次大小
+            ubatch-size = 512;
+            # 提示词上下文大小
             ctx-size = 262144;
+            # 温度参数
             temp = 1.0;
+            # 候选概率最⾼的 token 数
             top-k = 20;
+            # 从前多少概率的 token 里选
             top-p = 0.95;
-            presence-penalty = 1.5;
+            # 最小概率阈值
+            min-p = 0;
+            # 存在惩罚
+            presence-penalty = 0.0;
+            # 重复惩罚
+            repeat-penalty = 1.0;
+            # 是否对聊天使用 Jinja 模板引擎
+            jinja = true;
+            # 输出详细日志
+            verbose = false;
           };
         };
         openssh.enable = true;

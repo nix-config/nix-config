@@ -455,6 +455,16 @@ in
         type = bool;
         default = false;
       };
+      # 监听地址
+      listen = {
+        type = listOfStr;
+        default = [ "0.0.0.0" ];
+      };
+      # 监听端口
+      port = {
+        type = int;
+        default = 8188;
+      };
       extraArgs = {
         type = listOfStr;
         default = [ ];
@@ -531,6 +541,16 @@ in
       enable = {
         type = bool;
         default = false;
+      };
+      # 监听地址
+      host = {
+        type = str;
+        default = "0.0.0.0";
+      };
+      # 监听端口
+      port = {
+        type = int;
+        default = 8080;
       };
       # 额外设置
       extraSettings = {

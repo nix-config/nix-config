@@ -28,20 +28,10 @@ in
       ];
       settings = {
         model = {
-          provider = "opencode-go";
-          default = "deepseek-v4-flash";
-        };
-        auxiliary = {
-          vision = {
-            provider = "llama.cpp";
-            model = "qwen3.6-35b-a3b";
-            base_url = "http://192.168.1.100:8080";
-            api_key = "1";
-          };
-          title_generation = {
-            provider = "opencode-go";
-            model = "deepseek-v4-flash";
-          };
+          provider = "vllm";
+          model = "qwen3.8-27b";
+          base_url = "$" + "{VLLM_BASE_URL}";
+          api_key = "$" + "{VLLM_API_KEY}";
         };
         web.search_backend = "searxng";
         gateway.platforms = {

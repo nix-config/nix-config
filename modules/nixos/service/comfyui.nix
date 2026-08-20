@@ -6,35 +6,46 @@
   ...
 }:
 let
+  comfyuiModule = "${inputs.nixpkgs-comfyui}/nixos/modules/services/misc/comfyui.nix";
   gpuType = opts.hardware.graphics.type;
   enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
-  inherit (opts.service.comfyui) extraArgs models;
+  inherit (opts.service.comfyui)
+    extraArgs
+    listen
+    models
+    port
+    ;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
 in
 {
   disabledModules = [ "services/misc/comfyui.nix" ];
   imports = [
-    "${inputs.nixpkgs-comfyui}/nixos/modules/services/misc/comfyui.nix"
+    comfyuiModule
   ];
   config = lib.mkIf enableModule (
     lib.mkMerge [
       {
+        documentation.nixos = {
+          extraModules = [ comfyuiModule ];
+          checkRedirects = false;
+        };
         services.comfyui = {
           enable = true;
           package = pkgSets.pkgs-comfyui.comfyui;
           acceleration = "cuda";
-          listen = [ "0.0.0.0" ];
-          port = 8188;
-          inherit extraArgs;
-          inherit models;
-          customNodes = with pkgSets.pkgs-comfyui.comfyui-custom-nodes; [
-            # TODO
-            # comfyui-crystools
-            comfyui-manager
-            # comfyui-pythongosssss-custom-scripts
-            # comfyui-rgthree
-            # comfyui-ultimatesdupscale
-          ];
+          inherit
+            extraArgs
+            listen
+            models
+            port
+            ;
+          # customNodes = with pkgs.comfyui-custom-nodes; [
+          #   comfyui-crystools
+          #   comfyui-manager
+          #   comfyui-pythongosssss-custom-scripts
+          #   comfyui-rgthree
+          #   comfyui-ultimatesdupscale
+          # ];
         };
       }
       (lib.optionalAttrs isWsl {
