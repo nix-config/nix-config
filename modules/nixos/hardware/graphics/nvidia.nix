@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   opts,
   config,
   ...
@@ -10,6 +11,11 @@ let
   enableModule = (cfg == "nvidia") || isOpen;
   containerIsEnabled = opts.service.container.enable;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
+  # nixpkgs PR #551471
+  of_gpio_const_patch = pkgs.fetchpatch {
+    url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/24e68a854f50e2de5b7ead18bd4d28d22566c005.patch";
+    hash = "sha256-T95DwOaCmEbuOp/5CYqveshrxwhMcantXZ+hRJ7XucA=";
+  };
 in
 {
   config = lib.mkIf enableModule (
@@ -33,7 +39,17 @@ in
             # 是否启用 NVIDIA 设置界面 (可通过 nvidia-settings 访问)
             nvidiaSettings = false;
             # 按需选择适合你 GPU 的驱动版本, 此处为最新版
-            package = config.boot.kernelPackages.nvidiaPackages.latest;
+            package = config.boot.kernelPackages.nvidiaPackages.latest.overrideAttrs (
+              final: prev: {
+                passthru = prev.passthru // {
+                  open = prev.passthru.open.overrideAttrs (
+                    finalOpen: prevOpen: {
+                      patches = prevOpen.patches ++ [ of_gpio_const_patch ];
+                    }
+                  );
+                };
+              }
+            );
           };
           # 启动时运行 nvidia-container-toolkit, 启用Nvidia设备的动态CDI配置
           nvidia-container-toolkit.enable = containerIsEnabled;
