@@ -68,8 +68,6 @@ vars: {
             model = "/mnt/data/huggingface/Qwen3.8-27B-IQ4_XS.gguf";
             # 多模态投影文件路径
             mmproj = "/mnt/data/huggingface/mmproj-Qwen3.8-27B-BF16.gguf";
-            # 将前 N 层的 MoE 权重保留在 CPU 上
-            n-cpu-moe = 0;
             # 卸载到每个 GPU 的模型比例 (逗号分隔)
             tensor-split = "1,2";
             # 大幅降低长上下文推理时的显存占用和首字延迟
@@ -87,7 +85,7 @@ vars: {
             # 物理最大批次大小
             ubatch-size = 512;
             # 提示词上下文大小
-            ctx-size = 262144;
+            ctx-size = 131072;
             # 温度参数
             temp = 1.0;
             # 候选概率最⾼的 token 数

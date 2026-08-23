@@ -1,12 +1,7 @@
 {
   pkgs,
-  opts,
-  config,
   ...
 }:
-let
-  configPath = "${opts.nixConfigPath}/modules/home/cli/opencode/config";
-in
 {
   config = {
     programs.opencode = {
@@ -24,11 +19,10 @@ in
           "npm:oh-my-opencode-slim@latest"
         ];
       };
-    };
-    home.file = {
-      ".config/opencode/oh-my-opencode-slim.jsonc" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/oh-my-opencode-slim.jsonc";
-        force = true;
+      tui = {
+        plugin = [
+          "npm:opencode-subagent-magazine@latest"
+        ];
       };
     };
   };

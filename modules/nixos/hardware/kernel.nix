@@ -8,7 +8,7 @@
 let
   cfg = opts.hardware.kernel;
   inherit (cfg) name configs;
-  kernels = inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system};
+  kernels = inputs.nur-knightfemale.legacyPackages.${pkgs.stdenv.hostPlatform.system}.kernelPackages;
   kernelPkg = if name != null then pkgs.linuxPackagesFor kernels.${name} else null;
 in
 {
