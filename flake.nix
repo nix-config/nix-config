@@ -32,7 +32,6 @@
     # ==================== vendor ====================
     daeuniverse.url = "github:daeuniverse/flake.nix/main";
     hermes-agent.url = "github:NousResearch/hermes-agent/main";
-    noctalia.url = "github:noctalia-dev/noctalia/main";
     sops-nix.url = "github:Mic92/sops-nix/master";
     # ==================== self ====================
     nixpkgs-comfyui.url = "github:knightfemale/nixpkgs/comfyui";

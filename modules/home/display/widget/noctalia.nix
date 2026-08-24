@@ -1,7 +1,6 @@
 {
   lib,
   opts,
-  inputs,
   ...
 }:
 let
@@ -9,9 +8,6 @@ let
     (lib.elem "noctalia" opts.display.widget.enabledWidgets) && opts.display.desktop.enable;
 in
 {
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
   config = lib.mkIf enableModule {
     programs.noctalia = {
       enable = true;
