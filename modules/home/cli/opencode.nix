@@ -19,11 +19,6 @@
           "npm:oh-my-opencode-slim@latest"
         ];
       };
-      tui = {
-        plugin = [
-          "npm:opencode-subagent-magazine@latest"
-        ];
-      };
     };
   };
 }

@@ -2,28 +2,29 @@
 show:
     nix flake show .
 
-# 构建系统
-os *args:
+# 构建并切换 nixos
+switch-nixos *args:
     nh os switch . --ask {{args}}
 
-# 构建用户
-home *args:
+# 构建并切换 home
+switch-home *args:
     nh home switch . --ask {{args}}
 
-# 更新锁文件
+# 更新
 update *args: 
-    -cd ./repositories/knightfemale/nur-packages/ && nix flake update {{args}}
+    -cd ./repositories/knightfemale/nur-packages/ && just update {{args}}
     nix flake update {{args}}
 
-# 清理 (不清理 flake+direnv 环境)
+# 清理
 clean *args:
     nh clean all --no-gcroots --ask {{args}}
 
-# 格式化 nix 文件
+# 格式化
 format:
+    -cd ./repositories/knightfemale/nur-packages/ && just format
     treefmt .
 
-# 依赖分析
+# 查看被依赖链
 depend hostname pkgname:
     #!/usr/bin/env bash
     set -euo pipefail
