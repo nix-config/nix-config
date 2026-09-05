@@ -28,10 +28,8 @@ in
       ];
       settings = {
         model = {
-          provider = "vllm";
-          model = "qwen3.8-27b";
-          base_url = "$" + "{VLLM_BASE_URL}";
-          api_key = "$" + "{VLLM_API_KEY}";
+          provider = "deepseek";
+          default = "deepseek-v4-flash-vision-exp";
         };
         web.search_backend = "searxng";
         gateway.platforms = {
