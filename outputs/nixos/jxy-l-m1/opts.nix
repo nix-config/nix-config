@@ -28,7 +28,23 @@ vars: {
         };
         zram.enable = true;
       };
-      service.openssh.enable = true;
+      service = {
+        frp = {
+          enable = true;
+          role = "client";
+          proxies = [
+            {
+              name = "ssh-jxy-l-m1";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 22;
+              remotePort = 2228;
+            }
+          ];
+        };
+        openssh.enable = true;
+        sops-nix.enable = true;
+      };
     };
   };
   users = {

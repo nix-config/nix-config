@@ -75,13 +75,6 @@ vars: {
               localPort = 5244;
               remotePort = 5244;
             }
-            {
-              name = "opencode";
-              type = "tcp";
-              localIP = "localhost";
-              localPort = 4096;
-              remotePort = 4096;
-            }
           ];
         };
         greetd.enable = true;
@@ -114,6 +107,7 @@ vars: {
         isNormalUser = true;
         description = "管理员";
         extraGroups = [
+          "video"
           "wheel"
           "networkmanager"
         ];
