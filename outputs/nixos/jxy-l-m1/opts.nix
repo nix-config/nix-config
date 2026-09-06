@@ -1,0 +1,66 @@
+vars: {
+  host = {
+    predefinedOptSetsList = with vars.optSets; [
+      baseNixos
+    ];
+    customOptSets = {
+      count = 1;
+      system = "aarch64-linux";
+      stateVersion = "26.11";
+      nixConfigPath = "/home/admin/workspace/nix-config";
+      cli.nix = {
+        trusted-public-keys = [
+          "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
+        ];
+      };
+      environment.i18n.type = "zh-cn";
+      hardware = {
+        boot-loader.type = "extlinux";
+        dtb = {
+          enable = true;
+          name = "meson-sm1-x96-max-plus";
+        };
+        disk.devices = {
+          main = vars.diskPartitionTypes.uboot-ext4 {
+            device = "/dev/mmcblk2";
+            bootSize = "256M";
+          };
+        };
+        zram.enable = true;
+      };
+      service.openssh.enable = true;
+    };
+  };
+  users = {
+    root = {
+      base = {
+        hashedPassword = "$6$yk.jU.kxIAVwaoaj$zFEdwFofY8P88Ad7/a62sm5j3QxyXcQxKTvTpRMIYDgw6G4RDXZCQgHRyeOyZHLN10lKov55WJESL8t2Ia1US0";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
+        ];
+      };
+    };
+    admin = {
+      base = {
+        isNormalUser = true;
+        description = "管理员";
+        extraGroups = [
+          "wheel"
+        ];
+        hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHoElqa20vBDgApV3Ek5XEP7xjPyOS+FiVxLOSsHoIK"
+        ];
+      };
+      predefinedOptSetsList = with vars.optSets; [
+        baseEnv
+        fishShell
+      ];
+      customOptSets = {
+        count = 1;
+        cli.zellij.enable = true;
+        shell.bash.enable = true;
+      };
+    };
+  };
+}

@@ -286,6 +286,7 @@ in
       };
       type = {
         type = enum [
+          "extlinux"
           "grub"
           "systemd-boot"
           "wsl"
@@ -307,6 +308,18 @@ in
       devices = {
         type = attrs;
         default = { };
+      };
+    };
+    # 设备树 (DTB)
+    dtb = {
+      enable = {
+        type = bool;
+        default = false;
+      };
+      # 设备键名, null 表示不覆盖
+      name = {
+        type = nullOr str;
+        default = null;
       };
     };
     # 图形驱动配置
