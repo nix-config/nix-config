@@ -205,11 +205,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1788698919,
-        "narHash": "sha256-r49v3SsEIIdjtUG16uD5QMSTYP55VHoazNks/xIK+H0=",
+        "lastModified": 1788876324,
+        "narHash": "sha256-VOeqykjd9CM3oC8WtQfOO89Q72Lp+VigjdJayKoH2DI=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "7166071fcaadb36df26f6d753dda97da6b5d699e",
+        "rev": "b3399c139624a0081d70397741a5b45f60fbe1f4",
         "type": "github"
       },
       "original": {
@@ -268,11 +268,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1788636383,
-        "narHash": "sha256-rb0Cq4ahQej8/d4qMyZJ9nqfjNUptNUzhoc3OXUzYWc=",
+        "lastModified": 1788814080,
+        "narHash": "sha256-PL0CxqkAJxA9unWGaaAKI0IKV9kK6WUPVskRh7zpR4I=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "aa89b450a7ba56db6f5f7331672404dae7e0805f",
+        "rev": "a5587fa71706494266154d0104932f719ec98b20",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788667258,
-        "narHash": "sha256-jG/2WyvvMluKcDXFofsNkTkAQcKTF2eo8tBCQSAwGHY=",
+        "lastModified": 1788840199,
+        "narHash": "sha256-bNgtpZtQ/NkL5lKdfvY2jr2ueUNtiNhq/U1MctWZQO0=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "ce9c6c4fd4c31a88dec890aef858a0d6d632efcd",
+        "rev": "41316674b7aaf38b1f9b2415ba153db82ea092cf",
         "type": "github"
       },
       "original": {
@@ -343,11 +343,11 @@
     },
     "nixpkgs-comfyui": {
       "locked": {
-        "lastModified": 1788502920,
-        "narHash": "sha256-/9lcjA0TA8D12cg0ONMhb8HpEfZZU24+E1uZu3DhGGo=",
+        "lastModified": 1788742246,
+        "narHash": "sha256-UyXu5i/MMxi50DRTFfX+jX23e0iTg2BJrTgpvLyBB0c=",
         "owner": "knightfemale",
         "repo": "nixpkgs",
-        "rev": "db581223e15526505de393342c501c98ba8e9bf3",
+        "rev": "2a69faad39d1ce2f361a7713e749ffa9fd1bde19",
         "type": "github"
       },
       "original": {
@@ -389,11 +389,11 @@
     },
     "nixpkgs-nixos-unstable": {
       "locked": {
-        "lastModified": 1788614874,
-        "narHash": "sha256-7QYjT2vHLuX9Z1pdxHXDKCbh1CR3D/2rywB9Tx0MPRg=",
+        "lastModified": 1788752844,
+        "narHash": "sha256-VaWGJ6+cIYN2erfSecbRV+4ljI185Ty2wUrXyvQbgOw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c043004d1c6985732bcc1cbc5a9c9aecbbb4e0f0",
+        "rev": "dc5d91f840324650bac8c379428c7037a416959a",
         "type": "github"
       },
       "original": {
@@ -419,22 +419,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-rustdesk-flutter": {
-      "locked": {
-        "lastModified": 1788503795,
-        "narHash": "sha256-7s9tKai59qXxHXztOXTo8KogbH97mRdsJwmQwI3jVnY=",
-        "owner": "knightfemale",
-        "repo": "nixpkgs",
-        "rev": "35edd8ba3284a42a9e4dff4722545a107f4d042c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "knightfemale",
-        "ref": "rustdesk-flutter",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1785318670,
@@ -453,11 +437,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1788703405,
-        "narHash": "sha256-gtiYYP9LhYpOTwG35bZ7ysP3kqnCGLQqgIe4hyKffks=",
+        "lastModified": 1788875720,
+        "narHash": "sha256-8FoPdVGQqIDodCDZUGLNfXRD7+XHpont2QsjmC7bS5c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3b1b62c540d2e1a8e474b87852d112345f5c4e94",
+        "rev": "7d2334836dbddf978af7a92d12624b290d473302",
         "type": "github"
       },
       "original": {
@@ -469,11 +453,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1788625351,
-        "narHash": "sha256-HuowOcoS6Wquoa0FPdCwRZ9NkXy3kw+gz0gV2sKhBW8=",
+        "lastModified": 1788794787,
+        "narHash": "sha256-kf4mdS6Wrp+0XqtcUqwH9tu4RzomEJMSAFgIn+VtxMQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8f3889588add43913e8bfbbd42a75345c857cf59",
+        "rev": "aaea627de08c837efcab44ca1655bfd826109c3a",
         "type": "github"
       },
       "original": {
@@ -485,11 +469,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1788703405,
-        "narHash": "sha256-gtiYYP9LhYpOTwG35bZ7ysP3kqnCGLQqgIe4hyKffks=",
+        "lastModified": 1788878441,
+        "narHash": "sha256-Db3Vb3D8xNdffT/oiUN2ijpiYL05GzpQH3jmhvDZu/M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3b1b62c540d2e1a8e474b87852d112345f5c4e94",
+        "rev": "05dc7e1f027bd4e743d3911adc139c33acc83d16",
         "type": "github"
       },
       "original": {
@@ -567,11 +551,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788703983,
-        "narHash": "sha256-JcJ7Tc2NI10f6e015nsHJzGltmVzjR4mHn8GSANsJJs=",
+        "lastModified": 1788876789,
+        "narHash": "sha256-NsWbsxYDb4jpPUMUqyMzZxlthZ3+wzV878xwSwnwVPY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1c85b1c8c1691e786df1da260e2cfecaaf94017e",
+        "rev": "490797c718c315ced83787a60760e9ab231ec192",
         "type": "github"
       },
       "original": {
@@ -589,11 +573,11 @@
         "systems-default-linux": "systems-default-linux"
       },
       "locked": {
-        "lastModified": 1788704161,
-        "narHash": "sha256-4VFIl/GEl1FcFA5H8aNiPAKiojRvEU/GuUgr7k6rwhQ=",
+        "lastModified": 1788879295,
+        "narHash": "sha256-k08sjyQS8bseS099k3peZ0Nidq5UP3LroUULLxXTYgc=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "3cbc0d46dc55552a30760a0823ede0af2e90715a",
+        "rev": "9849a4bdaa68e96c3ba90ca0312a548b6e220f33",
         "type": "github"
       },
       "original": {
@@ -665,7 +649,6 @@
         "nixpkgs-comfyui": "nixpkgs-comfyui",
         "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
         "nixpkgs-openlist": "nixpkgs-openlist",
-        "nixpkgs-rustdesk-flutter": "nixpkgs-rustdesk-flutter",
         "nixvim": "nixvim",
         "nur": "nur",
         "nur-knightfemale": "nur-knightfemale",

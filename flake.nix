@@ -36,7 +36,6 @@
     # ==================== self ====================
     nixpkgs-comfyui.url = "github:knightfemale/nixpkgs/comfyui";
     nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
-    nixpkgs-rustdesk-flutter.url = "github:knightfemale/nixpkgs/rustdesk-flutter";
     nur-knightfemale.url = "github:knightfemale/nur-packages/master";
     # nur-knightfemale.url = ./repositories/knightfemale/nur-packages;
   };
