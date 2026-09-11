@@ -17,7 +17,9 @@
         lsp = true;
         plugin = [
           "npm:oh-my-opencode-slim@latest"
+          "npm:opencode-acp@stable"
         ];
+        compaction.auto = false;
       };
     };
   };

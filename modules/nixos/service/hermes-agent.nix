@@ -28,8 +28,8 @@ in
       ];
       settings = {
         model = {
-          provider = "deepseek";
-          default = "deepseek-v4-flash-vision-exp";
+          provider = "opencode-go";
+          default = "deepseek-v4.1-flash";
         };
         web.search_backend = "searxng";
         gateway.platforms = {
