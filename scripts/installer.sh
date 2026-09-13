@@ -88,7 +88,7 @@ livecd_install() {
     # 4. 分区/格式化/挂载 (通过 Disko)
     echo ""
     echo "--- Partitioning Disk ---"
-    sudo nix run 'git+https://gitee.com/nix-config/disko.git?rev=e92033d8960a363b963cce697aa3ff091fe42a8a&shallow=1' \
+    sudo nix run 'github:nix-community/disko/v1.13.0' \
         --extra-experimental-features "nix-command flakes" \
         --option substituters "https://mirror.sjtu.edu.cn/nix-channels/store https://mirrors.ustc.edu.cn/nix-channels/store https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" \
         -- \
