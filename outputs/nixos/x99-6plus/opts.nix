@@ -38,6 +38,8 @@ vars: {
             DRM_AMDGPU = "no";
             DRM_RADEON = "no";
             DRM_NOUVEAU = "no";
+            # TODO: 在 LTO+FORTIFY 下链接报 __read_overflow
+            DRM_GUD = "no";
           };
           name = "linux-cachyos-server-lto";
         };
