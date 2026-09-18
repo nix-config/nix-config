@@ -6,13 +6,6 @@
   config = {
     programs.opencode = {
       enable = true;
-      # TODO: NixOS/nixpkgs#563241
-      package = pkgs.opencode.overrideAttrs (old: {
-        postPatch = (old.postPatch or "") + ''
-          substituteInPlace packages/opencode/script/build.ts \
-            --replace-fail 'splitting: true,' 'splitting: false,'
-        '';
-      });
       extraPackages = with pkgs; [
         bun
         gh

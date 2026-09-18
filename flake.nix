@@ -32,8 +32,7 @@
     # ==================== vendor ====================
     daeuniverse.url = "github:daeuniverse/flake.nix/main";
     hermes-agent.url = "github:NousResearch/hermes-agent/main";
-    # TODO: Mic92/sops-nix#984
-    sops-nix.url = "github:c2fc2f/sops-nix/buildGo126Module";
+    sops-nix.url = "github:Mic92/sops-nix/master";
     # ==================== self ====================
     nixpkgs-comfyui.url = "github:knightfemale/nixpkgs/comfyui";
     nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
