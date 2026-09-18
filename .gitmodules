@@ -1,7 +1,4 @@
 
-[submodule "repositories/NixOS/nixpkgs"]
-	path = repositories/NixOS/nixpkgs
-	url = git@github.com:knightfemale/nixpkgs.git
 [submodule "repositories/knightfemale/nur-packages"]
 	path = repositories/knightfemale/nur-packages
 	url = git@github.com:knightfemale/nur-packages.git
