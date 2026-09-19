@@ -38,6 +38,7 @@
     nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
     nur-knightfemale.url = "github:knightfemale/nur-packages/master";
     # nur-knightfemale.url = ./repositories/knightfemale/nur-packages;
+    flake-show-ng.url = "github:nix-config/flake-show-ng/master";
   };
   outputs = inputs: import ./outputs inputs;
 }

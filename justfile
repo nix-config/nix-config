@@ -1,6 +1,16 @@
 # 查看输出
 show:
-    nix flake show .
+    fsn
+
+# 更新
+update *args: 
+    -cd ./repositories/knightfemale/nur-packages/ && just update {{args}}
+    nix flake update {{args}}
+
+# 格式化
+format:
+    -cd ./repositories/knightfemale/nur-packages/ && just format
+    treefmt .
 
 # 构建并切换 nixos
 switch-nixos *args:
@@ -10,19 +20,9 @@ switch-nixos *args:
 switch-home *args:
     nh home switch . --ask {{args}}
 
-# 更新
-update *args: 
-    -cd ./repositories/knightfemale/nur-packages/ && just update {{args}}
-    nix flake update {{args}}
-
 # 清理
 clean *args:
     nh clean all --no-gcroots --ask {{args}}
-
-# 格式化
-format:
-    -cd ./repositories/knightfemale/nur-packages/ && just format
-    treefmt .
 
 # 查看被依赖链
 depend hostname pkgname:

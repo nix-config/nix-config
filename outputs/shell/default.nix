@@ -22,6 +22,8 @@ in
       nix-output-monitor
       # 密钥管理
       sops
+      # flake 输出全量树查看
+      inputs.flake-show-ng.packages.${system}.flake-show-ng
     ];
   };
 }
