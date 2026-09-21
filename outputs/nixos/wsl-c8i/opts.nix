@@ -44,10 +44,6 @@ vars: {
             "--bf16-text-enc"
             "--use-pytorch-cross-attention"
             "--lowvram"
-            "--cache-lru"
-            "8"
-            "--preview-method"
-            "taesd"
             "--fast"
           ];
         };
