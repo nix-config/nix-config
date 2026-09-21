@@ -1,6 +1,5 @@
 {
   inputs = {
-    # self.submodules = true;
     # ==================== nixpkgs ====================
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -37,7 +36,6 @@
     nixpkgs-comfyui.url = "github:knightfemale/nixpkgs/comfyui";
     nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
     nur-knightfemale.url = "github:knightfemale/nur-packages/master";
-    # nur-knightfemale.url = ./repositories/knightfemale/nur-packages;
     flake-show-ng.url = "github:nix-config/flake-show-ng/master";
   };
   outputs = inputs: import ./outputs inputs;

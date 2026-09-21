@@ -1,4 +1,0 @@
-
-[submodule "repositories/knightfemale/nur-packages"]
-	path = repositories/knightfemale/nur-packages
-	url = git@github.com:knightfemale/nur-packages.git
