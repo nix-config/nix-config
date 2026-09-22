@@ -8,15 +8,9 @@ vars: {
       system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
-      cli.nix = {
-        substituters = [
-          "https://ai.cachix.org"
-        ];
-        trusted-public-keys = [
-          "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
-          "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
-        ];
-      };
+      cli.nix.trusted-public-keys = [
+        "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
+      ];
       environment.type = "zh-cn";
       hardware = {
         boot-loader.type = "systemd-boot";
@@ -61,15 +55,15 @@ vars: {
           enable = true;
           extraSettings = {
             # 模型别名
-            alias = "qwen3.8-27b";
+            alias = "qwen3.6-27b";
             # 用于认证的 API 密钥 (逗号分隔列表)
             api-key = "1";
             # 加载模型路径
-            model = "/mnt/data/huggingface/Qwen3.8-27B-IQ4_XS.gguf";
+            model = "/mnt/data/huggingface/mradermacher/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic-GGUF/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic.Q4_K_M.gguf";
             # 多模态投影文件路径
-            mmproj = "/mnt/data/huggingface/mmproj-Qwen3.8-27B-BF16.gguf";
+            mmproj = "/mnt/data/huggingface/mradermacher/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic-GGUF/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic.mmproj-f16.gguf";
             # 卸载到每个 GPU 的模型比例 (逗号分隔)
-            tensor-split = "1,2";
+            tensor-split = "1,1";
             # 大幅降低长上下文推理时的显存占用和首字延迟
             flash-attn = "on";
             # 加载到GPU的模型层数
@@ -77,7 +71,7 @@ vars: {
             # 并发数量
             parallel = 1;
             # 张量分割模式
-            split-mode = "layer";
+            split-mode = "tensor";
             # 禁用内存映射
             load-mode = "none";
             # 逻辑最大批次大小
@@ -85,7 +79,7 @@ vars: {
             # 物理最大批次大小
             ubatch-size = 512;
             # 提示词上下文大小
-            ctx-size = 131072;
+            ctx-size = 262144;
             # 温度参数
             temp = 1.0;
             # 候选概率最⾼的 token 数
@@ -93,7 +87,7 @@ vars: {
             # 从前多少概率的 token 里选
             top-p = 0.95;
             # 最小概率阈值
-            min-p = 0;
+            min-p = 0.0;
             # 存在惩罚
             presence-penalty = 0.0;
             # 重复惩罚

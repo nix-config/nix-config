@@ -16,8 +16,8 @@
       settings = {
         lsp = true;
         plugin = [
-          "npm:oh-my-opencode-slim@latest"
-          "npm:opencode-acp@stable"
+          "npm:oh-my-opencode-slim@2.2.22"
+          "npm:opencode-acp@1.18.2"
         ];
         compaction.auto = false;
       };

@@ -9,15 +9,9 @@ vars: {
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
       cli = {
-        nix = {
-          substituters = [
-            "https://noctalia.cachix.org"
-          ];
-          trusted-public-keys = [
-            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-            "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
-          ];
-        };
+        nix.trusted-public-keys = [
+          "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
+        ];
         nix-ld.enable = true;
         sudo-rs.enable = true;
       };

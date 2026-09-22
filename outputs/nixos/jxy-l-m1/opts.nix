@@ -8,11 +8,9 @@ vars: {
       system = "aarch64-linux";
       stateVersion = "26.11";
       nixConfigPath = "/home/admin/workspace/nix-config";
-      cli.nix = {
-        trusted-public-keys = [
-          "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
-        ];
-      };
+      cli.nix.trusted-public-keys = [
+        "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
+      ];
       environment.i18n.type = "zh-cn";
       hardware = {
         boot-loader.type = "extlinux";
