@@ -55,7 +55,7 @@ vars: {
           enable = true;
           extraSettings = {
             # 模型别名
-            alias = "qwen3.6-27b";
+            alias = "qwen3.6-35b-a3b";
             # 用于认证的 API 密钥 (逗号分隔列表)
             api-key = "1";
             # 加载模型路径

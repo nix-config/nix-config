@@ -12,9 +12,11 @@ vars: {
         nix = {
           substituters = [
             "https://ai.cachix.org"
+            "https://nix-community.cachix.org"
           ];
           trusted-public-keys = [
             "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
           ];
         };

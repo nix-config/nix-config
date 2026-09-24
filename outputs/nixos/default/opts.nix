@@ -20,11 +20,11 @@ vars: {
             # "https://mirrors.ustc.edu.cn/nix-channels/store"
             # 清华镜像源
             # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-            # nixified-ai 缓存
-            # "https://ai.cachix.org"
+            # nix-community 缓存
+            # "https://nix-community.cachix.org"
           ];
           trusted-public-keys = [
-            # "ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="
+            # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
         };
         nix-ld.enable = true;
