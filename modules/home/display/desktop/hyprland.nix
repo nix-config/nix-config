@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   opts,
   ...
 }:
@@ -15,35 +14,6 @@ let
   kittyIsEnabled = opts.terminal.kitty.enable;
   udiskieIsEnabled = opts.service.udiskie.enable;
   missionCenterIsEnabled = opts.tool.mission-center.enable;
-  toggle-monitor = pkgs.writeShellApplication {
-    name = "toggle-monitor";
-    runtimeInputs = [ pkgs.jq ]; # 依赖 jq 解析 JSON
-    text =
-      # 默认操作第 1 个显示器
-      ''
-        n="''${1:-1}"
-      ''
-      # 获取所有当前连接的显示器名称, 按字母排序以保证顺序稳定
-      + ''
-        mapfile -t names < <(hyprctl monitors all -j | jq -r ".[].name" | sort)
-      ''
-      # 计算目标索引 (bash 数组从 0 开始)
-      + ''
-        idx=$((n - 1))
-        if [ -z "''${names[$idx]}" ]; then
-            exit 1
-        fi
-        target="''${names[$idx]}"
-      ''
-      # 切换状态: 若当前启用则禁用, 否则启用
-      + ''
-        if hyprctl monitors | grep -qF "$target"; then
-            hyprctl keyword monitor "$target",disable
-        else
-            hyprctl keyword monitor "$target",preferred,auto,1
-        fi
-      '';
-  };
   numKeys = builtins.genList (
     i:
     let
@@ -282,8 +252,6 @@ in
           (map (x: "$mainMod, ${x.key}, workspace, ${toString x.num}") numKeys)
           # 移动窗口到工作区 (Super + Shift + 数字)
           (map (x: "$mainMod SHIFT, ${x.key}, movetoworkspace, ${toString x.num}") numKeys)
-          # 切换屏幕开关 (Super + ALT + 数字)
-          (map (x: "$mainMod ALT, ${x.key}, exec, ${lib.getExe toggle-monitor} ${toString x.num}") numKeys)
           # 特殊工作区 (便签本)
           # 切换 (Super + S)
           # "$mainMod, S, togglespecialworkspace, magic"
