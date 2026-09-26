@@ -61,6 +61,9 @@ in
       enable = true;
       xwayland.enable = true;
       configType = "hyprlang";
+      # 使用 UWSM 必须关掉 Home Manager 的 systemd 集成
+      # https://wiki.hypr.land/useful-utilities/uwsm/
+      systemd.enable = false;
       settings = {
         # ========== 显示器 ==========
         monitor = [
