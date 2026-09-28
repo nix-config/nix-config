@@ -29,7 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # ==================== vendor ====================
-    daeuniverse.url = "github:daeuniverse/flake.nix/main";
     hermes-agent.url = "github:NousResearch/hermes-agent/main";
     sops-nix.url = "github:Mic92/sops-nix/master";
     # ==================== self ====================
