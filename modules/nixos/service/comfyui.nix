@@ -6,7 +6,8 @@
   ...
 }:
 let
-  comfyuiModule = "${inputs.nixpkgs-comfyui}/nixos/modules/services/misc/comfyui.nix";
+  # TODO: NixOS/nixpkgs#550095
+  comfyuiModule = "${inputs.nixpkgs-knightfemale}/nixos/modules/services/misc/comfyui.nix";
   gpuType = opts.hardware.graphics.type;
   enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
   inherit (opts.service.comfyui)
@@ -31,7 +32,7 @@ in
         };
         services.comfyui = {
           enable = true;
-          package = pkgSets.pkgs-comfyui.comfyui;
+          package = pkgSets.pkgs-knightfemale.comfyui;
           acceleration = "cuda";
           inherit
             extraArgs

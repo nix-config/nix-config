@@ -32,10 +32,8 @@
     hermes-agent.url = "github:NousResearch/hermes-agent/main";
     sops-nix.url = "github:Mic92/sops-nix/master";
     # ==================== self ====================
-    nixpkgs-comfyui.url = "github:knightfemale/nixpkgs/comfyui";
-    nixpkgs-openlist.url = "github:knightfemale/nixpkgs/openlist";
+    nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/knightfemale";
     nur-knightfemale.url = "github:knightfemale/nur-packages/master";
-    flake-show-ng.url = "github:nix-config/flake-show-ng/master";
   };
   outputs = inputs: import ./outputs inputs;
 }

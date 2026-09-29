@@ -9,7 +9,7 @@
 let
   enableModule = opts.service.sops-nix.enable;
   # TODO: NixOS/nixpkgs#543514
-  openlistModule = "${inputs.nixpkgs-openlist}/nixos/modules/services/web-apps/openlist.nix";
+  openlistModule = "${inputs.nixpkgs-knightfemale}/nixos/modules/services/web-apps/openlist.nix";
 in
 {
   # 首次启动执行:

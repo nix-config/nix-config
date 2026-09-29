@@ -5,7 +5,7 @@
 }:
 let
   system = "x86_64-linux";
-  inherit (functions.mk.pkgSets system inputs) pkgs;
+  inherit (functions.mk.pkgSets system inputs) pkgs pkgs-knightfemale;
 in
 {
   ${system}.default = pkgs.mkShell {
@@ -23,7 +23,7 @@ in
       # 密钥管理
       sops
       # flake 输出全量树查看
-      inputs.flake-show-ng.packages.${system}.flake-show-ng
+      pkgs-knightfemale.flake-show-ng
     ];
   };
 }
