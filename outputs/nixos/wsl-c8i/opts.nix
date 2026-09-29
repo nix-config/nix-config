@@ -41,12 +41,7 @@ vars: {
             realesrgan-x4plus-anime-6b
           ];
           extraArgs = [
-            "--bf16-unet"
-            "--bf16-vae"
-            "--bf16-text-enc"
-            "--use-pytorch-cross-attention"
-            "--lowvram"
-            "--fast"
+            "--disable-cuda-malloc"
           ];
         };
         frp = {
