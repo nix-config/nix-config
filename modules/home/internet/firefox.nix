@@ -3,6 +3,7 @@
   pkgs,
   opts,
   inputs,
+  pkgSets,
   ...
 }:
 let
@@ -13,8 +14,8 @@ in
 {
   config = lib.mkIf enableModule {
     programs.firefox = {
-      # 启用 Firefox 浏览器
       enable = true;
+      package = pkgSets.pkgs-nixos-unstable.firefox;
       # 浏览器策略配置
       policies = {
         # 启动时不检查是否为默认浏览器
