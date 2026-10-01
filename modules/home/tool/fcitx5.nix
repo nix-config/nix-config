@@ -6,16 +6,6 @@
 }:
 let
   enableModule = opts.display.desktop.enable;
-  # TODO: fcitx/fcitx5#1668, 随 fcitx 5.1.23 发布后可移除
-  fcitx5 = pkgs.fcitx5.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [
-      (pkgs.fetchpatch {
-        name = "fcitx5-1668-load-svg-as-cairo-pattern.patch";
-        url = "https://github.com/fcitx/fcitx5/commit/41d6d98dbbc38f351f9707bc99ee3c59941193f0.patch";
-        hash = "sha256-osBaEk+I8gixvFk8p5HEzY3QgO2dgvjHKljUacDbO0o=";
-      })
-    ];
-  });
 in
 {
   config = lib.mkIf enableModule {
@@ -23,9 +13,6 @@ in
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        fcitx5-with-addons = pkgs.qt6Packages.fcitx5-with-addons.override {
-          inherit fcitx5;
-        };
         addons = with pkgs; [
           fcitx5-mellow-themes
           qt6Packages.fcitx5-chinese-addons
