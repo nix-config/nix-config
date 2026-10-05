@@ -600,6 +600,11 @@ in
       type = bool;
       default = false;
     };
+    # Polkit 认证服务
+    polkit.enable = {
+      type = bool;
+      default = false;
+    };
     # PostgreSQL 数据库
     postgresql = {
       enable = {
