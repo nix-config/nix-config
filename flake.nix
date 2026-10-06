@@ -29,11 +29,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # ==================== vendor ====================
-    hermes-agent.url = "github:NousResearch/hermes-agent/main";
-    sops-nix.url = "github:Mic92/sops-nix/master";
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # ==================== self ====================
     nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/knightfemale";
-    nur-knightfemale.url = "github:knightfemale/nur-packages/master";
+    nur-knightfemale = {
+      url = "github:knightfemale/nur-packages/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: import ./outputs inputs;
 }
