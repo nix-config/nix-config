@@ -512,11 +512,6 @@ in
         default = false;
       };
     };
-    # 内核级透明代理
-    daed.enable = {
-      type = bool;
-      default = false;
-    };
     # 内网穿透工具
     frp = {
       enable = {
@@ -607,18 +602,6 @@ in
     };
     # PostgreSQL 数据库
     postgresql = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      # 实例列表
-      instances = {
-        type = listOfAttrs;
-        default = [ ];
-      };
-    };
-    # Qdrant 向量库
-    qdrant = {
       enable = {
         type = bool;
         default = false;

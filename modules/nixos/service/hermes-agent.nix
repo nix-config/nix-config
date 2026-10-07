@@ -50,6 +50,14 @@ in
           default = "deepseek-v4.1-flash";
         };
         web.search_backend = "searxng";
+        mcp_servers = {
+          mcp-nixos.command = "${lib.getExe pkgs.mcp-nixos}";
+        };
+        skills.create_dir = "\${HERMES_HOME}/extra-skills";
+        memory = {
+          memory_enabled = false;
+          user_profile_enabled = false;
+        };
         plugins = {
           enabled = [
             "hermes-panel"
@@ -62,16 +70,17 @@ in
         };
         platform_toolsets = {
           feishu = [
-            "web"
-            "file"
-            "todo"
-            "memory"
-            "skills"
-            "vision"
             "clarify"
-            "terminal"
+            "code_execution"
+            "cronjob"
             "delegation"
+            "file"
             "session_search"
+            "skills"
+            "terminal"
+            "todo"
+            "vision"
+            "web"
           ];
         };
       };

@@ -11,7 +11,7 @@ vars: {
       cli.nix.trusted-public-keys = [
         "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
       ];
-      environment.type = "zh-cn";
+      environment.i18n.type = "zh-cn";
       hardware = {
         boot-loader.type = "systemd-boot";
         disk.devices = {
