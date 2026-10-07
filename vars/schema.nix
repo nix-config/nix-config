@@ -501,16 +501,6 @@ in
         ];
         default = "podman";
       };
-      # Arch 开发容器
-      dev-arch.enable = {
-        type = bool;
-        default = false;
-      };
-      # Portainer 代理
-      portainer-agent.enable = {
-        type = bool;
-        default = false;
-      };
     };
     # 内网穿透工具
     frp = {
@@ -576,10 +566,6 @@ in
       type = bool;
       default = false;
     };
-    ollama.enable = {
-      type = bool;
-      default = false;
-    };
     # 支持多种存储的文件列表程序
     openlist.enable = {
       type = bool;
@@ -600,18 +586,6 @@ in
       type = bool;
       default = false;
     };
-    # PostgreSQL 数据库
-    postgresql = {
-      enable = {
-        type = bool;
-        default = false;
-      };
-      # 实例列表
-      instances = {
-        type = listOfAttrs;
-        default = [ ];
-      };
-    };
     # 远程桌面服务器
     rustdesk-server = {
       enable = {
@@ -630,10 +604,10 @@ in
         type = bool;
         default = false;
       };
-      # 实例列表
-      instances = {
-        type = listOfAttrs;
-        default = [ ];
+      # HTTP 监听端口
+      port = {
+        type = int;
+        default = 8888;
       };
     };
     # 通用代理工具
