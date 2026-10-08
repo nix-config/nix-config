@@ -1,8 +1,10 @@
 {
   inputs = {
-    # ==================== nixpkgs ====================
+    # ==================== nixos ====================
+    flake-compat.url = "github:NixOS/flake-compat/master";
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
     # ==================== nix-community ====================
     disko = {
       url = "github:nix-community/disko/master";
@@ -18,20 +20,45 @@
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     nixvim = {
       url = "github:nix-community/nixvim/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     nur = {
       url = "github:nix-community/NUR/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
-    # ==================== vendor ====================
+    # ==================== trhird-party ====================
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts/main";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     hermes-agent = {
       url = "github:NousResearch/hermes-agent/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/master";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs-staging";
+      };
     };
     sops-nix = {
       url = "github:Mic92/sops-nix/master";
@@ -41,7 +68,10 @@
     nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/knightfemale";
     nur-knightfemale = {
       url = "github:knightfemale/nur-packages/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
   };
   outputs = inputs: import ./outputs inputs;

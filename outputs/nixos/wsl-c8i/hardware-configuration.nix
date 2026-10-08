@@ -1,6 +1,4 @@
 {
-  lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -10,8 +8,5 @@
     enable = true;
     defaultUser = "admin";
     useWindowsDriver = true;
-    extraBin = lib.mkAfter [
-      { src = "${pkgs.coreutils}/bin/true"; }
-    ];
   };
 }

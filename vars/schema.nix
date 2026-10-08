@@ -338,24 +338,6 @@ in
         default = "none";
       };
     };
-    # 内核配置
-    kernel = {
-      enable = {
-        # 类型
-        type = bool;
-        default = false;
-      };
-      # 额外参数
-      configs = {
-        type = attrsOfStr;
-        default = { };
-      };
-      # 内核名称, null 表示使用默认内核
-      name = {
-        type = nullOr str;
-        default = null;
-      };
-    };
     # 网络配置
     networking = {
       # 是否启用网络配置

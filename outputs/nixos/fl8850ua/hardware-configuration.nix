@@ -1,6 +1,8 @@
 {
   lib,
+  pkgs,
   config,
+  inputs,
   modulesPath,
   ...
 }:
@@ -30,6 +32,23 @@
     # 额外的第三方内核模块包
     # 如需在 initrd 阶段加载其中的模块, 请加入 initrd.kernelModules
     extraModulePackages = [ ];
+    # 内核包
+    kernelPackages =
+      pkgs.linuxPackagesFor
+        inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linux-cachyos-bore-lto-x86_64-v3;
+    # 内核补丁
+    kernelPatches = [
+      {
+        name = "extra-kernel-config";
+        patch = null;
+        structuredExtraConfig = {
+          DRM_XE = lib.kernel.no;
+          DRM_I915 = lib.kernel.no;
+          DRM_RADEON = lib.kernel.no;
+          DRM_NOUVEAU = lib.kernel.no;
+        };
+      }
+    ];
   };
   # 指定 Nixpkgs 编译和打包时使用的主机平台架构
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

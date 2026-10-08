@@ -4,12 +4,10 @@ show:
 
 # 更新
 update *args: 
-    -cd ./repositories/knightfemale/nur-packages/ && just update {{args}}
     nix flake update {{args}}
 
 # 格式化
 format:
-    -cd ./repositories/knightfemale/nur-packages/ && just format
     treefmt .
 
 # 构建并切换 nixos

@@ -38,15 +38,6 @@ vars: {
           enable = true;
           type = "amd";
         };
-        kernel = {
-          configs = {
-            DRM_XE = "no";
-            DRM_I915 = "no";
-            DRM_RADEON = "no";
-            DRM_NOUVEAU = "no";
-          };
-          name = "linux-cachyos-bore-lto-v3";
-        };
         networking.networkmanager.enable = true;
         zram.enable = true;
       };

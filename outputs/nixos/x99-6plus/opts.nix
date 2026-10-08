@@ -25,16 +25,6 @@ vars: {
           enable = true;
           type = "nvidia-open";
         };
-        kernel = {
-          configs = {
-            DRM_XE = "no";
-            DRM_I915 = "no";
-            DRM_AMDGPU = "no";
-            DRM_RADEON = "no";
-            DRM_NOUVEAU = "no";
-          };
-          name = "linux-cachyos-server-lto";
-        };
         zram.enable = true;
       };
       service = {

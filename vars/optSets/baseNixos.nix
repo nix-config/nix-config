@@ -3,7 +3,6 @@ inputs: {
   cli.nix.enable = true;
   hardware = {
     disk.enable = true;
-    kernel.enable = true;
     networking.enable = true;
     boot-loader.enable = true;
   };
