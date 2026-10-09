@@ -7,7 +7,8 @@
 }:
 let
   # TODO: NixOS/nixpkgs#550095
-  comfyuiModule = "${inputs.nixpkgs-knightfemale}/nixos/modules/services/misc/comfyui.nix";
+  inherit (inputs) nixpkgs-knightfemale;
+  comfyuiModule = "${nixpkgs-knightfemale}/nixos/modules/services/misc/comfyui.nix";
   gpuType = opts.hardware.graphics.type;
   enableModule = (gpuType == "nvidia") || (gpuType == "nvidia-open");
   inherit (opts.service.comfyui)
@@ -28,6 +29,7 @@ in
       {
         documentation.nixos = {
           extraModules = [ comfyuiModule ];
+          extraModuleSources = [ nixpkgs-knightfemale ];
           checkRedirects = false;
         };
         services.comfyui = {

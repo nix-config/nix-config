@@ -22,7 +22,7 @@ in
         lsp = true;
         plugin = lib.flatten [
           [
-            "npm:oh-my-opencode-slim@3.0.2"
+            "npm:oh-my-opencode-slim@3.0.3"
             "npm:opencode-acp@1.18.3"
           ]
           (lib.optionals polkitIsEnabled [

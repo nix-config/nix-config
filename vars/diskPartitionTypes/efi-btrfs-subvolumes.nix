@@ -2,7 +2,7 @@ inputs:
 {
   device,
   espSize ? "1G",
-  swapSize ? "4G",
+  swapSize ? null,
   enableSnapshots ? true,
   ...
 }:
