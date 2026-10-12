@@ -32,6 +32,8 @@
     # 额外的第三方内核模块包
     # 如需在 initrd 阶段加载其中的模块, 请加入 initrd.kernelModules
     extraModulePackages = [ ];
+    # 额外的 modprobe 配置
+    extraModprobeConfig = "options hid_apple fnmode=2";
     # 内核包
     kernelPackages =
       pkgs.linuxPackagesFor

@@ -15,12 +15,10 @@ in
       {
         enable = true;
         settings = {
-          # 是否显示主题设置的背景色, 若希望终端背景透明请设为 false
+          # 显示主题设置的背景色, false 为透明
           theme_background = false;
           # 更新间隔 (毫秒)
           update_ms = 1000;
-          # 进程排序方式
-          proc_sorting = "cpu direct";
         };
       }
       (lib.optionalAttrs isAmd {

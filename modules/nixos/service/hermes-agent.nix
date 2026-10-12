@@ -46,8 +46,8 @@ in
       ];
       settings = {
         model = {
-          provider = "opencode-go";
-          default = "deepseek-v4.1-flash";
+          provider = "deepseek";
+          default = "deepseek-flash";
         };
         web.search_backend = "searxng";
         mcp_servers = {
