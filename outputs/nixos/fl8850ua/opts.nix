@@ -68,7 +68,6 @@ vars: {
         openlist.enable = true;
         openssh.enable = true;
         pipewire.enable = true;
-        polkit.enable = true;
         snapper.enable = true;
         sops-nix.enable = true;
         udiskie.enable = true;

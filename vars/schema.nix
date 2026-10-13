@@ -101,7 +101,6 @@ in
       enabledMcps = {
         type = listOf (enum [
           "all"
-          "codebase-memory-mcp"
           "mcp-nixos"
         ]);
         default = [ ];
@@ -560,11 +559,6 @@ in
     };
     # 多媒体框架, 替代 PulseAudio
     pipewire.enable = {
-      type = bool;
-      default = false;
-    };
-    # Polkit 认证服务
-    polkit.enable = {
       type = bool;
       default = false;
     };

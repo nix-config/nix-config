@@ -1,7 +1,6 @@
 {
   lib,
   opts,
-  pkgs,
   ...
 }:
 let
@@ -14,7 +13,6 @@ let
   fcitx5IsEnabled = opts.tool.fcitx5.enable;
   kittyIsEnabled = opts.terminal.kitty.enable;
   udiskieIsEnabled = opts.service.udiskie.enable;
-  polkitIsEnabled = opts.service.polkit.enable;
   missionCenterIsEnabled = opts.tool.mission-center.enable;
   numKeys = builtins.genList (
     i:
@@ -29,12 +27,6 @@ let
 in
 {
   config = lib.mkIf enableModule {
-    home.packages = lib.mkIf polkitIsEnabled (
-      with pkgs;
-      [
-        hyprpolkitagent
-      ]
-    );
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -94,9 +86,7 @@ in
           # 输入法
           ++ lib.optional fcitx5IsEnabled "fcitx5"
           # 自动挂载 U 盘
-          ++ lib.optional udiskieIsEnabled "udiskie"
-          # Polkit 认证代理
-          ++ lib.optional polkitIsEnabled "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+          ++ lib.optional udiskieIsEnabled "udiskie";
         # ========== 环境变量 ==========
         env = [
           "XCURSOR_SIZE,24"

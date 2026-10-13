@@ -1,12 +1,7 @@
 {
-  lib,
   pkgs,
-  opts,
   ...
 }:
-let
-  polkitIsEnabled = opts.service.polkit.enable;
-in
 {
   config = {
     programs.opencode = {
@@ -20,14 +15,9 @@ in
       enableMcpIntegration = true;
       settings = {
         lsp = true;
-        plugin = lib.flatten [
-          [
-            "npm:oh-my-opencode-slim@3.0.3"
-            "npm:opencode-acp@1.18.3"
-          ]
-          (lib.optionals polkitIsEnabled [
-            "npm:opencode-polkit@0.1.5"
-          ])
+        plugin = [
+          "npm:oh-my-opencode-slim@3.0.3"
+          "npm:opencode-acp@1.18.3"
         ];
         compaction.auto = false;
       };
