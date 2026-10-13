@@ -10,6 +10,7 @@
         bun
         gh
         jq
+        nodejs
         python3
       ];
       enableMcpIntegration = true;
@@ -17,7 +18,7 @@
         lsp = true;
         plugin = [
           "npm:oh-my-opencode-slim@3.0.3"
-          "npm:opencode-acp@1.18.3"
+          "billion-context@0.1.196"
         ];
         compaction.auto = false;
       };
