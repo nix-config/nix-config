@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -30,6 +31,8 @@
       # HDMI 显示器控制台 (tty0 / framebuffer)
       "console=tty0"
     ];
+    # 内核包
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   };
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

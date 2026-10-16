@@ -72,7 +72,13 @@ vars: {
       ];
       customOptSets = {
         count = 1;
-        cli.zellij.enable = true;
+        cli = {
+          ssh = {
+            enable = true;
+            enableSshSecrets = [ "id_ed25519_ssh" ];
+          };
+          zellij.enable = true;
+        };
         shell.bash.enable = true;
       };
     };
