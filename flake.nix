@@ -4,7 +4,6 @@
     flake-compat.url = "github:NixOS/flake-compat/master";
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
     # ==================== nix-community ====================
     disko = {
       url = "github:nix-community/disko/master";
@@ -57,7 +56,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs-staging-next";
+        nixpkgs.follows = "nixpkgs";
       };
     };
     sops-nix = {
