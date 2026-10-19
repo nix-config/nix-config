@@ -3,7 +3,6 @@ let
   inherit (inputs.nixpkgs) lib;
   inherit (lib.types)
     attrs
-    attrsOf
     bool
     enum
     int
@@ -11,7 +10,6 @@ let
     nullOr
     str
     ;
-  attrsOfStr = attrsOf str;
   listOfAttrs = listOf attrs;
   listOfStr = listOf str;
   systems = lib.systems.flakeExposed;
@@ -465,6 +463,10 @@ in
       };
       models = {
         type = listOfAttrs;
+        default = [ ];
+      };
+      customNodes = {
+        type = listOfStr;
         default = [ ];
       };
     };

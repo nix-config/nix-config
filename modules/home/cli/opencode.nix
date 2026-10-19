@@ -17,8 +17,8 @@
       settings = {
         lsp = true;
         plugin = [
-          "npm:oh-my-opencode-slim@3.0.4"
-          "billion-context@0.1.197"
+          "npm:oh-my-opencode-slim@3.0.5"
+          "npm:billion-context@0.1.201"
         ];
         compaction.auto = false;
       };
