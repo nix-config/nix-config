@@ -27,7 +27,7 @@ in
         theme = {
           mode = "dark";
           source = "wallpaper";
-          generator = "m3-content";
+          wallpaper_scheme = "m3-content";
         };
       };
     };
