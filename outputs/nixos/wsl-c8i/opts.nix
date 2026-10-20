@@ -140,7 +140,6 @@ vars: {
             name = "小鲮鱼";
             email = "1835165361@qq.com";
           };
-          opencode.enable = true;
           zellij.enable = true;
         };
         shell.bash.enable = true;

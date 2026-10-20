@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugins": [
+    "billion-context@0.1.201",
+    "oh-my-opencode-slim@3.0.5",
+  ],
+  "mcp": {
+    "servers": {
+      "mcp-nixos": {
+        "type": "local",
+        "command": ["mcp-nixos"],
+        "disabled": false,
+      },
+    },
+  },
+  "compaction": {
+    "auto": false,
+  },
+}
