@@ -24,49 +24,6 @@ in
         DisplayBookmarksToolbar = true;
         # 不创建自带的默认书签
         NoDefaultBookmarks = true;
-        # 受控书签
-        ManagedBookmarks = [
-          {
-            name = "AI";
-            children = [
-              {
-                name = "DeepSeek";
-                url = "https://chat.deepseek.com/";
-              }
-              {
-                name = "Kimi";
-                url = "https://www.kimi.com/";
-              }
-            ];
-          }
-          {
-            name = "视频";
-            children = [
-              {
-                name = "bilibili";
-                url = "https://www.bilibili.com/";
-              }
-            ];
-          }
-          {
-            name = "工具";
-            children = [
-              {
-                name = "Nix";
-                children = [
-                  {
-                    name = "NixOS Search";
-                    url = "https://search.nixos.org/";
-                  }
-                  {
-                    name = "NUR";
-                    url = "https://nur.nix-community.org/";
-                  }
-                ];
-              }
-            ];
-          }
-        ];
       };
       # 浏览器偏好设置
       profiles = {
