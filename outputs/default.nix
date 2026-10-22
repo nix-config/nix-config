@@ -2,10 +2,10 @@ inputs:
 let
   # 从 nixpkgs 输入中获取 lib 工具库
   inherit (inputs.nixpkgs) lib;
+  # 导入公共函数
+  functions = import ../lib inputs;
   # 导入公共变量
   vars = import ../vars functions;
-  # 导入公共函数
-  functions = inputs.nur-knightfemale.functions;
 in
 {
   # 输出结构: { nixosConfigurations = { "主机名" = ... }; }

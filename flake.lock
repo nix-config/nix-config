@@ -110,6 +110,21 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1788467110,
+        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
+        "owner": "denful",
+        "repo": "import-tree",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "nix-cachyos-kernel": {
       "inputs": {
         "flake-compat": [
@@ -305,16 +320,17 @@
         "flake-parts": [
           "flake-parts"
         ],
+        "import-tree": "import-tree",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1791550530,
-        "narHash": "sha256-3PmhiJu4LdLpj2Z/fyKpG8GZXPQF+rxaNYD9NyAe9UY=",
+        "lastModified": 1792659154,
+        "narHash": "sha256-oi6BvHF0QDICqQj19WPAIF/6ob4ZTJB5u8qCQzqaMnM=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "b29e5fe5b8b723a1b3d2052b71d8c07413ff4cc1",
+        "rev": "7055ef85760af1224b05e804eac42cf37e31be31",
         "type": "github"
       },
       "original": {

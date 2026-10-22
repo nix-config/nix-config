@@ -1,11 +1,12 @@
 {
-  pkgSets,
+  pkgs,
+  inputs,
   ...
 }:
 {
   config = {
-    home.packages = with pkgSets.pkgs-knightfemale; [
-      biu
+    home.packages = [
+      inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system}.biu
     ];
   };
 }
