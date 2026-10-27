@@ -6,7 +6,6 @@
 let
   system = "x86_64-linux";
   inherit (functions.mk.pkgSets system inputs) pkgs;
-  inherit (inputs.nur-knightfemale.packages.${pkgs.stdenv.hostPlatform.system}) flake-show-ng;
 in
 {
   ${system}.default = pkgs.mkShell {

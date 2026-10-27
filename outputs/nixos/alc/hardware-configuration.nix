@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   modulesPath,
   ...
 }:
@@ -31,23 +30,7 @@
     # 如需在 initrd 阶段加载其中的模块, 请加入 initrd.kernelModules
     extraModulePackages = [ ];
     # 内核包
-    kernelPackages =
-      pkgs.linuxPackagesFor
-        inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linux-cachyos-server-lto;
-    # 内核补丁
-    kernelPatches = [
-      {
-        name = "extra-kernel-config";
-        patch = null;
-        structuredExtraConfig = {
-          DRM_XE = lib.kernel.no;
-          DRM_I915 = lib.kernel.no;
-          DRM_AMDGPU = lib.kernel.no;
-          DRM_RADEON = lib.kernel.no;
-          DRM_NOUVEAU = lib.kernel.no;
-        };
-      }
-    ];
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

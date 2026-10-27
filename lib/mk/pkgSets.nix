@@ -34,6 +34,10 @@ let
       value = import value {
         inherit system;
         config.allowUnfree = true;
+        overlays = with inputs; [
+          nix-cachyos-kernel.overlays.default
+          nur-knightfemale.overlays.default
+        ];
       };
     }) nixpkgsInputs;
 in
