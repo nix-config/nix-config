@@ -47,6 +47,11 @@ in
       type = bool;
       default = false;
     };
+    # ComfyUI 工作流 MCP
+    comfyui-workflow-mcp.enable = {
+      type = bool;
+      default = false;
+    };
     # 环境变量管理工具
     direnv.enable = {
       type = bool;

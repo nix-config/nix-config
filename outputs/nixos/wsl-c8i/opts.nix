@@ -135,6 +135,7 @@ vars: {
       customOptSets = {
         count = 1;
         cli = {
+          comfyui-workflow-mcp.enable = true;
           direnv.enable = true;
           git.user = {
             name = "小鲮鱼";
@@ -142,6 +143,7 @@ vars: {
           };
           zellij.enable = true;
         };
+        service.sops-nix.enable = true;
         shell.bash.enable = true;
       };
     };
