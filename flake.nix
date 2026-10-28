@@ -64,7 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # ==================== self ====================
-    nixpkgs-knightfemale.url = "github:knightfemale/nixpkgs/knightfemale";
     nur-knightfemale = {
       url = "github:knightfemale/nur-packages/master";
       inputs = {

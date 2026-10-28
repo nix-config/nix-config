@@ -9,8 +9,7 @@
 let
   enableModule = opts.service.sops-nix.enable;
   # TODO: NixOS/nixpkgs#543514
-  inherit (inputs) nixpkgs-knightfemale;
-  openlistModule = "${nixpkgs-knightfemale}/nixos/modules/services/web-apps/openlist.nix";
+  openlistModule = inputs.nur-knightfemale.nixosModules.openlist;
 in
 {
   # 首次启动执行:
@@ -21,12 +20,6 @@ in
     inputs.sops-nix.nixosModules.sops
   ];
   config = lib.mkIf enableModule {
-    # 手册配置 (模块来自外部分支, 上游无 openlist 锚点与选项文档)
-    documentation.nixos = {
-      extraModules = [ openlistModule ];
-      extraModuleSources = [ nixpkgs-knightfemale ];
-      checkRedirects = false;
-    };
     sops.secrets."openlist/jwt-secret" = {
       sopsFile = ../../../secrets/openlist/jwt-secret.enc;
       format = "binary";

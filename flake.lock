@@ -213,22 +213,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-knightfemale": {
-      "locked": {
-        "lastModified": 1792659397,
-        "narHash": "sha256-l8O9GYRgHh7ZDCZVS2QWNrCMGGrXx+cEz7PwQ2FaZlI=",
-        "owner": "knightfemale",
-        "repo": "nixpkgs",
-        "rev": "f763ae7049e494ebf4d732b087c5c0efbd698ba1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "knightfemale",
-        "ref": "knightfemale",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-nixos-unstable": {
       "locked": {
         "lastModified": 1792502884,
@@ -326,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792659154,
-        "narHash": "sha256-M/u5fbTGF8vmsvVFRYubkaM1hoXvQxG6McCjMwme2vM=",
+        "lastModified": 1793199400,
+        "narHash": "sha256-OUf74iQJxbp/jYXidiTvZROM7AKLF/k9p7DcHxR37as=",
         "owner": "knightfemale",
         "repo": "nur-packages",
-        "rev": "476c49a4cbfb8509d2feb218855d5c80e08ab74b",
+        "rev": "5d8b14364eaa2741b6805176816cc7deebbbf6f2",
         "type": "github"
       },
       "original": {
@@ -401,7 +385,6 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-knightfemale": "nixpkgs-knightfemale",
         "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
         "nixvim": "nixvim",
         "nur": "nur",
