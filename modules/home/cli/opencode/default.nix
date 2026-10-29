@@ -1,12 +1,7 @@
 {
   pkgs,
-  opts,
-  config,
   ...
 }:
-let
-  configPath = "${opts.nixConfigPath}/modules/home/cli/opencode/config";
-in
 {
   config = {
     programs.opencode = {
@@ -14,17 +9,16 @@ in
       extraPackages = with pkgs; [
         gh
         jq
-        mcp-nixos
         nodejs
         python3
       ];
-      enableMcpIntegration = false;
-      settings = { };
-    };
-    home.file = {
-      ".config/opencode/opencode.jsonc" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configPath}/opencode.jsonc";
-        force = true;
+      enableMcpIntegration = true;
+      settings = {
+        plugins = [
+          "billion-context@0.1.209"
+          "oh-my-opencode-slim@3.0.6"
+        ];
+        compaction.auto = false;
       };
     };
   };
