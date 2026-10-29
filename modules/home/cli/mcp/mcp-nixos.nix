@@ -1,7 +1,7 @@
 {
   lib,
-  pkgs,
   opts,
+  pkgSets,
   ...
 }:
 let
@@ -12,7 +12,7 @@ in
   config = lib.mkIf enableModule {
     programs.mcp.servers."mcp-nixos" = {
       enabled = true;
-      command = "${lib.getExe pkgs.mcp-nixos}";
+      command = "${lib.getExe pkgSets.pkgs-nixos-unstable.mcp-nixos}";
       type = "local";
     };
   };
