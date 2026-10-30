@@ -1,10 +1,13 @@
 {
   lib,
   opts,
+  vars,
   ...
 }:
 let
   enableModule = (opts.environment.i18n.type == "zh-cn");
+  locale = vars.locales.zh-cn;
+  fallbackLocale = vars.locales.en-us;
 in
 {
   config = lib.mkIf enableModule {
@@ -13,21 +16,21 @@ in
     # 语言配置
     i18n = {
       # 系统中文环境配置
-      defaultLocale = "zh_CN.UTF-8";
+      defaultLocale = locale.posix;
       extraLocaleSettings = {
-        LC_ADDRESS = "zh_CN.UTF-8";
-        LC_IDENTIFICATION = "zh_CN.UTF-8";
-        LC_MEASUREMENT = "zh_CN.UTF-8";
-        LC_MONETARY = "zh_CN.UTF-8";
-        LC_NAME = "zh_CN.UTF-8";
-        LC_NUMERIC = "zh_CN.UTF-8";
-        LC_PAPER = "zh_CN.UTF-8";
-        LC_TELEPHONE = "zh_CN.UTF-8";
-        LC_TIME = "zh_CN.UTF-8";
+        LC_ADDRESS = locale.posix;
+        LC_IDENTIFICATION = locale.posix;
+        LC_MEASUREMENT = locale.posix;
+        LC_MONETARY = locale.posix;
+        LC_NAME = locale.posix;
+        LC_NUMERIC = locale.posix;
+        LC_PAPER = locale.posix;
+        LC_TELEPHONE = locale.posix;
+        LC_TIME = locale.posix;
       };
       supportedLocales = [
-        "zh_CN.UTF-8/UTF-8"
-        "en_US.UTF-8/UTF-8"
+        "${locale.posix}/UTF-8"
+        "${fallbackLocale.posix}/UTF-8"
       ];
     };
   };

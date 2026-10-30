@@ -2,6 +2,7 @@
   lib,
   pkgs,
   opts,
+  vars,
   inputs,
   pkgSets,
   ...
@@ -9,6 +10,8 @@
 let
   enableModule = opts.display.desktop.enable;
   i18nType = opts.environment.i18n.type;
+  locale = vars.locales.${i18nType};
+  fallbackLocale = vars.locales.en-us;
   pkgs-nur = pkgs.extend inputs.nur.overlays.default;
 in
 {
@@ -16,6 +19,8 @@ in
     programs.firefox = {
       enable = true;
       package = pkgSets.pkgs-nixos-unstable.firefox;
+      # 安装界面语言包, 由企业策略从 releases.mozilla.org 按当前 firefox 版本自动装好
+      languagePacks = [ locale.bcp47 ];
       # 浏览器策略配置
       policies = {
         # 启动时不检查是否为默认浏览器
@@ -30,8 +35,11 @@ in
         default = {
           id = 0;
           settings = {
-            # 强制使用操作系统语言
-            "intl.locale.requested" = i18nType;
+            # 界面语言: 指定首选语言列表
+            "intl.locale.requested" = locale.bcp47;
+            "intl.locale.matchOS" = false;
+            # 网站语言偏好
+            "intl.accept_languages" = "${locale.bcp47},${fallbackLocale.bcp47}";
             # 1: 手动配置代理
             # 2: 自动代理配置的 URL
             # 3: 不使用代理服务器
