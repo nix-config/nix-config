@@ -52,7 +52,7 @@ in
         };
         web.search_backend = "searxng";
         mcp_servers = {
-          mcp-nixos.command = "${lib.getExe pkgSets.pkgs-nixos-unstable.mcp-nixos}";
+          mcp-nixos.command = "${lib.getExe pkgs.mcp-nixos}";
         };
         skills.create_dir = "\${HERMES_HOME}/extra-skills";
         memory = {
