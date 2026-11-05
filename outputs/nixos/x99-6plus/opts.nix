@@ -8,9 +8,12 @@ vars: {
       system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/admin/workspace/nix-config";
-      cli.nix.trusted-public-keys = [
-        "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
-      ];
+      cli = {
+        nix.trusted-public-keys = [
+          "remote-build-binary-cache:cjK3U/pAP7CCcBDJk2Xe++jeCmX6crHoBB+wJGs6B5Y="
+        ];
+        sudo-rs.enable = true;
+      };
       environment.i18n.type = "zh-cn";
       hardware = {
         boot-loader.type = "systemd-boot";
@@ -38,6 +41,13 @@ vars: {
               localIP = "localhost";
               localPort = 22;
               remotePort = 2227;
+            }
+            {
+              name = "llama-cpp";
+              type = "tcp";
+              localIP = "localhost";
+              localPort = 8080;
+              remotePort = 28080;
             }
           ];
         };

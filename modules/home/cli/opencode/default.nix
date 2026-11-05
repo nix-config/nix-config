@@ -15,8 +15,8 @@
       enableMcpIntegration = true;
       settings = {
         plugins = [
-          "billion-context@0.1.209"
-          "oh-my-opencode-slim@3.0.6"
+          "billion-context@0.1.212"
+          "oh-my-opencode-slim@3.0.7"
         ];
         compaction.auto = false;
       };
