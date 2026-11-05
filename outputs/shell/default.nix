@@ -10,20 +10,14 @@ in
 {
   ${system}.default = pkgs.mkShell {
     packages = with pkgs; [
-      # just lsp
-      just-lsp
-      # nix lsp
-      nixd
-      # nix 文件格式化
-      nixfmt
-      # nix 多文件批量格式化
-      nixfmt-tree
-      # nix 日志渲染包装
-      nix-output-monitor
-      # 密钥管理
-      sops
-      # flake 输出全量树查看
       flake-show-ng
+      just
+      just-lsp
+      nix-output-monitor
+      nixd
+      nixfmt
+      nixfmt-tree
+      sops
     ];
   };
 }

@@ -3,6 +3,5 @@ inputs: {
   cli = {
     nh.enable = true;
     git.enable = true;
-    just.enable = true;
   };
 }

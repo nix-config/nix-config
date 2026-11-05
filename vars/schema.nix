@@ -89,11 +89,6 @@ in
         };
       };
     };
-    # 命令运行器, 类似 Makefile
-    just.enable = {
-      type = bool;
-      default = false;
-    };
     # MCP 服务器
     mcp = {
       enable = {
