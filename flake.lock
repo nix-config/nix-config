@@ -110,21 +110,6 @@
         "type": "github"
       }
     },
-    "import-tree": {
-      "locked": {
-        "lastModified": 1788467110,
-        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
-        "owner": "denful",
-        "repo": "import-tree",
-        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
-        "type": "github"
-      },
-      "original": {
-        "owner": "denful",
-        "repo": "import-tree",
-        "type": "github"
-      }
-    },
     "nix-cachyos-kernel": {
       "inputs": {
         "flake-compat": [
@@ -285,42 +270,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1793597619,
-        "narHash": "sha256-WSABF4GIqDuwZL+NJsi/fLJ0h7uzbV5FcNo37QGipT4=",
+        "lastModified": 1793843142,
+        "narHash": "sha256-AVe2xU5Fd2QxwsiEp2oqC6qsPR5o5Ei+2KQ++2OBt0s=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ca5f5b0e6e652d72d38b54d56635f08fc103bc4d",
+        "rev": "6b55b50dade292f44e7bf9fce3d5604c1f13ae30",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "ref": "main",
         "repo": "NUR",
-        "type": "github"
-      }
-    },
-    "nur-knightfemale": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "import-tree": "import-tree",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1793199400,
-        "narHash": "sha256-OUf74iQJxbp/jYXidiTvZROM7AKLF/k9p7DcHxR37as=",
-        "owner": "knightfemale",
-        "repo": "nur-packages",
-        "rev": "5d8b14364eaa2741b6805176816cc7deebbbf6f2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "knightfemale",
-        "ref": "master",
-        "repo": "nur-packages",
         "type": "github"
       }
     },
@@ -388,7 +348,6 @@
         "nixpkgs-nixos-unstable": "nixpkgs-nixos-unstable",
         "nixvim": "nixvim",
         "nur": "nur",
-        "nur-knightfemale": "nur-knightfemale",
         "sops-nix": "sops-nix"
       }
     },

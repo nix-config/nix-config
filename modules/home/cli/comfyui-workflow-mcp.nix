@@ -4,7 +4,9 @@
   ...
 }:
 {
-  imports = [ inputs.nur-knightfemale.homeModules.comfyui-workflow-mcp ];
+  imports = [
+    inputs.nur.repos.knightfemale.modules.homeManager.comfyui-workflow-mcp
+  ];
   config = {
     sops.secrets."comfyui-workflow-mcp.toml" = {
       sopsFile = ../../../secrets/comfyui-workflow-mcp.enc;

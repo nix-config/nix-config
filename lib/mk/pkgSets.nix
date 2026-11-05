@@ -36,7 +36,7 @@ let
         config.allowUnfree = true;
         overlays = with inputs; [
           nix-cachyos-kernel.overlays.default
-          nur-knightfemale.overlays.default
+          nur.repos.knightfemale.overlays.default
         ];
       };
     }) nixpkgsInputs;

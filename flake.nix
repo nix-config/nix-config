@@ -63,14 +63,6 @@
       url = "github:Mic92/sops-nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # ==================== self ====================
-    nur-knightfemale = {
-      url = "github:knightfemale/nur-packages/master";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
   };
   outputs = inputs: import ./outputs inputs;
 }
