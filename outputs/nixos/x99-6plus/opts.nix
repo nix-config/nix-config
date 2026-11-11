@@ -55,17 +55,20 @@ vars: {
           enable = true;
           extraSettings = {
             # 模型别名
-            alias = "qwen3.6-35b-a3b";
+            alias = "qwen3.8-27b";
             # 用于认证的 API 密钥 (逗号分隔列表)
             api-key = "1";
             # 加载模型路径
-            model = "/mnt/data/huggingface/mradermacher/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic-GGUF/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic.Q4_K_M.gguf";
+            model = "/mnt/data/huggingface/0bserverx/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF/RVN-Q4_K_M-multilingual.gguf";
             # 多模态投影文件路径
-            mmproj = "/mnt/data/huggingface/mradermacher/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic-GGUF/Qwen3.6-Fallen-Fabulist-35B-A3B-heretic.mmproj-f16.gguf";
+            mmproj = "/mnt/data/huggingface/0bserverx/Qwen3.8-27B-Heretic-Abliterated-Uncensored-GGUF/mmproj-Qwen3.8-27B-Q8_0.gguf";
             # 卸载到每个 GPU 的模型比例 (逗号分隔)
             tensor-split = "1,1";
             # 大幅降低长上下文推理时的显存占用和首字延迟
             flash-attn = "on";
+            # KV cache 量化 (V 量化依赖 flash-attn)
+            cache-type-k = "q8_0";
+            cache-type-v = "q8_0";
             # 加载到GPU的模型层数
             n-gpu-layers = "all";
             # 并发数量
@@ -94,6 +97,12 @@ vars: {
             repeat-penalty = 1.0;
             # 是否对聊天使用 Jinja 模板引擎
             jinja = true;
+            # 是否启用思考
+            reasoning = "on";
+            # 思考内容输出格式
+            reasoning-format = "deepseek";
+            # 传给聊天模板的推理强度
+            reasoning-effort = "medium";
             # 输出详细日志
             verbose = false;
           };

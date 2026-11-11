@@ -21,10 +21,6 @@ let
         torch = prev.torch-bin;
         triton = prev.triton-bin;
         torchvision = prev.torchvision-bin;
-        # -bin 属性本身也固定, 保证包集内部 torch-bin 等解析一致
-        torch-bin = prev.torch-bin;
-        triton-bin = prev.triton-bin;
-        torchvision-bin = prev.torchvision-bin;
       };
     };
   };
