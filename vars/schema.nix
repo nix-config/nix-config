@@ -423,6 +423,11 @@ in
       type = bool;
       default = false;
     };
+    # 视频剪辑软件
+    kdenlive.enable = {
+      type = bool;
+      default = false;
+    };
     # 轻量级视频播放器
     mpv.enable = {
       type = bool;
