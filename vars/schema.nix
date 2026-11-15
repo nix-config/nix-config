@@ -438,11 +438,6 @@ in
       type = bool;
       default = false;
     };
-    # Spotify 音乐播放器
-    spotify.enable = {
-      type = bool;
-      default = false;
-    };
   };
   # 系统服务
   service = {

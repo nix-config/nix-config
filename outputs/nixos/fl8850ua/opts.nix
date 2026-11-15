@@ -148,7 +148,6 @@ vars: {
           kdenlive.enable = true;
           mpv.enable = true;
           obs-studio.enable = true;
-          spotify.enable = true;
         };
         shell.bash.enable = true;
         terminal.kitty.enable = true;
