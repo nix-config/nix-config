@@ -42,13 +42,6 @@ vars: {
               localPort = 22;
               remotePort = 2227;
             }
-            {
-              name = "llama-cpp";
-              type = "tcp";
-              localIP = "localhost";
-              localPort = 8080;
-              remotePort = 28080;
-            }
           ];
         };
         llama-cpp = {
