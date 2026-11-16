@@ -102,6 +102,7 @@ vars: {
           };
           zellij.enable = true;
         };
+        media.lada.enable = true;
         shell.bash.enable = true;
       };
     };

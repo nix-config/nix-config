@@ -428,6 +428,11 @@ in
       type = bool;
       default = false;
     };
+    # 视频修复工具
+    lada.enable = {
+      type = bool;
+      default = false;
+    };
     # 视频剪辑软件
     kdenlive.enable = {
       type = bool;
