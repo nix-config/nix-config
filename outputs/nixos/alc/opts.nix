@@ -17,7 +17,7 @@ vars: {
         disk.devices = {
           main = vars.diskPartitionTypes.efi-ext4 {
             device = "/dev/vda";
-            espSize = "100M";
+            espSize = "256M";
           };
         };
         zram.enable = true;
@@ -51,7 +51,6 @@ vars: {
         description = "管理员";
         extraGroups = [
           "wheel"
-          "networkmanager"
         ];
         hashedPassword = "$6$Yq2f2308VGQlSDxb$v6tOVrxDvVJYSB40g8t/n2ZVw9pSARf5Gxe.ph2n.TvyXDPiruSi8Y9pEuPNi0regGL8AB8dQBmge/kNTZqxh1";
         openssh.authorizedKeys.keys = [

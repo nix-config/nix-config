@@ -32,19 +32,7 @@ vars: {
         networking.extraSettings.resolvconf.enable = false;
       };
       service = {
-        comfyui = {
-          enable = true;
-          models = with vars.comfyui.models; [
-            diffusion-pytorch-model-promax
-            realesrgan-x4plus-anime-6b
-          ];
-          customNodes = [
-            "comfyui-crystools"
-          ];
-          extraArgs = [
-            "--disable-cuda-malloc"
-          ];
-        };
+        comfyui.enable = true;
         frp = {
           enable = true;
           role = "client";

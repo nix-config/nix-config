@@ -14,10 +14,10 @@ let
     port
     ;
   isWsl = (opts.hardware.boot-loader.type == "wsl");
+  # torch/triton/torchvision 换成预编译 CUDA wheel, 避免源码构建 CUDA torch
   package = pkgs.comfyui.override {
     python3 = pkgs.python3.override {
       packageOverrides = _final: prev: {
-        # torch/triton/torchvision 换成预编译 CUDA wheel, 避免源码构建 CUDA torch
         torch = prev.torch-bin;
         triton = prev.triton-bin;
         torchvision = prev.torchvision-bin;

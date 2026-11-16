@@ -8,15 +8,14 @@
 }:
 let
   enableModule = opts.service.sops-nix.enable;
-  # TODO: NixOS/nixpkgs#543514
-  openlistModule = inputs.nur.repos.knightfemale.modules.nixos.openlist;
 in
 {
   # 首次启动执行:
   # sudo journalctl -u openlist --no-pager | grep -i "initial password"
   # 获取初始随机密码后登陆, 在 Web 界面设置密码
   imports = [
-    openlistModule
+    # TODO: NixOS/nixpkgs#543514
+    inputs.nur.repos.knightfemale.modules.nixos.openlist
     inputs.sops-nix.nixosModules.sops
   ];
   config = lib.mkIf enableModule {
