@@ -57,6 +57,11 @@ in
       type = bool;
       default = false;
     };
+    # Nix 相关内容的差异对比工具 (nh 远端 diff 需要)
+    dix.enable = {
+      type = bool;
+      default = false;
+    };
     # ls 替代品, 现代文件列表工具
     eza.enable = {
       type = bool;
