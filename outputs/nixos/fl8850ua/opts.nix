@@ -26,6 +26,7 @@ vars: {
           enable = true;
           enabledWidgets = [ "noctalia" ];
         };
+        xdg.enable = true;
       };
       environment.i18n.type = "zh-cn";
       hardware = {

@@ -227,6 +227,11 @@ in
         default = [ ];
       };
     };
+    # XDG 基础目录规范
+    xdg.enable = {
+      type = bool;
+      default = false;
+    };
   };
   # 编辑器
   editor = {
