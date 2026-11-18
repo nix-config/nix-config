@@ -170,11 +170,6 @@ in
       type = bool;
       default = false;
     };
-    # 终端复用器, 可在一个终端中运行多个会话
-    tmux.enable = {
-      type = bool;
-      default = false;
-    };
     # 用 Rust 编写的快速文件管理器
     yazi.enable = {
       type = bool;
