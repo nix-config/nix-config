@@ -9,7 +9,15 @@ vars: {
       system = "x86_64-linux";
       stateVersion = "26.05";
       nixConfigPath = "/home/ubuntu/workspace/nix-config";
-      cli.zellij.enable = true;
+      cli = {
+        direnv.enable = true;
+        mcp = {
+          enable = true;
+          enabledMcps = [ "all" ];
+        };
+        opencode.enable = true;
+        zellij.enable = true;
+      };
     };
   };
 }

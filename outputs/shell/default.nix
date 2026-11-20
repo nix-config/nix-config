@@ -13,10 +13,10 @@ in
       flake-show-ng
       just
       just-lsp
-      nix-output-monitor
       nixd
       nixfmt
       nixfmt-tree
+      rom
       sops
     ];
   };
