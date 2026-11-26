@@ -7,15 +7,30 @@
 let
   gpuType = opts.hardware.graphics.type;
   isNvidia = (gpuType == "nvidia") || (gpuType == "nvidia-open");
+  # TODO: NixOS/nixpkgs#593251
+  pkgs' = pkgs.extend (
+    _final: prev: {
+      python314Packages = prev.python314Packages.overrideScope (
+        _self: super: {
+          gto = super.gto.overridePythonAttrs (old: {
+            disabledTests = (old.disabledTests or [ ]) ++ [
+              "test_commands_args_help"
+              "test_subcommand_help_shows_arguments"
+            ];
+          });
+        }
+      );
+    }
+  );
   # torch/torchvision 换成预编译 CUDA wheel, 避免源码构建 CUDA torch
   package =
     if isNvidia then
-      pkgs.lada.override {
-        torch = pkgs.python3Packages.torch-bin;
-        torchvision = pkgs.python3Packages.torchvision-bin;
+      pkgs'.python314Packages.lada.override {
+        torch = pkgs'.python314Packages.torch-bin;
+        torchvision = pkgs'.python314Packages.torchvision-bin;
       }
     else
-      pkgs.lada;
+      pkgs'.python314Packages.lada;
 in
 {
   imports = [
