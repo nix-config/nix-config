@@ -3,7 +3,6 @@
     # ==================== nixos ====================
     flake-compat.url = "github:NixOS/flake-compat/master";
     nixpkgs.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # ==================== nix-community ====================
     disko = {
       url = "github:nix-community/disko/master";

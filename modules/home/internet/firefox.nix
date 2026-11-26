@@ -4,7 +4,6 @@
   opts,
   vars,
   inputs,
-  pkgSets,
   ...
 }:
 let
@@ -18,7 +17,6 @@ in
   config = lib.mkIf enableModule {
     programs.firefox = {
       enable = true;
-      package = pkgSets.pkgs-nixos-unstable.firefox;
       # 安装界面语言包, 由企业策略从 releases.mozilla.org 按当前 firefox 版本自动装好
       languagePacks = [ locale.bcp47 ];
       # 浏览器策略配置

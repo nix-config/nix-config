@@ -1,10 +1,10 @@
 {
-  pkgSets,
+  pkgs,
   ...
 }:
 {
   config = {
-    home.packages = with pkgSets.pkgs-nixos-unstable; [
+    home.packages = with pkgs; [
       biu
     ];
   };
